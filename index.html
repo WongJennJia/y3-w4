@@ -1,0 +1,2178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>三年级数学｜对称轴｜Week 4-L1</title>
+  <style>
+    :root{
+      --ink:#17345b;
+      --ink2:#285a8c;
+      --blue:#2364aa;
+      --blue2:#e9f3ff;
+      --purple:#6d43bd;
+      --green:#20956f;
+      --orange:#f59e0b;
+      --red:#d33b3b;
+      --paper:#fffdf8;
+      --line:#d7e0ef;
+      --shadow:0 12px 30px rgba(33,67,111,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:linear-gradient(135deg,#eef6ff 0%,#fbf9ff 50%,#fff8ed 100%);
+      font-family:"Microsoft YaHei","Noto Sans SC","PingFang SC",Arial,sans-serif;
+      font-size:20px;
+      line-height:1.45;
+    }
+    button{
+      border:0;
+      font:inherit;
+      color:var(--ink);
+      background:#fff;
+      cursor:pointer;
+      touch-action:manipulation;
+    }
+    button:focus-visible{
+      outline:5px solid #ffbf47;
+      outline-offset:3px;
+    }
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      min-height:78px;
+      padding:12px clamp(16px,3vw,42px);
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid #dce6f3;
+      box-shadow:0 4px 18px rgba(33,67,111,.09);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:950;
+      font-size:clamp(22px,2.4vw,34px);
+      color:var(--blue);
+      letter-spacing:.03em;
+    }
+    .brand-mark{
+      display:grid;
+      place-items:center;
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      color:#fff;
+      background:linear-gradient(135deg,#2364aa,#7c3aed);
+      font-size:26px;
+      box-shadow:0 6px 15px rgba(35,100,170,.24);
+    }
+    .top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .top-btn{
+      min-height:48px;
+      padding:8px 16px;
+      border:2px solid #c9d8ef;
+      border-radius:16px;
+      font-weight:900;
+      font-size:clamp(16px,1.5vw,22px);
+      background:#fff;
+    }
+    .top-btn.primary{color:#fff;background:var(--blue);border-color:var(--blue)}
+    .nav{
+      position:sticky;
+      top:78px;
+      z-index:25;
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      padding:10px clamp(16px,3vw,42px);
+      background:rgba(245,249,255,.96);
+      border-bottom:1px solid #dce6f3;
+    }
+    .nav button{
+      flex:0 0 auto;
+      min-height:48px;
+      padding:7px 18px;
+      border:2px solid #cbd8ec;
+      border-radius:999px;
+      color:var(--ink2);
+      font-size:clamp(17px,1.5vw,23px);
+      font-weight:900;
+      background:#fff;
+    }
+    .nav button.active{color:#fff;background:var(--purple);border-color:var(--purple)}
+    .nav.is-collapsed{display:none}
+    .nav-toggle-btn{min-width:150px}
+    body.nav-collapsed .control-card,body.nav-collapsed .evaluation-summary{top:92px}
+    body.nav-collapsed .clock-fab{top:92px}
+    main{width:min(1800px,100%);margin:0 auto;padding:28px clamp(16px,3vw,48px) 64px}
+    .screen{display:none;animation:screenIn .28s ease-out}
+    .screen.active{display:block}
+    @keyframes screenIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.9fr) minmax(480px,1.1fr);
+      gap:26px;
+      align-items:stretch;
+    }
+    .hero-copy,.butterfly-card,.info-card,.scene-card,.control-card,.detective-card,.exit-card{
+      border:2px solid var(--line);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.92);
+      box-shadow:var(--shadow);
+    }
+    .hero-copy{padding:clamp(24px,4vw,60px);display:flex;flex-direction:column;justify-content:center}
+    .kicker{
+      margin:0 0 8px;
+      color:var(--purple);
+      font-size:clamp(19px,1.8vw,28px);
+      font-weight:950;
+      letter-spacing:.08em;
+    }
+    h1,h2,h3,p{margin-top:0}
+    h1{margin-bottom:16px;font-size:clamp(48px,7vw,92px);line-height:1.05;color:var(--blue)}
+    h2{margin-bottom:8px;font-size:clamp(34px,4.3vw,62px);line-height:1.1;color:var(--blue)}
+    h3{margin-bottom:12px;font-size:clamp(24px,2.3vw,36px);line-height:1.15;color:var(--blue)}
+    .hero-copy .lead{font-size:clamp(24px,2.3vw,36px);font-weight:850;line-height:1.55}
+    .teacher-note{
+      margin:20px 0;
+      padding:14px 18px;
+      border-left:9px solid var(--orange);
+      border-radius:12px;
+      background:#fff6db;
+      font-size:clamp(20px,1.8vw,28px);
+      font-weight:850;
+    }
+    .button-row{display:flex;flex-wrap:wrap;gap:12px}
+    .big-btn,.action-btn,.choice-btn{
+      min-height:58px;
+      padding:10px 22px;
+      border:3px solid #cbd8ec;
+      border-radius:18px;
+      font-size:clamp(20px,1.8vw,28px);
+      font-weight:950;
+      background:#fff;
+      box-shadow:0 5px 0 rgba(39,74,119,.08);
+    }
+    .big-btn.primary,.action-btn.primary{color:#fff;background:var(--blue);border-color:var(--blue)}
+    .big-btn.purple,.action-btn.purple{color:#fff;background:var(--purple);border-color:var(--purple)}
+    .big-btn.green,.action-btn.green{color:#fff;background:var(--green);border-color:var(--green)}
+    .big-btn.orange,.action-btn.orange{color:#744100;background:#ffd166;border-color:#e2a51e}
+    .big-btn:active,.action-btn:active,.choice-btn:active,.top-btn:active{transform:translateY(2px);box-shadow:none}
+    .butterfly-card{padding:18px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(145deg,#fffdf8,#eff8ff)}
+    .butterfly-card svg{display:block;width:100%;height:auto;min-height:360px;max-height:560px}
+    .butterfly-card.playing{box-shadow:0 0 0 8px rgba(255,209,102,.34),var(--shadow)}
+    .butterfly-message{
+      margin:4px 4px 0;
+      padding:13px 16px;
+      border-radius:16px;
+      text-align:center;
+      color:#775000;
+      background:#fff6d8;
+      font-weight:950;
+      font-size:clamp(20px,1.8vw,28px);
+    }
+    .butterfly-label{font-size:28px;font-weight:950;fill:#24527e}
+    .butterfly-fold-line{stroke:#d33b3b;stroke-width:7;stroke-dasharray:18 12}
+    .butterfly-wing-left{fill:#ffd166;stroke:#bf7c00;stroke-width:8}
+    .butterfly-wing-right{fill:#f5a9c2;stroke:#a54172;stroke-width:8}
+    .butterfly-body{fill:#5b3a29;stroke:#3e281d;stroke-width:6}
+    .butterfly-detail{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;opacity:.85}
+    .butterfly-spark{fill:#ffbf47}
+    .butterfly-card.playing .butterfly-spark{animation:sparkFloat 1s ease-in-out infinite alternate}
+    .butterfly-card.playing .spark-2{animation-delay:.22s}
+    .butterfly-card.playing .spark-3{animation-delay:.45s}
+    @keyframes sparkFloat{from{opacity:.45;transform:translateY(3px) scale(.85)}to{opacity:1;transform:translateY(-10px) scale(1.15)}}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:20px}
+    .section-head p{margin:0;color:var(--purple);font-weight:950;font-size:clamp(18px,1.7vw,26px)}
+    .section-head .status-pill{
+      flex:0 0 auto;
+      padding:11px 18px;
+      border-radius:999px;
+      color:#145c44;
+      background:#dff7eb;
+      border:2px solid #9eddbc;
+      font-size:clamp(18px,1.6vw,24px);
+      font-weight:950;
+    }
+    .goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
+    .info-card{padding:26px;min-height:220px}
+    .goal-eye{width:78px;height:48px;margin:0 0 12px;border:5px solid #2364aa;border-radius:50% / 65%;background:#e9f3ff;position:relative;display:grid;place-items:center;transform:rotate(-4deg)}
+    .goal-eye::before{content:"";width:24px;height:24px;border-radius:50%;background:#7c3aed;border:6px solid #fff0b8;box-shadow:0 0 0 3px #20956f}
+    .goal-eye::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;top:9px;left:28px}
+    .goal-visual{height:78px;margin:0 0 12px;display:grid;place-items:center}
+    .goal-visual svg{display:block;width:min(180px,100%);height:78px;overflow:visible}
+    .goal-visual .goal-stroke{fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .info-card .num{
+      display:grid;place-items:center;
+      width:58px;height:58px;margin-bottom:16px;
+      border-radius:18px;color:#fff;background:var(--purple);
+      font-size:30px;font-weight:950;
+    }
+    .info-card p{font-size:clamp(22px,2vw,31px);font-weight:850}
+    .rule-card{padding:22px 28px;border-radius:20px;border:3px solid #bcd5f3;background:#eef7ff;font-size:clamp(24px,2.3vw,36px);font-weight:950;text-align:center}
+    .draw-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(360px,.75fr);gap:20px;align-items:start}
+    .scene-card{padding:16px;background:var(--paper)}
+    .scene-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 8px 12px}
+    .scene-toolbar .shape-title{color:var(--blue);font-size:clamp(25px,2.5vw,38px);font-weight:950}
+    .scene-toolbar .count{padding:7px 13px;border-radius:999px;background:#e9f3ff;color:#1e558a;font-size:clamp(18px,1.6vw,25px);font-weight:950;white-space:nowrap}
+    #drawScene{border:2px solid #dfe7f0;border-radius:20px;background:#fff;overflow:hidden}
+    #drawScene svg{display:block;width:100%;height:auto;min-height:390px;max-height:620px}
+    .draw-hint{margin:12px 4px 0;padding:12px 16px;border-radius:15px;background:#fff6d8;color:#744100;font-size:clamp(20px,1.7vw,27px);font-weight:900;text-align:center}
+    .draw-hint.good{background:#e2f8ec;color:#145c44}
+    .draw-hint.bad{background:#fff0e0;color:#914700}
+    .draw-hint.folding{background:#e9e1ff;color:#51318d}
+    .control-card{padding:20px;position:sticky;top:148px;max-height:calc(100vh - 168px);overflow:auto}
+    .control-card h3{font-size:clamp(24px,2.1vw,32px);margin-top:0;padding-bottom:8px;border-bottom:2px dashed #d5e0ef}
+    .shape-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:18px}
+    .shape-btn,.axis-btn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      width:100%;
+      min-height:56px;
+      padding:8px 12px;
+      border:3px solid #d4dde9;
+      border-radius:15px;
+      text-align:left;
+      background:#fff;
+      font-weight:950;
+    }
+    .shape-btn{flex-direction:column;align-items:flex-start;justify-content:center;line-height:1.1}
+    .shape-btn strong{font-size:clamp(18px,1.65vw,25px)}
+    .shape-btn small{font-size:clamp(14px,1.2vw,18px);font-weight:800;color:#55708e}
+    .shape-btn.selected{border-color:var(--purple);background:#f0eaff;box-shadow:0 0 0 3px rgba(109,67,189,.12)}
+    .axis-list{display:grid;gap:8px;margin-bottom:18px}
+    .axis-btn{font-size:clamp(17px,1.5vw,23px)}
+    .axis-btn small{display:block;color:#55708e;font-size:clamp(13px,1.15vw,17px);font-weight:750}
+    .axis-btn.selected{border-color:#7b5ad7;background:#f3efff}
+    .axis-btn.challenge{border-color:#f1b15c;background:#fff7e8}
+    .axis-btn.corner-diagonal{border-color:#ef9a9a;background:#fff1f1}
+    .swatch{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--line-color,#f59e0b);border:3px solid rgba(0,0,0,.12)}
+    .axis-btn.challenge .swatch{background:#f59e0b}
+    .axis-copy{display:flex;flex-direction:column;gap:0;min-width:0}
+    .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .action-btn{width:100%;padding:9px 12px;font-size:clamp(17px,1.45vw,22px);min-height:58px}
+    .action-btn.wide{grid-column:1/-1}
+    .legend{margin-top:16px;padding:12px 14px;border-radius:15px;background:#f4f8fd;color:#48647f;font-size:clamp(15px,1.25vw,19px);font-weight:800}
+    .legend-line{display:flex;align-items:center;gap:8px;margin:4px 0}
+    .legend-dot{width:18px;height:18px;border-radius:50%;background:#f59e0b;display:inline-block}
+    .legend-dot.done{background:#2364aa}
+    .legend-dot.challenge{background:#d97706}
+    .legend-dot.corner{background:#ef4444}
+    .svg-paper{fill:#fffdf8}
+    .svg-shape{stroke:#1f5b8c;stroke-width:9;stroke-linejoin:round}
+    .svg-shape-shadow{fill:none;stroke:#dbe8f3;stroke-width:22;stroke-linejoin:round;opacity:.9}
+    .candidate-axis{stroke:#f59e0b;stroke-width:13;stroke-dasharray:22 15;stroke-linecap:round;opacity:.64;pointer-events:stroke;cursor:pointer}
+    .candidate-axis.selected{stroke-width:15;stroke-dasharray:none;opacity:1}
+    .candidate-axis.active{filter:drop-shadow(0 0 5px rgba(35,100,170,.5))}
+    .candidate-axis.challenge{stroke:#d97706}
+    .candidate-axis.challenge.active{stroke:#c45c00;stroke-width:16}
+    .candidate-axis.corner-diagonal{stroke:#ef4444;stroke-dasharray:16 11}
+    .candidate-axis.corner-diagonal.active{stroke:#dc2626;stroke-width:17}
+    .diagonal-corner{fill:#ef4444;stroke:#fff;stroke-width:5;pointer-events:none}
+    .candidate-label{font-size:22px;font-weight:950;fill:#9a5e08;pointer-events:none}
+    .candidate-label.challenge-label{fill:#a75600}
+    .axis-label{font-size:30px;font-weight:950;fill:#17345b;paint-order:stroke;stroke:#fff;stroke-width:7;stroke-linejoin:round;pointer-events:none}
+    .axis-badge{stroke:#fff;stroke-width:4;pointer-events:none}
+    .canvas-instruction{font-size:27px;font-weight:950;fill:#506b86}
+    .center-dot{fill:#d33b3b;stroke:#fff;stroke-width:5}
+    .fold-base{fill:#edf3fa;stroke:#1f5b8c;stroke-width:9;stroke-linejoin:round}
+    .fold-half{fill:#ffd166;stroke:#b36a00;stroke-width:9;stroke-linejoin:round;opacity:.9;filter:drop-shadow(0 8px 5px rgba(146,92,0,.18))}
+    .crease{stroke:#d33b3b;stroke-width:12;stroke-dasharray:22 13;stroke-linecap:round}
+    .fold-title{font-size:34px;font-weight:950;fill:#2364aa}
+    .fold-caption{font-size:28px;font-weight:950;fill:#8b5b00}
+    .fold-arrow{fill:none;stroke:#7c3aed;stroke-width:9;stroke-linecap:round;marker-end:url(#arrowhead)}
+    .fold-note{font-size:24px;font-weight:900;fill:#6944a6}
+    .summary-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:20px;align-items:stretch}
+    .summary-card{padding:18px;border-radius:var(--radius);border:2px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+    #summaryScene svg,#mirrorScene svg{display:block;width:100%;height:auto;min-height:380px;max-height:570px;border-radius:18px;background:#fffdf8}
+    .summary-copy{padding:24px;display:flex;flex-direction:column;justify-content:center}
+    .summary-copy .big-number{font-size:clamp(70px,9vw,132px);line-height:1;color:var(--purple);font-weight:1000}
+    .summary-copy p{font-size:clamp(24px,2.5vw,38px);font-weight:900}
+    .summary-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+    .summary-actions .big-btn{width:100%;padding:10px 14px}
+    .summary-note{margin:12px 0 0!important;color:#55708e;font-size:clamp(17px,1.45vw,22px)!important;font-weight:800!important}
+    .mirror-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);gap:20px}
+    .mirror-card{padding:18px;border-radius:var(--radius);border:2px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+    .mirror-controls{padding:24px}
+    .mirror-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+    .mirror-btn{min-height:58px;padding:8px;border:3px solid #cbd8ec;border-radius:15px;font-weight:950;font-size:clamp(17px,1.55vw,24px);background:#fff}
+    .mirror-btn.selected{color:#fff;background:var(--green);border-color:var(--green)}
+    .mirror-line{stroke:#16a36f;stroke-width:13;stroke-dasharray:18 12;stroke-linecap:round}
+    .mirror-half{fill:#b9efd9;stroke:#16845d;stroke-width:8;opacity:.9}
+    .detective-card{padding:24px}
+    .detective-question{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:10px 0 20px}
+    .detective-shape{flex:0 0 180px}
+    .detective-shape svg{display:block;width:180px;height:150px;border-radius:16px;background:#fffdf8;border:2px solid #dfe7f0}
+    .detective-question-text{font-size:clamp(28px,3.2vw,50px);font-weight:950;color:var(--blue)}
+    .answer-grid{display:grid;grid-template-columns:repeat(5,minmax(68px,1fr));gap:12px;max-width:760px}
+    .answer-btn{min-height:72px;border:3px solid #cbd8ec;border-radius:17px;background:#fff;font-size:clamp(25px,2.3vw,38px);font-weight:1000}
+    .answer-btn.correct{color:#fff;background:var(--green);border-color:var(--green)}
+    .answer-btn.wrong{color:#fff;background:var(--red);border-color:var(--red)}
+    .detective-result{min-height:48px;margin:18px 0;padding:11px 16px;border-radius:14px;background:#f4f8fd;font-size:clamp(20px,1.8vw,28px);font-weight:900}
+    .exit-card{padding:clamp(24px,4vw,54px);max-width:1100px;margin:0 auto}
+    .exit-card .question{font-size:clamp(28px,3.5vw,54px);font-weight:950;color:var(--blue)}
+    .exit-options{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+    .exit-option{min-height:76px;border:3px solid #cbd8ec;border-radius:18px;background:#fff;font-size:clamp(22px,2vw,32px);font-weight:950}
+    .exit-option.selected.correct{color:#fff;background:var(--green);border-color:var(--green)}
+    .exit-option.selected.wrong{color:#fff;background:var(--red);border-color:var(--red)}
+    .exit-result{padding:14px 18px;border-radius:16px;background:#e9f3ff;font-size:clamp(22px,2vw,31px);font-weight:900}
+    .evaluation-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:20px;align-items:start}
+    .evaluation-goals{display:grid;gap:14px}
+    .evaluation-card{display:grid;grid-template-columns:82px minmax(0,1fr);gap:12px 18px;align-items:center;padding:20px;border:2px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow)}
+    .evaluation-card[data-state="achieved"]{border-color:#74cda5;background:#f1fff8}
+    .evaluation-card[data-state="practice"]{border-color:#efbd69;background:#fffaf0}
+    .evaluation-icon{display:grid;place-items:center;width:78px;height:78px;border-radius:22px;color:#fff;background:var(--purple);font-size:42px;line-height:1}
+    .evaluation-card[data-state="achieved"] .evaluation-icon{background:var(--green)}
+    .evaluation-card[data-state="practice"] .evaluation-icon{background:var(--orange);color:#744100}
+    .evaluation-copy h3{margin:0 0 5px;font-size:clamp(25px,2.4vw,36px)}
+    .evaluation-copy p{margin:0;font-size:clamp(20px,1.8vw,27px);font-weight:850}
+    .evaluation-options{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .evaluation-option{min-height:56px;padding:8px 12px;border:3px solid #cbd8ec;border-radius:15px;background:#fff;font-size:clamp(18px,1.6vw,24px);font-weight:950}
+    .evaluation-option.selected.yes{color:#fff;background:var(--green);border-color:var(--green)}
+    .evaluation-option.selected.practice{color:#744100;background:#ffd166;border-color:#e2a51e}
+    .evaluation-summary{padding:24px;position:sticky;top:148px}
+    .evaluation-summary h3{margin-bottom:12px}
+    .evaluation-summary p{font-size:clamp(21px,1.9vw,29px);font-weight:850}
+    .teacher-summary{margin:16px 0;padding:16px 18px;border-left:8px solid var(--purple);border-radius:14px;background:#f0eaff}
+    .teacher-summary strong{display:block;margin-bottom:6px;color:var(--purple);font-size:clamp(19px,1.7vw,25px)}
+    .teacher-summary p{margin:0;font-size:clamp(20px,1.75vw,27px);font-weight:900}
+    .thanks-card{max-width:1180px;margin:0 auto;padding:clamp(28px,5vw,72px);border:3px solid #c8d9ef;border-radius:32px;background:linear-gradient(145deg,#fffdf6,#eff8ff);box-shadow:var(--shadow);text-align:center}
+    .thanks-art{display:flex;justify-content:center;align-items:center;gap:30px;margin:0 auto 16px;font-size:clamp(50px,7vw,92px);line-height:1}
+    .thanks-art span{display:inline-block;animation:thanksFloat 2.2s ease-in-out infinite alternate}
+    .thanks-art span:nth-child(2){animation-delay:.25s}.thanks-art span:nth-child(3){animation-delay:.5s}
+    @keyframes thanksFloat{from{transform:translateY(5px) rotate(-3deg)}to{transform:translateY(-8px) rotate(3deg)}}
+    .thanks-card h1{margin-bottom:20px}
+    .thanks-lead{font-size:clamp(25px,2.6vw,40px);font-weight:900;color:var(--blue)}
+    .next-lesson{max-width:720px;margin:26px auto;padding:20px 24px;border:3px solid #e6b640;border-radius:22px;background:#fff6d8}
+    .next-lesson p{margin:0;color:#8b5b00;font-size:clamp(21px,1.9vw,29px);font-weight:950}
+    .next-lesson strong{display:block;margin:2px 0 5px;color:var(--purple);font-size:clamp(36px,4.5vw,64px);font-weight:1000}
+    .next-lesson span{font-size:clamp(19px,1.7vw,26px);font-weight:850;color:#744100}
+    .thanks-card .big-btn{margin-top:8px}
+    .page-nav{display:grid;grid-template-columns:minmax(190px,1fr) auto minmax(190px,1fr);align-items:center;gap:14px;margin:30px 0 0;padding:16px 0 0;border-top:2px dashed #cbd8ec}
+    .page-nav-button{min-height:60px;padding:9px 18px;border:3px solid #cbd8ec;border-radius:17px;background:#fff;font-size:clamp(20px,1.8vw,28px);font-weight:1000;box-shadow:0 5px 0 rgba(39,74,119,.08)}
+    .page-nav-button.prev{justify-self:start;color:var(--ink2)}
+    .page-nav-button.next{justify-self:end;color:#fff;background:var(--blue);border-color:var(--blue)}
+    .page-nav-button:disabled{color:#8fa0b3;background:#f4f7fb;border-color:#dce4ef;box-shadow:none;cursor:not-allowed;opacity:.72}
+    .page-nav-status{justify-self:center;text-align:center;color:#55708e;font-size:clamp(17px,1.45vw,23px);font-weight:950}
+    #toast{
+      position:fixed;
+      left:50%;
+      bottom:24px;
+      z-index:50;
+      transform:translate(-50%,20px);
+      opacity:0;
+      max-width:min(90vw,800px);
+      padding:13px 22px;
+      border-radius:999px;
+      color:#fff;
+      background:#17345b;
+      box-shadow:0 10px 26px rgba(23,52,91,.25);
+      text-align:center;
+      font-weight:950;
+      font-size:clamp(18px,1.7vw,26px);
+      pointer-events:none;
+      transition:opacity .2s ease,transform .2s ease;
+    }
+    #toast.show{opacity:1;transform:translate(-50%,0)}
+    #toast.correct{background:#20956f}
+    #toast.wrong{background:#b45309}
+    .keyword{
+      font-weight:1000;
+      color:#a23b22;
+      background:#fff0b8;
+      padding:0 5px;
+      border-radius:7px;
+      cursor:help;
+      position:relative;
+    }
+    .keyword.blue{color:#1c5c9a;background:#e6f2ff}
+    .keyword:focus-visible{outline:4px solid #7c3aed;outline-offset:4px}
+    .glossary-tip{
+      position:fixed;
+      z-index:120;
+      width:min(360px,calc(100vw - 28px));
+      padding:15px 18px;
+      border:3px solid #9eddbc;
+      border-radius:18px;
+      background:#17345b;
+      color:#fff;
+      box-shadow:0 14px 34px rgba(23,52,91,.28);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(7px) scale(.98);
+      transition:opacity .18s ease,transform .18s ease;
+    }
+    .glossary-tip.show{opacity:1;transform:translateY(0) scale(1)}
+    .glossary-term{font-size:clamp(23px,2.2vw,31px);font-weight:1000;color:#fff0b8;margin-bottom:7px}
+    .glossary-row{display:grid;grid-template-columns:118px 1fr;gap:8px;align-items:baseline;margin-top:5px;font-size:clamp(18px,1.65vw,24px);font-weight:850}
+    .glossary-label{color:#b9efd9;font-weight:1000}
+    .activity-header{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr) auto;
+      gap:18px;
+      align-items:center;
+      padding:16px 20px;
+      margin-bottom:22px;
+      border:3px solid #c8d9ef;
+      border-radius:26px;
+      background:linear-gradient(120deg,#fff,#eef7ff);
+      box-shadow:0 8px 22px rgba(33,67,111,.09);
+    }
+    .activity-art{
+      min-height:120px;
+      display:grid;
+      place-items:center;
+      padding:5px;
+      border-radius:20px;
+      background:#fffdf5;
+      border:2px solid #e6dfc9;
+    }
+    .activity-art svg{display:block;width:100%;height:auto;max-height:145px}
+    .activity-kicker{
+      margin:0 0 3px;
+      color:var(--purple);
+      font-size:clamp(16px,1.5vw,23px);
+      font-weight:1000;
+      letter-spacing:.06em;
+    }
+    .activity-title{
+      margin:0 0 8px;
+      color:var(--blue);
+      font-size:clamp(27px,3vw,45px);
+      line-height:1.12;
+      font-weight:1000;
+    }
+    .activity-tip{margin:0;color:#48647f;font-size:clamp(18px,1.55vw,24px);font-weight:850}
+    .activity-time{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-top:9px;
+      padding:6px 13px;
+      border-radius:999px;
+      color:#744100;
+      background:#fff0b8;
+      border:2px solid #e6b640;
+      font-size:clamp(18px,1.55vw,24px);
+      font-weight:1000;
+    }
+    .activity-actions{display:flex;flex-direction:column;gap:9px;min-width:205px}
+    .activity-actions button{
+      min-height:50px;
+      padding:7px 13px;
+      border:2px solid #cbd8ec;
+      border-radius:14px;
+      background:#fff;
+      font-size:clamp(16px,1.35vw,21px);
+      font-weight:950;
+    }
+    .activity-actions .activity-open{color:#fff;background:var(--purple);border-color:var(--purple)}
+    .activity-actions .activity-start{color:#fff;background:var(--green);border-color:var(--green)}
+    .activity-cover{
+      position:fixed;
+      inset:0;
+      z-index:70;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(17,37,63,.76);
+    }
+    .activity-cover.open{display:flex}
+    .cover-card{
+      display:grid;
+      grid-template-columns:minmax(280px,.95fr) minmax(340px,1.05fr);
+      gap:28px;
+      align-items:center;
+      width:min(1180px,96vw);
+      max-height:92vh;
+      overflow:auto;
+      padding:28px;
+      border:4px solid #17345b;
+      border-radius:32px;
+      background:#fffdf6;
+      box-shadow:0 25px 80px rgba(0,0,0,.38);
+    }
+    .cover-art{
+      min-height:340px;
+      display:grid;
+      place-items:center;
+      padding:15px;
+      border-radius:24px;
+      background:linear-gradient(145deg,#fff8d7,#e8f4ff);
+      border:3px solid #d9dfed;
+    }
+    .cover-art svg{display:block;width:100%;height:auto;max-height:440px}
+    .cover-kicker{margin:0 0 8px;color:var(--purple);font-size:clamp(20px,2vw,29px);font-weight:1000}
+    .cover-title{margin:0 0 13px;color:var(--blue);font-size:clamp(38px,5vw,70px);line-height:1.05;font-weight:1000}
+    .cover-time{display:inline-block;padding:10px 17px;border-radius:999px;color:#744100;background:#fff0b8;border:3px solid #e6b640;font-size:clamp(23px,2.3vw,34px);font-weight:1000}
+    .cover-instruction{margin:18px 0;font-size:clamp(23px,2.2vw,34px);line-height:1.5;font-weight:900;color:#3e5f7f}
+    .cover-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .cover-actions button{min-height:58px;padding:10px 18px;border-radius:17px;border:3px solid #cbd8ec;font-size:clamp(19px,1.7vw,26px);font-weight:1000}
+    .cover-actions .cover-start{color:#fff;background:var(--green);border-color:var(--green)}
+    .cover-actions .cover-clock{color:#fff;background:var(--purple);border-color:var(--purple)}
+    .cover-actions .cover-close{background:#fff}
+    .helper-gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin:22px 0;
+    }
+    .helper-card{
+      padding:14px;
+      border:2px solid #d7e0ef;
+      border-radius:20px;
+      background:#fff;
+      text-align:center;
+      box-shadow:0 6px 16px rgba(33,67,111,.08);
+    }
+    .helper-card svg{display:block;width:100%;height:auto;max-height:230px;margin:auto}
+    .helper-card h3{margin:8px 0 0;font-size:clamp(22px,2vw,31px)}
+    .helper-card p{margin:3px 0 0;color:#55708e;font-size:clamp(16px,1.35vw,21px);font-weight:800}
+    .clock-fab{
+      position:fixed;
+      right:16px;
+      top:148px;
+      z-index:40;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      min-height:45px;
+      padding:7px 13px;
+      border:2px solid #b8c8dd;
+      border-radius:999px;
+      color:#fff;
+      background:rgba(23,52,91,.92);
+      box-shadow:0 5px 16px rgba(23,52,91,.25);
+      font-size:17px;
+      font-weight:950;
+      cursor:pointer;
+      user-select:none;
+    }
+    .clock-fab .clock-mini{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+    .clock-modal{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(13,28,48,.74);
+    }
+    .clock-modal.open{display:flex}
+    .clock-panel{
+      position:relative;
+      width:min(940px,96vw);
+      max-height:92vh;
+      overflow:auto;
+      padding:26px;
+      border:4px solid #17345b;
+      border-radius:30px;
+      background:#fffdf6;
+      box-shadow:0 25px 80px rgba(0,0,0,.35);
+    }
+    .clock-close{
+      position:absolute;
+      right:16px;
+      top:12px;
+      width:48px;
+      height:48px;
+      border:0;
+      border-radius:50%;
+      color:#17345b;
+      background:#edf3fa;
+      font-size:32px;
+      font-weight:1000;
+    }
+    .clock-title{margin:0 55px 14px;text-align:center;color:var(--blue);font-size:clamp(30px,3.4vw,48px);font-weight:1000}
+    .clock-tabs{display:flex;justify-content:center;gap:10px;margin:10px 0 18px}
+    .clock-tab{min-height:50px;padding:8px 17px;border:2px solid #cbd8ec;border-radius:15px;background:#fff;font-size:clamp(18px,1.7vw,25px);font-weight:950}
+    .clock-tab.active{color:#fff;background:var(--purple);border-color:var(--purple)}
+    .clock-pane{display:none}.clock-pane.active{display:block}
+    .big-clock{margin:10px 0;text-align:center;color:var(--ink);font-size:clamp(70px,12vw,145px);line-height:1;font-weight:1000;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+    .clock-labels{display:grid;grid-template-columns:repeat(3,1fr);max-width:650px;margin:0 auto 18px;text-align:center;color:#55708e;font-size:clamp(17px,1.6vw,24px);font-weight:900}
+    .clock-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .clock-control{min-height:55px;padding:9px 18px;border:0;border-radius:16px;color:#fff;background:var(--blue);font-size:clamp(18px,1.6vw,24px);font-weight:1000}
+    .clock-control.alt{color:var(--ink);background:#fff;border:2px solid #cbd8ec}
+    .clock-control.good{background:var(--green)}
+    .timer-setup{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:12px 0}
+    .timer-input{text-align:center}.timer-input input{width:105px;padding:8px;border:2px solid #cbd8ec;border-radius:13px;text-align:center;font-size:31px;font-weight:1000}.timer-input label{display:block;margin-top:4px;font-size:17px;font-weight:900;color:#55708e}
+    .timer-presets{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0 18px}.timer-preset{padding:7px 13px;border:2px solid #cbd8ec;border-radius:999px;background:#fff;font-size:18px;font-weight:950}
+    @media (max-width:1100px){
+      .activity-header{grid-template-columns:130px minmax(0,1fr)}
+      .activity-actions{grid-column:2;flex-direction:row;flex-wrap:wrap;min-width:0}
+      .activity-actions button{flex:1 1 190px}
+      .cover-card{grid-template-columns:1fr;gap:15px}
+      .cover-art{min-height:230px}
+      .cover-art svg{max-height:300px}
+    }
+    @media (max-width:720px){
+      .activity-header{grid-template-columns:1fr;padding:13px}
+      .activity-art{min-height:115px}
+      .activity-actions{grid-column:auto}
+      .helper-gallery{grid-template-columns:1fr}
+      .clock-fab{top:132px;right:10px;padding:6px 10px}
+      body.nav-collapsed .clock-fab{top:132px}
+      .clock-fab .clock-mini{display:none}
+      .clock-panel{padding:20px 14px}
+      .cover-card{padding:18px}
+      .cover-actions{flex-direction:column}
+      .cover-actions button{width:100%}
+    }
+    @media (max-width:1100px){
+      .hero-grid,.draw-layout,.summary-layout,.mirror-layout,.evaluation-layout{grid-template-columns:1fr}
+      .control-card{position:static;max-height:none}
+      .evaluation-summary{position:static}
+      .hero-copy{padding:28px}
+      .butterfly-card svg{min-height:300px}
+    }
+    @media (max-width:720px){
+      body{font-size:18px}
+      .topbar{align-items:flex-start;flex-direction:column}
+      .top-actions{width:100%;justify-content:flex-start}
+      .nav{top:126px}
+      main{padding-top:20px}
+      .goal-grid{grid-template-columns:1fr}
+      .shape-grid{grid-template-columns:repeat(2,1fr)}
+      .action-grid{grid-template-columns:1fr}
+      .action-btn.wide{grid-column:auto}
+      .mirror-buttons{grid-template-columns:1fr}
+      .answer-grid{grid-template-columns:repeat(3,1fr)}
+      .exit-options{grid-template-columns:1fr}
+      .evaluation-card{grid-template-columns:66px minmax(0,1fr);gap:10px 12px;padding:15px}
+      .evaluation-icon{width:62px;height:62px;border-radius:17px;font-size:34px}
+      .evaluation-options{grid-column:1/-1}
+      .summary-actions{grid-template-columns:1fr}
+      .page-nav{grid-template-columns:1fr 1fr;gap:10px}
+      .page-nav-status{grid-column:1/-1;grid-row:1;order:-1}
+      .page-nav-button{width:100%}
+      .page-nav-button.prev,.page-nav-button.next{justify-self:stretch}
+      #drawScene svg,#summaryScene svg,#mirrorScene svg{min-height:300px}
+    }
+  </style>
+</head>
+<body class="nav-collapsed">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✦</span><span>三年级数学 · 对称轴</span></div>
+    <div class="top-actions">
+      <button class="top-btn nav-toggle-btn" id="navToggleBtn" type="button" aria-controls="lessonNav" aria-expanded="false">☰ 显示导航</button>
+      <button class="top-btn" id="restartBtn" type="button">↺ 本页重来</button>
+      <button class="top-btn primary" id="soundBtn" type="button">🔊 声音：开</button>
+    </div>
+  </header>
+
+  <nav class="nav is-collapsed" id="lessonNav" aria-label="课堂导航" aria-hidden="true">
+    <button type="button" data-go="start">1 看一看</button>
+    <button type="button" data-go="goal">2 学习目标</button>
+    <button type="button" data-go="draw">3 画对称轴</button>
+    <button type="button" data-go="summary">4 说一说</button>
+    <button type="button" data-go="mirror">5 镜子检查</button>
+    <button type="button" data-go="detective">6 小侦探</button>
+    <button type="button" data-go="life">7 生活中的对称</button>
+    <button type="button" data-go="exit">8 退出小纸条</button>
+    <button type="button" data-go="evaluation">9 学习评价</button>
+    <button type="button" data-go="thanks">10 谢谢同学</button>
+  </nav>
+
+  <button class="clock-fab" id="clockFab" type="button" aria-label="打开课堂计时器">🕒 <span class="clock-mini" id="clockMini">00:00:00</span></button>
+
+  <div class="clock-modal" id="clockModal" aria-hidden="true">
+    <div class="clock-panel" role="dialog" aria-modal="true" aria-labelledby="clockTitle">
+      <button class="clock-close" id="clockClose" type="button" aria-label="关闭计时器">×</button>
+      <h2 class="clock-title" id="clockTitle">课堂计时器</h2>
+      <div class="clock-tabs">
+        <button class="clock-tab active" id="tabStopwatch" type="button">⏱ 经过时间</button>
+        <button class="clock-tab" id="tabCountdown" type="button">⏳ 倒数计时</button>
+      </div>
+      <div class="clock-pane active" id="paneStopwatch">
+        <div class="big-clock" id="stopwatchDisplay">00:00:00</div>
+        <div class="clock-labels"><span>小时</span><span>分钟</span><span>秒</span></div>
+        <div class="clock-controls">
+          <button class="clock-control good" id="stopwatchStart" type="button">▶ 开始</button>
+          <button class="clock-control alt" id="stopwatchPause" type="button">⏸ 暂停</button>
+          <button class="clock-control alt" id="stopwatchReset" type="button">↺ 归零</button>
+        </div>
+      </div>
+      <div class="clock-pane" id="paneCountdown">
+        <div class="big-clock" id="countdownDisplay">00:05:00</div>
+        <div class="clock-labels"><span>小时</span><span>分钟</span><span>秒</span></div>
+        <div class="timer-setup">
+          <div class="timer-input"><input id="timerHour" type="number" min="0" max="23" value="0"><label>小时</label></div>
+          <div class="timer-input"><input id="timerMinute" type="number" min="0" max="59" value="5"><label>分钟</label></div>
+          <div class="timer-input"><input id="timerSecond" type="number" min="0" max="59" value="0"><label>秒</label></div>
+        </div>
+        <div class="timer-presets">
+          <button class="timer-preset" type="button" data-timer-min="3">3分钟</button>
+          <button class="timer-preset" type="button" data-timer-min="5">5分钟</button>
+          <button class="timer-preset" type="button" data-timer-min="10">10分钟</button>
+          <button class="timer-preset" type="button" data-timer-min="20">20分钟</button>
+        </div>
+        <div class="clock-controls">
+          <button class="clock-control good" id="countdownStart" type="button">▶ 开始倒数</button>
+          <button class="clock-control alt" id="countdownPause" type="button">⏸ 暂停</button>
+          <button class="clock-control alt" id="countdownReset" type="button">↺ 重设</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="activity-cover" id="activityCover" aria-hidden="true">
+    <div class="cover-card" role="dialog" aria-modal="true" aria-labelledby="coverTitle">
+      <div class="cover-art" id="coverArt"></div>
+      <div class="cover-copy">
+        <p class="cover-kicker" id="coverKicker">活动1</p>
+        <h2 class="cover-title" id="coverTitle">观察</h2>
+        <div class="cover-time" id="coverTime">建议 5 分钟</div>
+        <p class="cover-instruction" id="coverInstruction">先观察图形，再说一说。</p>
+        <div class="cover-actions">
+          <button class="cover-start" id="coverStart" type="button">▶ 开始活动并计时</button>
+          <button class="cover-clock" id="coverClock" type="button">🕒 打开计时器</button>
+          <button class="cover-close" id="coverClose" type="button">直接进入活动</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="screen-start" class="screen active">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Week 4 · Lesson 1</p>
+          <h1>对称轴</h1>
+          <p class="lead">把图形沿着一条直线<strong class="keyword blue">对折</strong>，如果两半能够<strong class="keyword">完全重合</strong>，这条直线就是<strong class="keyword blue">对称轴</strong>。</p>
+          <div class="teacher-note">先看“<strong class="keyword">对折</strong>”，再画“<strong class="keyword blue">对称轴</strong>”。黄色的一半（包括<strong class="keyword">身体左半边</strong>）会绕着红线折过去。</div>
+          <div class="button-row">
+            <button class="big-btn primary" id="butterflyPlay" type="button">▶ 播放对折</button>
+            <button class="big-btn purple" id="butterflyAuto" type="button">▶ 自动播放</button>
+            <button class="big-btn green" id="butterflyCheck" type="button">✔ 检查</button>
+            <button class="big-btn" id="butterflyReset" type="button">↺ 重来</button>
+          </div>
+        </div>
+        <div class="butterfly-card" id="butterflyCard">
+          <svg viewBox="0 0 900 540" role="img" aria-label="蝴蝶可以沿中间的红线，从左边或右边对折来检查是否完全重合">
+            <defs>
+              <filter id="butterflyShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#2a5d8b" flood-opacity=".18"/>
+              </filter>
+              <clipPath id="butterflyBodyLeft" clipPathUnits="userSpaceOnUse">
+                <rect x="0" y="70" width="450" height="350"/>
+              </clipPath>
+              <clipPath id="butterflyBodyRight" clipPathUnits="userSpaceOnUse">
+                <rect x="450" y="70" width="450" height="350"/>
+              </clipPath>
+            </defs>
+            <rect x="18" y="18" width="864" height="504" rx="30" fill="#f8fcff"/>
+            <g filter="url(#butterflyShadow)">
+              <g id="butterflyCheckHalf">
+                <path class="butterfly-wing-right" d="M450 228 C518 111 687 63 811 132 C734 182 723 292 450 326 Z"/>
+                <path class="butterfly-detail" d="M485 232 C566 182 665 149 756 145 M507 267 C604 239 677 221 720 212"/>
+                <g clip-path="url(#butterflyBodyRight)">
+                  <ellipse class="butterfly-body" cx="450" cy="292" rx="29" ry="112"/>
+                  <circle cx="450" cy="180" r="11" class="butterfly-body"/>
+                  <path d="M466 179 Q497 145 525 135" fill="none" stroke="#5b3a29" stroke-width="7" stroke-linecap="round"/>
+                  <circle cx="459" cy="273" r="8" fill="#fff"/>
+                  <circle cx="459" cy="273" r="3" fill="#17345b"/>
+                </g>
+              </g>
+              <g id="butterflyHalf">
+                <path class="butterfly-wing-left" d="M450 228 C382 111 213 63 89 132 C166 182 177 292 450 326 Z"/>
+                <path class="butterfly-detail" d="M415 232 C334 182 235 149 144 145 M393 267 C296 239 223 221 180 212"/>
+                <circle cx="250" cy="151" r="16" fill="#fff1a8"/>
+                <circle cx="203" cy="191" r="12" fill="#fff1a8"/>
+                <g clip-path="url(#butterflyBodyLeft)">
+                  <ellipse class="butterfly-body" cx="450" cy="292" rx="29" ry="112"/>
+                  <circle cx="450" cy="180" r="11" class="butterfly-body"/>
+                  <path d="M434 179 Q403 145 375 135" fill="none" stroke="#5b3a29" stroke-width="7" stroke-linecap="round"/>
+                  <circle cx="441" cy="273" r="8" fill="#fff"/>
+                  <circle cx="441" cy="273" r="3" fill="#17345b"/>
+                </g>
+              </g>
+              <line class="butterfly-fold-line" x1="450" y1="80" x2="450" y2="410"/>
+            </g>
+            <circle class="butterfly-spark spark-1" cx="128" cy="92" r="10"/>
+            <circle class="butterfly-spark spark-2" cx="766" cy="92" r="10"/>
+            <circle class="butterfly-spark spark-3" cx="811" cy="365" r="8"/>
+            <text class="butterfly-label" x="450" y="468" text-anchor="middle">红线是对称轴 · 左右两半都可以对折检查</text>
+          </svg>
+          <div class="butterfly-message" id="butterflyMessage"><strong class="keyword">点击</strong>“播放对折”看左边折过去；也可以点“<strong class="keyword blue">检查</strong>”看右边红色的一半往左边黄色的一半折过去。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-goal" class="screen">
+      <div class="section-head">
+        <div><p>今天的学习任务</p><h2>我们要学会什么？</h2></div>
+      </div>
+      <div class="goal-grid">
+        <article class="info-card"><div class="num">1</div><div class="goal-eye" role="img" aria-label="观察眼睛图示"></div><h3>会观察</h3><p><strong class="keyword">观察</strong>：沿哪一条直线对折，两半才会<strong class="keyword">完全重合</strong>？</p></article>
+        <article class="info-card"><div class="num">2</div><div class="goal-visual" role="img" aria-label="用铅笔画出对称轴"><svg viewBox="0 0 220 100" aria-hidden="true"><polygon points="28,18 110,10 192,18 180,82 40,82" fill="#b9e5a0" stroke="#1f5b8c" stroke-width="6" stroke-linejoin="round"/><line x1="40" y1="49" x2="180" y2="49" stroke="#f59e0b" stroke-width="7" stroke-dasharray="12 9" stroke-linecap="round"/><path class="goal-stroke" d="M143 80 L198 25" stroke="#7c3aed" stroke-width="11"/><path d="M193 23 L207 19 L202 34 Z" fill="#7c3aed"/></svg></div><h3>会绘制</h3><p><strong class="keyword">点击</strong>候选线，画出图形的<strong class="keyword blue">对称轴</strong>，并从第1条开始数。</p></article>
+        <article class="info-card"><div class="num">3</div><div class="goal-visual" role="img" aria-label="用说话泡泡说明完全重合"><svg viewBox="0 0 220 100" aria-hidden="true"><path d="M22 14 H198 Q207 14 207 23 V63 Q207 72 198 72 H83 L61 91 L63 72 H22 Q13 72 13 63 V23 Q13 14 22 14 Z" fill="#dff7eb" stroke="#20956f" stroke-width="6" stroke-linejoin="round"/><text x="110" y="48" text-anchor="middle" font-size="20" font-weight="900" fill="#145c44">完全重合</text><path class="goal-stroke" d="M161 80 L173 91 L197 68" stroke="#d33b3b" stroke-width="7"/></svg></div><h3>会说明</h3><p>用“<strong class="keyword">完全重合</strong>”说明这条线为什么是<strong class="keyword blue">对称轴</strong>。</p></article>
+      </div>
+      <div class="rule-card"><strong class="keyword blue">对称轴</strong>：图形<strong class="keyword">对折</strong>后，两半<strong class="keyword">完全重合</strong>的折痕。</div>
+    </section>
+
+    <section id="screen-draw" class="screen work-screen">
+      <div class="section-head">
+        <div><p>核心活动 · 点击操作</p><h2>点击候选线，画出对称轴</h2></div>
+        <div class="status-pill" id="drawStatus">已画出 0 / 4 条</div>
+      </div>
+      <div class="draw-layout">
+        <div class="scene-card">
+          <div class="scene-toolbar">
+            <span class="shape-title" id="shapeTitle">正方形</span>
+            <span class="count" id="axisCount">已画出 0 / 4 条</span>
+          </div>
+          <div id="drawScene"></div>
+          <div class="draw-hint" id="drawHint">橙色虚线是候选线。请<strong class="keyword">点击</strong>一条线，再<strong class="keyword">观察</strong>对折。</div>
+        </div>
+        <aside class="control-card">
+          <h3>① 选择图形</h3>
+          <div class="shape-grid" id="shapeButtons"></div>
+          <h3>② 点击候选线</h3>
+          <div class="axis-list" id="axisButtons"></div>
+          <div class="action-grid">
+            <button class="action-btn primary" id="foldBtn" type="button">▶ 沿这条线对折</button>
+            <button class="action-btn purple" id="autoBtn" type="button">▶ 自动逐条</button>
+            <button class="action-btn orange wide" id="clearBtn" type="button">↺ 清除全部</button>
+          </div>
+          <div class="legend">
+              <div class="legend-line"><span class="legend-dot"></span>橙色虚线：还可以点击的候选线</div>
+              <div class="legend-line"><span class="legend-dot done"></span>彩色实线：已经画出的对称轴</div>
+              <div class="legend-line"><span class="legend-dot challenge"></span>橙色挑战线：对折后不能完全重合</div>
+              <div class="legend-line"><span class="legend-dot corner"></span>红色虚线：长方形角落到对角的挑战线</div>
+            </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="screen-summary" class="screen">
+      <div class="section-head">
+        <div><p>整理发现</p><h2>说一说：我发现了什么？</h2></div>
+        <div class="status-pill" id="summaryProgress">第 1 / 7 题 · 已完成 0 题</div>
+      </div>
+      <div class="summary-layout">
+        <div class="summary-card" id="summaryScene"></div>
+        <div class="summary-card summary-copy">
+          <p id="summaryShapeName">正方形</p>
+          <div class="big-number" id="summaryNumber">?</div>
+          <p id="summaryRule">先观察图形，再找对称轴</p>
+          <div class="summary-actions">
+            <button class="big-btn purple" id="summaryNext" type="button">① 显示对称轴</button>
+            <button class="big-btn green" id="summaryMirror" type="button">跳到镜子检查 ▶</button>
+          </div>
+          <p class="summary-note">每个图形点击两次：先看对称轴，再看答案。完成后可直接进入下一页。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-mirror" class="screen">
+      <div class="section-head">
+        <div><p>再次验证</p><h2>像放一面镜子，检查是否重合</h2></div>
+      </div>
+      <div class="mirror-layout">
+        <div class="mirror-card" id="mirrorScene"></div>
+        <div class="mirror-card mirror-controls">
+          <h3>选择图形</h3>
+          <div class="mirror-buttons" id="mirrorButtons"></div>
+          <button class="big-btn green" id="mirrorPlay" type="button">▶ 放上镜子检查</button>
+          <p class="draw-hint" id="mirrorHint">绿色虚线是镜子。<strong class="keyword">点击</strong>检查，<strong class="keyword">观察</strong>一半图形能不能补成完整图形。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-detective" class="screen">
+      <div class="section-head">
+        <div><p>小侦探挑战</p><h2>它有几条对称轴？</h2></div>
+        <div class="status-pill" id="detectiveScore">得分 0 / 8</div>
+      </div>
+      <div class="detective-card">
+        <div class="detective-question">
+          <div class="detective-shape" id="detectiveShape"></div>
+          <div class="detective-question-text" id="detectiveQuestion">请选择答案</div>
+        </div>
+        <div class="answer-grid" id="answerGrid"></div>
+        <div class="detective-result" id="detectiveResult">先<strong class="keyword">观察</strong>图形，再<strong class="keyword">点击</strong>答案。</div>
+        <button class="big-btn purple" id="detectiveNext" type="button" hidden>下一题 ▶</button>
+      </div>
+    </section>
+
+    <section id="screen-life" class="screen">
+      <div class="section-head">
+        <div><p>联系生活</p><h2>生活中也有对称</h2></div>
+      </div>
+      <div class="goal-grid">
+        <article class="info-card"><div class="num">✿</div><h3>蝴蝶</h3><p>身体中间的线像<strong class="keyword blue">对称轴</strong>，左右两边可以<strong class="keyword">对折重合</strong>。</p></article>
+        <article class="info-card"><div class="num">◇</div><h3>窗户</h3><p><strong class="keyword">观察</strong>窗框中间的竖线，看看左右两边是否一样。</p></article>
+        <article class="info-card"><div class="num">☻</div><h3>脸</h3><p>脸的中间可以想象一条<strong class="keyword blue">对称轴</strong>，但每个人都会有一点点不同。</p></article>
+      </div>
+      <div class="helper-gallery" aria-label="生活中的对称辅助图"><article class="helper-card"><svg viewBox="0 0 360 220" role="img" aria-label="蝴蝶和中间的对称轴"><path d="M180 103 C151 45 78 35 44 66 C70 93 80 143 180 158 Z" fill="#ffd166" stroke="#a66a00" stroke-width="7"/><path d="M180 103 C209 45 282 35 316 66 C290 93 280 143 180 158 Z" fill="#f5a9c2" stroke="#a54172" stroke-width="7"/><ellipse cx="180" cy="130" rx="14" ry="67" fill="#5b3a29"/><line x1="180" y1="23" x2="180" y2="195" stroke="#d33b3b" stroke-width="6" stroke-dasharray="12 8"/><text x="180" y="213" text-anchor="middle" font-size="20" font-weight="900" fill="#d33b3b">中间线</text></svg><h3>蝴蝶</h3><p>左右两边像镜子一样。</p></article><article class="helper-card"><svg viewBox="0 0 360 220" role="img" aria-label="窗户的横轴和竖轴"><rect x="66" y="28" width="228" height="164" rx="8" fill="#a9d6f5" stroke="#2364aa" stroke-width="8"/><line x1="180" y1="30" x2="180" y2="190" stroke="#d33b3b" stroke-width="6" stroke-dasharray="12 8"/><line x1="68" y1="110" x2="292" y2="110" stroke="#20956f" stroke-width="6" stroke-dasharray="12 8"/><circle cx="180" cy="110" r="7" fill="#fff" stroke="#17345b" stroke-width="3"/></svg><h3>窗户</h3><p>横轴、竖轴都要观察。</p></article><article class="helper-card"><svg viewBox="0 0 360 220" role="img" aria-label="叶子的对称轴"><path d="M180 190 C99 151 98 74 209 35 C244 103 232 157 180 190 Z" fill="#b9e5a0" stroke="#20956f" stroke-width="8"/><line x1="180" y1="190" x2="208" y2="47" stroke="#d33b3b" stroke-width="6" stroke-dasharray="12 8"/><path d="M180 190 L133 177 M190 150 L150 130 M198 110 L165 91" stroke="#20956f" stroke-width="5" stroke-linecap="round"/></svg><h3>叶子</h3><p><strong class="keyword">观察</strong>中间的线。</p></article></div>
+      <div class="rule-card">找<strong class="keyword blue">对称轴</strong>时，可以问自己：沿着这条线<strong class="keyword">对折</strong>，会<strong class="keyword">完全重合</strong>吗？</div>
+    </section>
+
+    <section id="screen-exit" class="screen">
+      <div class="exit-card">
+        <p class="kicker">退出小纸条</p>
+        <h2>最后想一想</h2>
+        <p class="question">长方形沿着对角线对折，会完全重合吗？</p>
+        <div class="exit-options" id="exitOptions">
+          <button class="exit-option" type="button" data-exit-answer="yes">会</button>
+          <button class="exit-option" type="button" data-exit-answer="no">不会</button>
+          <button class="exit-option" type="button" data-exit-answer="not-sure">还不确定</button>
+        </div>
+        <div class="exit-result" id="exitResult">请选择一个答案，并<strong class="keyword">观察</strong>长方形的对角线。</div>
+      </div>
+    </section>
+
+    <section id="screen-evaluation" class="screen">
+      <div class="section-head">
+        <div><p>课堂评价 · 一起检查</p><h2>今天的学习目标达成了吗？</h2></div>
+        <div class="status-pill" id="evaluationProgress">已检查 0 / 3</div>
+      </div>
+      <div class="evaluation-layout">
+        <div class="evaluation-goals" id="evaluationGoals">
+          <article class="evaluation-card" data-eval-key="observe" data-state=""><div class="evaluation-icon" aria-hidden="true">👁</div><div class="evaluation-copy"><h3>目标1：会观察</h3><p>我能观察对折后的两半有没有<strong class="keyword">完全重合</strong>。</p></div><div class="evaluation-options"><button class="evaluation-option" type="button" data-evaluation-key="observe" data-evaluation-value="yes">✓ 做到了</button><button class="evaluation-option" type="button" data-evaluation-key="observe" data-evaluation-value="practice">↻ 还要练习</button></div></article>
+          <article class="evaluation-card" data-eval-key="draw" data-state=""><div class="evaluation-icon" aria-hidden="true">✎</div><div class="evaluation-copy"><h3>目标2：会绘制</h3><p>我能画出并数出图形的<strong class="keyword blue">对称轴</strong>。</p></div><div class="evaluation-options"><button class="evaluation-option" type="button" data-evaluation-key="draw" data-evaluation-value="yes">✓ 做到了</button><button class="evaluation-option" type="button" data-evaluation-key="draw" data-evaluation-value="practice">↻ 还要练习</button></div></article>
+          <article class="evaluation-card" data-eval-key="explain" data-state=""><div class="evaluation-icon" aria-hidden="true">☏</div><div class="evaluation-copy"><h3>目标3：会说明</h3><p>我能用“<strong class="keyword">完全重合</strong>”说出理由。</p></div><div class="evaluation-options"><button class="evaluation-option" type="button" data-evaluation-key="explain" data-evaluation-value="yes">✓ 做到了</button><button class="evaluation-option" type="button" data-evaluation-key="explain" data-evaluation-value="practice">↻ 还要练习</button></div></article>
+        </div>
+        <aside class="summary-card evaluation-summary">
+          <h3>课堂总结小助手</h3>
+          <p id="evaluationSummary">请同学逐项举手：做到了，还是还要练习？</p>
+          <div class="teacher-summary"><strong>老师可以这样总结</strong><p id="teacherSummary">今天我们观察、绘制和说明了对称轴。</p></div>
+          <button class="big-btn orange" id="evaluationReset" type="button">↺ 重设本页</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="screen-thanks" class="screen">
+      <div class="thanks-card">
+        <div class="thanks-art" aria-hidden="true"><span>🦋</span><span>✦</span><span>🌿</span></div>
+        <p class="kicker">今天的课完成了！</p>
+        <h1>谢谢同学！</h1>
+        <p class="thanks-lead">今天我们观察、绘制和说明了<strong class="keyword blue">对称轴</strong>。</p>
+        <div class="next-lesson"><p>下一堂课</p><strong>解决问题</strong><span>我们会用今天的观察方法，解决新的数学问题。</span></div>
+        <button class="big-btn primary" id="thanksHome" type="button">↺ 回到开头</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="glossaryTip" class="glossary-tip" role="tooltip" aria-hidden="true">
+    <div class="glossary-term" id="glossaryTerm"></div>
+    <div class="glossary-row"><span class="glossary-label">English</span><span id="glossaryEnglish"></span></div>
+    <div class="glossary-row"><span class="glossary-label">Bahasa Melayu</span><span id="glossaryMalay"></span></div>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      var CX = 500;
+      var CY = 325;
+      var palette = ["#2364aa","#20956f","#7c3aed","#f59e0b","#e11d48","#0891b2","#16a34a","#c026d3"];
+      var SHAPES = [
+        {id:"triangle",name:"正三边形",subtitle:"等边三角形",n:3,regular:true,startDeg:-90,color:"#b9e5a0"},
+        {id:"square",name:"正方形",subtitle:"正四边形",n:4,regular:true,startDeg:-90,color:"#9fd4f5"},
+        {id:"rectangle",name:"长方形",subtitle:"横、竖轴各1条",n:4,regular:false,color:"#a9d6f5",points:[[180,200],[820,200],[820,450],[180,450]]},
+        {id:"pentagon",name:"正五边形",subtitle:"5条轴",n:5,regular:true,startDeg:-90,color:"#f5b5d2"},
+        {id:"hexagon",name:"正六边形",subtitle:"6条轴",n:6,regular:true,startDeg:-90,color:"#ffe08a"},
+        {id:"heptagon",name:"正七边形",subtitle:"7条轴",n:7,regular:true,startDeg:-90,color:"#cdb5f5"},
+        {id:"octagon",name:"正八边形",subtitle:"8条轴",n:8,regular:true,startDeg:-90,color:"#a9e5d4"},
+        {id:"parallelogram",name:"一般平行四边形",subtitle:"没有对称轴",n:0,regular:false,color:"#f7c391",points:[[200,190],[760,190],[800,460],[240,460]]}
+      ];
+      var pageOrder = ["start","goal","draw","summary","mirror","detective","life","exit","evaluation","thanks"];
+      var pageNames = {start:"看一看",goal:"学习目标",draw:"画对称轴",summary:"说一说",mirror:"镜子检查",detective:"小侦探",life:"生活中的对称",exit:"退出小纸条",evaluation:"学习评价",thanks:"谢谢同学"};
+      var currentScreen = "start";
+      var currentShapeId = "square";
+      var selectedAxes = [];
+      var activeAxisIndex = null;
+      var autoPlaying = false;
+      var autoToken = 0;
+      var animationSerial = 0;
+      var soundEnabled = true;
+      var audioContext = null;
+      var toastTimer = null;
+      var summaryQuestions = ["triangle","square","pentagon","hexagon","octagon","rectangle","parallelogram"];
+      var summaryIndex = 0;
+      var summaryReveal = 0;
+      var summaryCompleted = 0;
+      var mirrorShapeId = "square";
+      var mirrorPlaying = false;
+      var detectiveRounds = ["triangle","square","rectangle","pentagon","hexagon","heptagon","octagon","parallelogram"];
+      var detectiveRound = 0;
+      var detectiveScore = 0;
+      var detectiveLocked = false;
+      var evaluationState = {observe:null,draw:null,explain:null};
+      var activityData = {
+        start:{label:"活动1",title:"观察：蝴蝶怎样对折？",minutes:5,art:"butterfly",instruction:"先观察黄色的一半怎样向右对折；再点“检查”，看看右边红色的一半能不能向左折过去并完全重合。"},
+        goal:{label:"活动2",title:"学习目标与规则",minutes:3,art:"goal",instruction:"一起读一读今天的三个任务：观察、绘制、说明。"},
+        draw:{label:"活动3",title:"点击并绘制对称轴",minutes:20,art:"draw",instruction:"点击候选线；正确的线会按顺序编号、变色，并可以播放半边对折。"},
+        summary:{label:"活动4",title:"数一数，说一说",minutes:5,art:"summary",instruction:"看清楚每一条彩色线，再说出图形有几条对称轴。"},
+        mirror:{label:"活动5",title:"镜子检查",minutes:5,art:"mirror",instruction:"把绿色虚线当作镜子，观察一半能不能补成完整图形。"},
+        detective:{label:"活动6",title:"对称轴小侦探",minutes:10,art:"detective",instruction:"逐题观察图形，点击它有几条对称轴；答对会有声音和颜色提示。"},
+        life:{label:"活动7",title:"生活中的对称",minutes:5,art:"life",instruction:"从蝴蝶、窗户和叶子中找一找可以想象的对称轴。"},
+        exit:{label:"活动8",title:"退出小纸条",minutes:7,art:"exit",instruction:"独立回答长方形对角线的问题，并用“完全重合”说出理由。"},
+        evaluation:{label:"活动9",title:"学习评价与总结",minutes:5,art:"evaluation",instruction:"逐项自评：会观察、会绘制、会说明；一起说出今天的关键句。"}
+      };
+      var coverActivityId = "start";
+      var clockMiniMode = "stopwatch";
+      var stopwatchElapsed = 0;
+      var stopwatchRunning = false;
+      var stopwatchBase = 0;
+      var stopwatchTick = null;
+      var countdownLeft = 300;
+      var countdownRunning = false;
+      var countdownBase = 0;
+      var countdownBaseLeft = 300;
+      var countdownTick = null;
+      var countdownFinished = false;
+
+      function byId(id){ return document.getElementById(id); }
+      function activityArt(type){
+        if(type==="butterfly"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><path d=\"M260 145 C207 55 91 42 43 84 C78 120 91 193 260 207 Z\" fill=\"#ffd166\" stroke=\"#9c6500\" stroke-width=\"9\"/><path d=\"M260 145 C313 55 429 42 477 84 C442 120 429 193 260 207 Z\" fill=\"#f5a9c2\" stroke=\"#a54172\" stroke-width=\"9\"/><ellipse cx=\"260\" cy=\"181\" rx=\"22\" ry=\"83\" fill=\"#5b3a29\"/><line x1=\"260\" y1=\"36\" x2=\"260\" y2=\"270\" stroke=\"#d33b3b\" stroke-width=\"7\" stroke-dasharray=\"16 10\"/><circle cx=\"253\" cy=\"164\" r=\"6\" fill=\"#fff\"/><circle cx=\"267\" cy=\"164\" r=\"6\" fill=\"#fff\"/><path d=\"M249 92 Q224 61 201 50 M271 92 Q296 61 319 50\" fill=\"none\" stroke=\"#5b3a29\" stroke-width=\"6\" stroke-linecap=\"round\"/></svg>";
+        }
+        if(type==="goal"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><path d=\"M45 156 Q125 76 205 156 Q125 236 45 156 Z\" fill=\"#e9f3ff\" stroke=\"#2364aa\" stroke-width=\"9\"/><circle cx=\"125\" cy=\"156\" r=\"31\" fill=\"#7c3aed\" stroke=\"#fff0b8\" stroke-width=\"10\"/><circle cx=\"114\" cy=\"145\" r=\"8\" fill=\"#fff\"/><path d=\"M242 208 L306 144 L332 170 L268 234 Z\" fill=\"#fff0b8\" stroke=\"#e6b640\" stroke-width=\"8\"/><path d=\"M300 150 L326 176\" stroke=\"#d33b3b\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M361 96 H465 Q482 96 482 113 V171 Q482 188 465 188 H430 L405 220 L397 188 H361 Q344 188 344 171 V113 Q344 96 361 96 Z\" fill=\"#dff7eb\" stroke=\"#20956f\" stroke-width=\"8\"/><circle cx=\"378\" cy=\"143\" r=\"8\" fill=\"#20956f\"/><circle cx=\"413\" cy=\"143\" r=\"8\" fill=\"#20956f\"/><circle cx=\"448\" cy=\"143\" r=\"8\" fill=\"#20956f\"/><circle cx=\"125\" cy=\"276\" r=\"24\" fill=\"#2364aa\"/><circle cx=\"260\" cy=\"276\" r=\"24\" fill=\"#e6b640\"/><circle cx=\"405\" cy=\"276\" r=\"24\" fill=\"#7c3aed\"/></svg>";
+        }
+        if(type==="draw"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><rect x=\"95\" y=\"70\" width=\"330\" height=\"190\" rx=\"12\" fill=\"#b9e5a0\" stroke=\"#1f5b8c\" stroke-width=\"9\"/><line x1=\"260\" y1=\"45\" x2=\"260\" y2=\"285\" stroke=\"#2364aa\" stroke-width=\"11\"/><line x1=\"72\" y1=\"165\" x2=\"448\" y2=\"165\" stroke=\"#20956f\" stroke-width=\"11\"/><line x1=\"110\" y1=\"80\" x2=\"410\" y2=\"250\" stroke=\"#f59e0b\" stroke-width=\"8\" stroke-dasharray=\"14 12\"/><circle cx=\"260\" cy=\"165\" r=\"10\" fill=\"#d33b3b\" stroke=\"#fff\" stroke-width=\"4\"/></svg>";
+        }
+        if(type==="summary"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><polygon points=\"260,36 366,97 366,219 260,280 154,219 154,97\" fill=\"#ffe08a\" stroke=\"#1f5b8c\" stroke-width=\"9\"/><g stroke-linecap=\"round\" stroke-width=\"8\"><line x1=\"260\" y1=\"36\" x2=\"260\" y2=\"280\" stroke=\"#2364aa\"/><line x1=\"154\" y1=\"97\" x2=\"366\" y2=\"219\" stroke=\"#20956f\"/><line x1=\"154\" y1=\"219\" x2=\"366\" y2=\"97\" stroke=\"#7c3aed\"/></g><circle cx=\"260\" cy=\"158\" r=\"9\" fill=\"#d33b3b\" stroke=\"#fff\" stroke-width=\"4\"/></svg>";
+        }
+        if(type==="mirror"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><rect x=\"100\" y=\"58\" width=\"320\" height=\"210\" rx=\"10\" fill=\"#edf3fa\" stroke=\"#1f5b8c\" stroke-width=\"9\"/><path d=\"M100 58 H260 V268 H100 Z\" fill=\"#b9efd9\" stroke=\"#16845d\" stroke-width=\"8\"/><line x1=\"260\" y1=\"35\" x2=\"260\" y2=\"291\" stroke=\"#20956f\" stroke-width=\"12\" stroke-dasharray=\"17 11\"/><path d=\"M70 287 H450\" stroke=\"#9aaabd\" stroke-width=\"6\" stroke-linecap=\"round\"/></svg>";
+        }
+        if(type==="detective"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><polygon points=\"230,46 316,95 316,195 230,244 144,195 144,95\" fill=\"#cdb5f5\" stroke=\"#1f5b8c\" stroke-width=\"9\"/><circle cx=\"341\" cy=\"211\" r=\"61\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"17\"/><line x1=\"384\" y1=\"254\" x2=\"451\" y2=\"321\" stroke=\"#7c3aed\" stroke-width=\"20\" stroke-linecap=\"round\"/><path d=\"M197 143 Q230 175 263 143\" fill=\"none\" stroke=\"#17345b\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>";
+        }
+        if(type==="evaluation"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><rect x=\"105\" y=\"42\" width=\"310\" height=\"246\" rx=\"18\" fill=\"#fff\" stroke=\"#2364aa\" stroke-width=\"9\"/><line x1=\"145\" y1=\"105\" x2=\"180\" y2=\"140\" stroke=\"#20956f\" stroke-width=\"12\" stroke-linecap=\"round\"/><line x1=\"196\" y1=\"140\" x2=\"360\" y2=\"140\" stroke=\"#cbd8ec\" stroke-width=\"12\" stroke-linecap=\"round\"/><line x1=\"145\" y1=\"170\" x2=\"180\" y2=\"205\" stroke=\"#20956f\" stroke-width=\"12\" stroke-linecap=\"round\"/><line x1=\"196\" y1=\"205\" x2=\"360\" y2=\"205\" stroke=\"#cbd8ec\" stroke-width=\"12\" stroke-linecap=\"round\"/><circle cx=\"260\" cy=\"77\" r=\"17\" fill=\"#ffd166\"/><path d=\"M232 76 H288\" stroke=\"#e6b640\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>";
+        }
+        if(type==="life"){
+          return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><path d=\"M116 229 C74 141 103 70 177 56 C196 129 177 190 116 229 Z\" fill=\"#b9e5a0\" stroke=\"#20956f\" stroke-width=\"8\"/><line x1=\"116\" y1=\"229\" x2=\"158\" y2=\"68\" stroke=\"#20956f\" stroke-width=\"7\" stroke-dasharray=\"13 9\"/><rect x=\"218\" y=\"75\" width=\"112\" height=\"176\" rx=\"8\" fill=\"#a9d6f5\" stroke=\"#2364aa\" stroke-width=\"8\"/><line x1=\"274\" y1=\"75\" x2=\"274\" y2=\"251\" stroke=\"#2364aa\" stroke-width=\"7\"/><line x1=\"218\" y1=\"163\" x2=\"330\" y2=\"163\" stroke=\"#2364aa\" stroke-width=\"7\"/><path d=\"M409 241 C370 176 393 104 456 77 C477 153 460 211 409 241 Z\" fill=\"#f5b5d2\" stroke=\"#a54172\" stroke-width=\"8\"/><line x1=\"409\" y1=\"241\" x2=\"434\" y2=\"92\" stroke=\"#a54172\" stroke-width=\"7\" stroke-dasharray=\"13 9\"/></svg>";
+        }
+        return "<svg viewBox=\"0 0 520 330\" aria-hidden=\"true\"><rect x=\"91\" y=\"69\" width=\"338\" height=\"192\" rx=\"22\" fill=\"#fff0b8\" stroke=\"#e6b640\" stroke-width=\"8\"/><path d=\"M210 140 L244 176 L315 103\" fill=\"none\" stroke=\"#20956f\" stroke-width=\"18\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"145\" cy=\"69\" r=\"15\" fill=\"#fffdf6\"/><circle cx=\"375\" cy=\"261\" r=\"15\" fill=\"#fffdf6\"/></svg>";
+      }
+      function activityHeaderHTML(id){
+        var d = activityData[id];
+        return "<div class=\"activity-header\" data-activity-header=\""+id+"\">"+
+          "<div class=\"activity-art\">"+activityArt(d.art)+"</div>"+
+          "<div><p class=\"activity-kicker\">"+d.label+" · Smart Board</p><h3 class=\"activity-title\">"+highlightKeywords(d.title)+"</h3><p class=\"activity-tip\">"+highlightKeywords(d.instruction)+"</p><div class=\"activity-time\">⏱ 建议 "+d.minutes+" 分钟</div></div>"+
+          "<div class=\"activity-actions\"><button class=\"activity-open\" type=\"button\" data-open-cover=\""+id+"\">▣ 活动导入</button><button class=\"activity-start\" type=\"button\" data-start-activity=\""+id+"\">▶ 开始 "+d.minutes+" 分钟</button></div>"+
+          "</div>";
+      }
+      function injectActivityHeaders(){
+        Object.keys(activityData).forEach(function(id){
+          var screen = byId("screen-"+id);
+          if(screen && !screen.querySelector("[data-activity-header]")){ screen.insertAdjacentHTML("afterbegin",activityHeaderHTML(id)); }
+        });
+      }
+      function injectPageNavigation(){
+        pageOrder.forEach(function(id,index){
+          var screen = byId("screen-"+id);
+          if(!screen || screen.querySelector("[data-page-nav]")){return;}
+          var previous = index>0 ? "<button class=\"page-nav-button prev\" type=\"button\" data-page-go=\""+pageOrder[index-1]+"\">◀ 上一页</button>" : "<button class=\"page-nav-button prev\" type=\"button\" disabled>◀ 上一页</button>";
+          var next = index<pageOrder.length-1 ? "<button class=\"page-nav-button next\" type=\"button\" data-page-go=\""+pageOrder[index+1]+"\">下一页 ▶</button>" : "<button class=\"page-nav-button next\" type=\"button\" disabled>下一页 ▶</button>";
+          var nav = document.createElement("div");
+          nav.className = "page-nav";
+          nav.setAttribute("data-page-nav","true");
+          nav.innerHTML = previous+"<span class=\"page-nav-status\">第 "+(index+1)+" / "+pageOrder.length+" 页 · "+pageNames[id]+"</span>"+next;
+          screen.appendChild(nav);
+        });
+      }
+      function openActivityCover(id){
+        var d = activityData[id];
+        if(!d){return;}
+        coverActivityId = id;
+        byId("coverArt").innerHTML = activityArt(d.art);
+        byId("coverKicker").textContent = d.label+" · Smart Board";
+        byId("coverTitle").textContent = d.title;
+        byId("coverTime").textContent = "建议 "+d.minutes+" 分钟";
+        byId("coverInstruction").innerHTML = highlightKeywords(d.instruction);
+        byId("activityCover").classList.add("open");
+        byId("activityCover").setAttribute("aria-hidden","false");
+      }
+      function closeActivityCover(){
+        byId("activityCover").classList.remove("open");
+        byId("activityCover").setAttribute("aria-hidden","true");
+      }
+      function startActivityTimer(id){
+        var d = activityData[id];
+        if(!d){return;}
+        setCountdownMinutes(d.minutes);
+        startCountdown();
+        closeActivityCover();
+        showCorrectToast(d.title+"开始，倒数 "+d.minutes+" 分钟");
+      }
+      function shapeById(id){
+        for(var i=0;i<SHAPES.length;i++){ if(SHAPES[i].id===id){ return SHAPES[i]; } }
+        return SHAPES[0];
+      }
+      function rad(deg){ return deg*Math.PI/180; }
+      function point(x,y){ return {x:x,y:y}; }
+      function clonePoints(points){ return points.map(function(p){ return point(p[0],p[1]); }); }
+      function regularPoints(s){
+        var out = [];
+        var radius = 220;
+        for(var i=0;i<s.n;i++){
+          var a = rad(s.startDeg + i*360/s.n);
+          out.push(point(CX + radius*Math.cos(a), CY + radius*Math.sin(a)));
+        }
+        return out;
+      }
+      function shapePoints(s){
+        return s.points ? clonePoints(s.points) : regularPoints(s);
+      }
+      function pointString(points){
+        return points.map(function(p){ return p.x.toFixed(1)+","+p.y.toFixed(1); }).join(" ");
+      }
+      function cross(ax,ay,bx,by){ return ax*by-ay*bx; }
+      function lineIntersections(points, angle){
+        var d = point(Math.cos(angle),Math.sin(angle));
+        var hits = [];
+        for(var i=0;i<points.length;i++){
+          var a = points[i];
+          var b = points[(i+1)%points.length];
+          var e = point(b.x-a.x,b.y-a.y);
+          var den = cross(d.x,d.y,e.x,e.y);
+          if(Math.abs(den)<0.00001){ continue; }
+          var ac = point(a.x-CX,a.y-CY);
+          var t = cross(ac.x,ac.y,e.x,e.y)/den;
+          var u = cross(ac.x,ac.y,d.x,d.y)/den;
+          if(u>=-0.0001 && u<=1.0001){ hits.push(point(CX+t*d.x,CY+t*d.y)); }
+        }
+        var unique = [];
+        hits.forEach(function(h){
+          var exists = unique.some(function(q){ return Math.hypot(h.x-q.x,h.y-q.y)<1.5; });
+          if(!exists){ unique.push(h); }
+        });
+        unique.sort(function(a,b){
+          var ta = (a.x-CX)*d.x+(a.y-CY)*d.y;
+          var tb = (b.x-CX)*d.x+(b.y-CY)*d.y;
+          return ta-tb;
+        });
+        if(unique.length>=2){ return [unique[0],unique[unique.length-1]]; }
+        return [point(CX-300*d.x,CY-300*d.y),point(CX+300*d.x,CY+300*d.y)];
+      }
+      function axisDefs(s){
+        var raw = [];
+        if(s.regular){
+          if(s.n%2===1){
+            for(var i=0;i<s.n;i++){
+              raw.push({angle:rad(s.startDeg+i*360/s.n),correct:true,challenge:false,description:"顶点 → 对边中点"});
+            }
+          }else{
+            for(var j=0;j<s.n/2;j++){
+              raw.push({angle:rad(s.startDeg+j*360/s.n),correct:true,challenge:false,description:"顶点 → 顶点"});
+            }
+            for(var k=0;k<s.n/2;k++){
+              raw.push({angle:rad(s.startDeg+180/s.n+k*360/s.n),correct:true,challenge:false,description:"边中点 → 边中点"});
+            }
+          }
+        }else if(s.id==="rectangle"){
+          raw = [
+            {angle:0,correct:true,challenge:false,description:"左边中点 → 右边中点"},
+            {angle:Math.PI/2,correct:true,challenge:false,description:"上边中点 → 下边中点"},
+            {angle:Math.PI/4,correct:false,challenge:true,challengeLabel:"斜线挑战 1",description:"经过中心的斜线（不是对角线）"},
+            {angle:-Math.PI/4,correct:false,challenge:true,challengeLabel:"斜线挑战 2",description:"经过中心的斜线（不是对角线）"},
+            {angle:Math.atan2(s.points[0][1]-CY,s.points[0][0]-CX),correct:false,challenge:true,cornerDiagonal:true,challengeLabel:"对角线 1",description:"左上角 → 右下角"},
+            {angle:Math.atan2(s.points[1][1]-CY,s.points[1][0]-CX),correct:false,challenge:true,cornerDiagonal:true,challengeLabel:"对角线 2",description:"右上角 → 左下角"}
+          ];
+        }else if(s.id==="parallelogram"){
+          raw = [
+            {angle:Math.atan2(270,600),correct:false,challenge:true,description:"对角线挑战"},
+            {angle:Math.atan2(270,-520),correct:false,challenge:true,description:"对角线挑战"}
+          ];
+        }
+        return raw.map(function(a,i){
+          a.index = i;
+          a.ends = lineIntersections(shapePoints(s),a.angle);
+          return a;
+        });
+      }
+      function correctCount(s){
+        return axisDefs(s).filter(function(a){return a.correct;}).length;
+      }
+      function selectedEntry(index){
+        for(var i=0;i<selectedAxes.length;i++){ if(selectedAxes[i].index===index){return selectedAxes[i];} }
+        return null;
+      }
+      function axisColor(index){ return palette[index%palette.length]; }
+      function labelPoint(def,index){
+        var p = index%2===0 ? def.ends[1] : def.ends[0];
+        var dx = p.x-CX;
+        var dy = p.y-CY;
+        var length = Math.hypot(dx,dy)||1;
+        var nx = -dy/length;
+        var ny = dx/length;
+        var offset = index%2===0 ? 15 : -15;
+        return point(CX + dx*.72 + nx*offset, CY + dy*.72 + ny*offset);
+      }
+      function reflectionMatrix(angle){
+        var c = Math.cos(2*angle);
+        var sn = Math.sin(2*angle);
+        return [c,sn,sn,-c,CX-c*CX-sn*CY,CY-sn*CX+c*CY];
+      }
+      function matrixString(m){
+        return "matrix("+m.map(function(v){return Number(v.toFixed(5));}).join(" ")+")";
+      }
+      function animateMatrixElement(element,start,end,duration,done){
+        var id = ++animationSerial;
+        var begin = performance.now();
+        function frame(now){
+          if(id!==animationSerial){ return; }
+          var t = Math.min(1,(now-begin)/duration);
+          var e = t<.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+          var m = start.map(function(v,i){return v+(end[i]-v)*e;});
+          element.setAttribute("transform",matrixString(m));
+          if(t<1){ requestAnimationFrame(frame); }
+          else if(done){ done(); }
+        }
+        requestAnimationFrame(frame);
+      }
+      function clipHalf(points,angle,keepSide){
+        var nx = -Math.sin(angle);
+        var ny = Math.cos(angle);
+        function signed(p){ return keepSide*((p.x-CX)*nx+(p.y-CY)*ny); }
+        function intersection(a,b){
+          var sa = signed(a);
+          var sb = signed(b);
+          var denom = sa-sb;
+          var t = Math.abs(denom)<0.00001 ? 0 : sa/denom;
+          return point(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t);
+        }
+        var output = [];
+        for(var i=0;i<points.length;i++){
+          var a = points[i];
+          var b = points[(i+1)%points.length];
+          var ain = signed(a)>=-0.0001;
+          var bin = signed(b)>=-0.0001;
+          if(ain && bin){ output.push(b); }
+          else if(ain && !bin){ output.push(intersection(a,b)); }
+          else if(!ain && bin){ output.push(intersection(a,b));output.push(b); }
+        }
+        return output;
+      }
+      function escapeHtml(value){
+        return String(value).replace(/[&<>"']/g,function(ch){
+          return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch];
+        });
+      }
+      function highlightKeywords(value){
+        return escapeHtml(value).replace(/(不能完全重合|没有完全重合|完全重合|身体左半边|没有对称轴|对称轴|正多边形|候选线|对角线|观察|对折|点击|镜子)/g,function(term){
+          return "<strong class=\"keyword\" data-gloss-key=\""+escapeHtml(term)+"\" tabindex=\"0\">"+term+"</strong>";
+        });
+      }
+      var glossary = {
+        "观察":{en:"Observe",ms:"Perhati"},
+        "对折":{en:"Fold in half",ms:"Lipat dua"},
+        "完全重合":{en:"Overlap exactly",ms:"Bertindih tepat"},
+        "不能完全重合":{en:"Do not overlap exactly",ms:"Tidak bertindih tepat"},
+        "没有完全重合":{en:"No complete overlap",ms:"Tidak bertindih sepenuhnya"},
+        "对称轴":{en:"Axis of symmetry",ms:"Paksi simetri"},
+        "对角线":{en:"Diagonal",ms:"Diagonal"},
+        "正多边形":{en:"Regular polygon",ms:"Poligon sekata"},
+        "候选线":{en:"Candidate line",ms:"Garisan calon"},
+        "镜子":{en:"Mirror",ms:"Cermin"},
+        "身体左半边":{en:"Left half of the body",ms:"Separuh kiri badan"},
+        "没有对称轴":{en:"No axis of symmetry",ms:"Tiada paksi simetri"}
+      };
+      var glossaryTimer = null;
+      var glossaryActive = null;
+      function glossaryKey(element){
+        if(!element){return null;}
+        var raw = element.getAttribute("data-gloss-key") || element.textContent.trim();
+        if(glossary[raw]){return raw;}
+        return Object.keys(glossary).filter(function(key){return raw.indexOf(key)>=0;}).sort(function(a,b){return b.length-a.length;})[0] || null;
+      }
+      function prepareGlossary(element){
+        var key = glossaryKey(element);
+        if(!key){return null;}
+        element.setAttribute("data-gloss-key",key);
+        element.setAttribute("tabindex","0");
+        element.setAttribute("aria-label",key+"；English: "+glossary[key].en+"；Bahasa Melayu: "+glossary[key].ms);
+        return key;
+      }
+      function positionGlossary(element){
+        var tip = byId("glossaryTip");
+        if(!tip || !element){return;}
+        var rect = element.getBoundingClientRect();
+        var tipRect = tip.getBoundingClientRect();
+        var left = rect.left + rect.width/2 - tipRect.width/2;
+        left = Math.max(12,Math.min(left,window.innerWidth-tipRect.width-12));
+        var top = rect.bottom + 12;
+        if(top + tipRect.height > window.innerHeight - 12){top = rect.top - tipRect.height - 12;}
+        tip.style.left = left+"px";
+        tip.style.top = Math.max(12,top)+"px";
+      }
+      function openGlossary(element){
+        var key = prepareGlossary(element);
+        if(!key){return;}
+        var tip = byId("glossaryTip");
+        byId("glossaryTerm").textContent = key;
+        byId("glossaryEnglish").textContent = glossary[key].en;
+        byId("glossaryMalay").textContent = glossary[key].ms;
+        glossaryActive = element;
+        tip.classList.add("show");
+        tip.setAttribute("aria-hidden","false");
+        requestAnimationFrame(function(){positionGlossary(element);});
+      }
+      function closeGlossary(){
+        clearTimeout(glossaryTimer);
+        glossaryActive = null;
+        var tip = byId("glossaryTip");
+        if(tip){tip.classList.remove("show");tip.setAttribute("aria-hidden","true");}
+      }
+      function scheduleGlossary(element){
+        clearTimeout(glossaryTimer);
+        glossaryTimer = setTimeout(function(){openGlossary(element);},750);
+      }
+      function bindGlossary(){
+        document.querySelectorAll(".keyword").forEach(function(element){prepareGlossary(element);});
+        document.addEventListener("pointerover",function(event){
+          var element = event.target.closest ? event.target.closest(".keyword") : null;
+          if(!element || (event.relatedTarget && element.contains(event.relatedTarget))){return;}
+          scheduleGlossary(element);
+        });
+        document.addEventListener("pointerout",function(event){
+          var element = event.target.closest ? event.target.closest(".keyword") : null;
+          if(!element || (event.relatedTarget && element.contains(event.relatedTarget))){return;}
+          clearTimeout(glossaryTimer);
+          if(glossaryActive===element){closeGlossary();}
+        });
+        document.addEventListener("focusin",function(event){
+          var element = event.target.closest ? event.target.closest(".keyword") : null;
+          if(element){scheduleGlossary(element);}
+        });
+        document.addEventListener("focusout",function(event){
+          var element = event.target.closest ? event.target.closest(".keyword") : null;
+          if(element && glossaryActive===element){closeGlossary();}
+        });
+        document.addEventListener("click",function(event){
+          var element = event.target.closest ? event.target.closest(".keyword") : null;
+          if(element){
+            event.stopPropagation();
+            if(glossaryActive===element){closeGlossary();}else{openGlossary(element);}
+          }else if(!event.target.closest("#glossaryTip")){closeGlossary();}
+        });
+        window.addEventListener("resize",function(){if(glossaryActive){positionGlossary(glossaryActive);}});
+        window.addEventListener("scroll",function(){if(glossaryActive){positionGlossary(glossaryActive);}},true);
+      }
+      function showToast(message,kind){
+        var el = byId("toast");
+        el.textContent = message;
+        el.classList.remove("correct","wrong");
+        if(kind){el.classList.add(kind);}
+        el.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function(){el.classList.remove("show");},2600);
+      }
+      function showCorrectToast(message){showToast("✓ "+message,"correct");}
+      function showWrongToast(message){showToast("✕ "+message,"wrong");}
+      function wait(ms){ return new Promise(function(resolve){setTimeout(resolve,ms);}); }
+
+      function pad2(value){return String(Math.max(0,Math.floor(value))).padStart(2,"0");}
+      function fmtClock(seconds){
+        seconds = Math.max(0,Math.floor(Number(seconds)||0));
+        var hours = Math.floor(seconds/3600);
+        var minutes = Math.floor((seconds%3600)/60);
+        var secs = seconds%60;
+        return pad2(hours)+":"+pad2(minutes)+":"+pad2(secs);
+      }
+      function openClock(mode){
+        byId("clockModal").classList.add("open");
+        byId("clockModal").setAttribute("aria-hidden","false");
+        setClockMode(mode||clockMiniMode||"stopwatch");
+      }
+      function closeClock(){
+        byId("clockModal").classList.remove("open");
+        byId("clockModal").setAttribute("aria-hidden","true");
+      }
+      function setClockMode(mode){
+        clockMiniMode = mode === "countdown" ? "countdown" : "stopwatch";
+        byId("tabStopwatch").classList.toggle("active",clockMiniMode==="stopwatch");
+        byId("tabCountdown").classList.toggle("active",clockMiniMode==="countdown");
+        byId("paneStopwatch").classList.toggle("active",clockMiniMode==="stopwatch");
+        byId("paneCountdown").classList.toggle("active",clockMiniMode==="countdown");
+        if(clockMiniMode==="stopwatch"){paintStopwatch();}else{paintCountdown();}
+      }
+      function stopwatchSeconds(){
+        return stopwatchRunning ? stopwatchElapsed+(Date.now()-stopwatchBase)/1000 : stopwatchElapsed;
+      }
+      function paintStopwatch(){
+        var seconds = stopwatchSeconds();
+        byId("stopwatchDisplay").textContent = fmtClock(seconds);
+        if(clockMiniMode==="stopwatch"){byId("clockMini").textContent = fmtClock(seconds);}
+      }
+      function startStopwatch(){
+        if(stopwatchRunning){return;}
+        stopwatchBase = Date.now();
+        stopwatchRunning = true;
+        clearInterval(stopwatchTick);
+        stopwatchTick = setInterval(paintStopwatch,250);
+        paintStopwatch();
+        clickSound();
+      }
+      function pauseStopwatch(){
+        if(!stopwatchRunning){return;}
+        stopwatchElapsed = stopwatchSeconds();
+        stopwatchRunning = false;
+        clearInterval(stopwatchTick);
+        stopwatchTick = null;
+        paintStopwatch();
+        clickSound();
+      }
+      function resetStopwatch(){
+        stopwatchRunning = false;
+        clearInterval(stopwatchTick);
+        stopwatchTick = null;
+        stopwatchElapsed = 0;
+        stopwatchBase = 0;
+        paintStopwatch();
+        clickSound();
+      }
+      function inputValue(id,max){
+        var value = Number(byId(id).value);
+        if(!Number.isFinite(value)){value=0;}
+        return Math.max(0,Math.min(max,Math.floor(value)));
+      }
+      function inputCountdownSeconds(){
+        return inputValue("timerHour",23)*3600+inputValue("timerMinute",59)*60+inputValue("timerSecond",59);
+      }
+      function setCountdownFromInputs(){
+        countdownRunning = false;
+        clearInterval(countdownTick);
+        countdownTick = null;
+        countdownLeft = inputCountdownSeconds();
+        countdownBaseLeft = countdownLeft;
+        countdownFinished = false;
+        paintCountdown();
+      }
+      function setCountdownMinutes(minutes){
+        var value = Math.max(0,Math.floor(Number(minutes)||0));
+        byId("timerHour").value = Math.floor(value/60);
+        byId("timerMinute").value = value%60;
+        byId("timerSecond").value = 0;
+        countdownRunning = false;
+        clearInterval(countdownTick);
+        countdownTick = null;
+        countdownLeft = value*60;
+        countdownBaseLeft = countdownLeft;
+        countdownFinished = false;
+        paintCountdown();
+      }
+      function paintCountdown(){
+        var left = countdownRunning ? countdownBaseLeft-(Date.now()-countdownBase)/1000 : countdownLeft;
+        countdownLeft = Math.max(0,left);
+        byId("countdownDisplay").textContent = fmtClock(countdownLeft);
+        if(clockMiniMode==="countdown"){byId("clockMini").textContent = fmtClock(countdownLeft);}
+        if(countdownLeft<=0 && countdownRunning){
+          countdownRunning = false;
+          clearInterval(countdownTick);
+          countdownTick = null;
+          countdownLeft = 0;
+          if(!countdownFinished){
+            countdownFinished = true;
+            goodSound();
+            showCorrectToast("时间到！");
+          }
+        }
+      }
+      function startCountdown(){
+        if(countdownRunning){return;}
+        if(countdownLeft<=0 || countdownFinished){setCountdownFromInputs();}
+        countdownBaseLeft = countdownLeft;
+        countdownBase = Date.now();
+        countdownFinished = false;
+        countdownRunning = true;
+        clockMiniMode = "countdown";
+        clearInterval(countdownTick);
+        countdownTick = setInterval(paintCountdown,250);
+        paintCountdown();
+        clickSound();
+      }
+      function pauseCountdown(){
+        if(!countdownRunning){return;}
+        countdownLeft = Math.max(0,countdownBaseLeft-(Date.now()-countdownBase)/1000);
+        countdownRunning = false;
+        clearInterval(countdownTick);
+        countdownTick = null;
+        paintCountdown();
+        clickSound();
+      }
+      function resetCountdown(){
+        setCountdownFromInputs();
+        clickSound();
+      }
+
+      function ensureAudio(){
+        if(!soundEnabled){ return null; }
+        try{
+          if(!audioContext){ audioContext = new (window.AudioContext||window.webkitAudioContext)(); }
+          if(audioContext.state==="suspended"){ audioContext.resume(); }
+          return audioContext;
+        }catch(err){ return null; }
+      }
+      function tone(freq,duration,delay,type,gain){
+        if(!soundEnabled){ return; }
+        var ctx = ensureAudio();
+        if(!ctx){ return; }
+        var start = ctx.currentTime+(delay||0);
+        var osc = ctx.createOscillator();
+        var amp = ctx.createGain();
+        osc.type = type||"sine";
+        osc.frequency.setValueAtTime(freq,start);
+        amp.gain.setValueAtTime(0.0001,start);
+        amp.gain.exponentialRampToValueAtTime(gain||0.045,start+0.012);
+        amp.gain.exponentialRampToValueAtTime(0.0001,start+duration);
+        osc.connect(amp);amp.connect(ctx.destination);
+        osc.start(start);osc.stop(start+duration+0.03);
+      }
+      function clickSound(){ tone(420,.07,0,"sine",.035); }
+      function drawSound(){ tone(520,.08,0,"triangle",.04);tone(690,.1,.08,"triangle",.045); }
+      function goodSound(){ tone(560,.1,0,"sine",.04);tone(740,.13,.1,"sine",.05);tone(920,.16,.23,"sine",.055); }
+      function badSound(){ tone(210,.12,0,"sawtooth",.035);tone(160,.18,.12,"sawtooth",.03); }
+      function foldSound(){ tone(350,.12,0,"triangle",.035);tone(430,.14,.14,"triangle",.04);tone(560,.18,.30,"triangle",.045); }
+
+      function setActiveNav(id){
+        document.querySelectorAll(".nav button[data-go]").forEach(function(btn){
+          btn.classList.toggle("active",btn.getAttribute("data-go")===id);
+        });
+      }
+      function showScreen(id,options){
+        options = options||{};
+        closeGlossary();
+        if(id!=="draw"){ stopAuto(false); }
+        currentScreen = id;
+        document.querySelectorAll(".screen").forEach(function(screen){
+          screen.classList.toggle("active",screen.id==="screen-"+id);
+        });
+        setActiveNav(id);
+        if(id==="draw"){ renderDrawScene(); }
+        if(id==="summary"){
+          summaryReveal = 0;
+          renderSummary();
+        }
+        if(id==="mirror"){ renderMirror(); }
+        if(id==="detective"){ renderDetective(); }
+        if(id==="evaluation"){ renderEvaluation(); }
+        window.scrollTo({top:0,behavior:"smooth"});
+        if(options.showCover && activityData[id]){setTimeout(function(){openActivityCover(id);},90);}
+      }
+
+      function renderShapeButtons(){
+        var box = byId("shapeButtons");
+        box.innerHTML = SHAPES.map(function(s){
+          var selected = s.id===currentShapeId ? " selected" : "";
+          var subtitle = s.subtitle ? "<small>"+escapeHtml(s.subtitle)+"</small>" : "";
+          return "<button class=\"shape-btn"+selected+"\" type=\"button\" data-shape=\""+s.id+"\"><strong>"+escapeHtml(s.name)+"</strong>"+subtitle+"</button>";
+        }).join("");
+      }
+      function renderAxisButtons(){
+        var s = shapeById(currentShapeId);
+        var defs = axisDefs(s);
+        var box = byId("axisButtons");
+        if(!defs.length){
+          box.innerHTML = "<div class=\"legend\">这个图形没有可画出的对称轴。可以点击橙色挑战线，再用对折检查。</div>";
+          return;
+        }
+        box.innerHTML = defs.map(function(def,i){
+          var entry = selectedEntry(i);
+          var selected = entry ? " selected" : "";
+          var challenge = def.challenge ? " challenge" : "";
+          var corner = def.cornerDiagonal ? " corner-diagonal" : "";
+          var color = entry ? axisColor(i) : (def.cornerDiagonal ? "#ef4444" : (def.challenge ? "#d97706" : "#f59e0b"));
+          var label = entry ? "第"+entry.order+"条" : (def.challengeLabel || (def.challenge ? "挑战线" : "候选线 "+(i+1)));
+          return "<button class=\"axis-btn"+selected+challenge+corner+"\" type=\"button\" data-axis-index=\""+i+"\" style=\"--line-color:"+color+"\">"+
+            "<span class=\"swatch\"></span><span class=\"axis-copy\"><span>"+label+"</span><small>"+escapeHtml(def.description)+"</small></span></button>";
+        }).join("");
+      }
+      function drawSvg(s){
+        var points = shapePoints(s);
+        var defs = axisDefs(s);
+        var lines = defs.map(function(def,i){
+          var entry = selectedEntry(i);
+          var active = activeAxisIndex===i ? " active" : "";
+          var selected = entry ? " selected" : "";
+          var challenge = def.challenge ? " challenge" : "";
+          var corner = def.cornerDiagonal ? " corner-diagonal" : "";
+          var color = entry ? axisColor(i) : (def.cornerDiagonal ? "#ef4444" : (def.challenge ? "#d97706" : "#f59e0b"));
+          var labelPosition = labelPoint(def,i);
+          var label = entry ? "第"+entry.order+"条" : (def.challengeLabel || (def.challenge ? "挑战" : "线"+(i+1)));
+          var labelClass = entry ? "axis-label" : "candidate-label"+(def.challenge ? " challenge-label" : "");
+          var badgeRadius = entry ? 0 : 20;
+          var badge = badgeRadius ? "<circle class=\"axis-badge\" cx=\""+labelPosition.x.toFixed(1)+"\" cy=\""+labelPosition.y.toFixed(1)+"\" r=\""+badgeRadius+"\" fill=\""+color+"\"/>" : "";
+          var cornerMarks = def.cornerDiagonal ?
+            "<circle class=\"diagonal-corner\" cx=\""+def.ends[0].x.toFixed(1)+"\" cy=\""+def.ends[0].y.toFixed(1)+"\" r=\"13\"/><circle class=\"diagonal-corner\" cx=\""+def.ends[1].x.toFixed(1)+"\" cy=\""+def.ends[1].y.toFixed(1)+"\" r=\"13\"/>" : "";
+          return "<g><line class=\"candidate-axis"+selected+challenge+corner+active+"\" data-axis-index=\""+i+"\" x1=\""+def.ends[0].x.toFixed(1)+"\" y1=\""+def.ends[0].y.toFixed(1)+"\" x2=\""+def.ends[1].x.toFixed(1)+"\" y2=\""+def.ends[1].y.toFixed(1)+"\" style=\"stroke:"+color+"\"/><line class=\"candidate-axis\" data-axis-index=\""+i+"\" x1=\""+def.ends[0].x.toFixed(1)+"\" y1=\""+def.ends[0].y.toFixed(1)+"\" x2=\""+def.ends[1].x.toFixed(1)+"\" y2=\""+def.ends[1].y.toFixed(1)+"\" style=\"stroke:transparent;stroke-width:30;stroke-dasharray:none;opacity:1\"/><g>"+cornerMarks+badge+"<text class=\""+labelClass+"\" x=\""+labelPosition.x.toFixed(1)+"\" y=\""+(labelPosition.y+8).toFixed(1)+"\" text-anchor=\"middle\">"+label+"</text></g></g>";
+        }).join("");
+        return "<svg viewBox=\"0 0 1000 650\" role=\"img\" aria-label=\""+escapeHtml(s.name)+"候选对称轴\">"+
+          "<rect class=\"svg-paper\" x=\"0\" y=\"0\" width=\"1000\" height=\"650\"/>"+
+          "<text class=\"canvas-instruction\" x=\"500\" y=\"48\" text-anchor=\"middle\">点击橙色虚线，画出一条对称轴</text>"+
+          "<polygon class=\"svg-shape-shadow\" points=\""+pointString(points)+"\"/>"+
+          "<polygon class=\"svg-shape\" points=\""+pointString(points)+"\" fill=\""+s.color+"\"/>"+
+          lines+
+          "<circle class=\"center-dot\" cx=\""+CX+"\" cy=\""+CY+"\" r=\"9\"/>"+
+          "</svg>";
+      }
+      function renderDrawScene(){
+        var s = shapeById(currentShapeId);
+        var total = correctCount(s);
+        var drawn = selectedAxes.length;
+        byId("shapeTitle").textContent = s.subtitle && s.id==="triangle" ? s.name+"（等边三角形）" : s.name;
+        byId("axisCount").textContent = "已画出 "+drawn+" / "+total+" 条";
+        byId("drawStatus").textContent = "已画出 "+drawn+" / "+total+" 条";
+        byId("drawScene").innerHTML = drawSvg(s);
+        renderShapeButtons();
+        renderAxisButtons();
+        var hint = byId("drawHint");
+        var activeDef = activeAxisIndex===null ? null : axisDefs(s)[activeAxisIndex];
+        var activeEntry = activeAxisIndex===null ? null : selectedEntry(activeAxisIndex);
+        hint.className = "draw-hint";
+        if(activeDef && activeDef.challenge){
+          hint.classList.add("bad");
+          hint.innerHTML = "这是一条挑战线。沿着它<strong class=\"keyword\">对折</strong>后，两半<strong class=\"keyword\">不能完全重合</strong>，不计入<strong class=\"keyword blue\">对称轴</strong>数量。";
+        }else if(activeEntry){
+          hint.classList.add("good");
+          hint.innerHTML = "已画出第"+activeEntry.order+"条。<strong class=\"keyword\">点击</strong>“沿这条线对折”，<strong class=\"keyword\">观察</strong>黄色的一半是否<strong class=\"keyword\">完全重合</strong>。";
+        }else if(total===0){
+          hint.innerHTML = "这个图形<strong class=\"keyword blue\">没有对称轴</strong>。可以<strong class=\"keyword\">点击</strong>挑战线，再用<strong class=\"keyword\">对折</strong>检查。";
+        }else if(drawn===total){
+          hint.classList.add("good");
+          hint.innerHTML = "全部找到了！每一条彩色实线都是一条<strong class=\"keyword blue\">对称轴</strong>。";
+        }else{
+          hint.innerHTML = "橙色虚线是候选线。请<strong class=\"keyword\">点击</strong>一条线，再<strong class=\"keyword\">观察</strong><strong class=\"keyword\">对折</strong>。";
+        }
+      }
+      function selectAxis(index,internal){
+        var s = shapeById(currentShapeId);
+        var def = axisDefs(s)[index];
+        if(!def){ return; }
+        if(!internal){ stopAuto(false); }
+        activeAxisIndex = index;
+        if(def.correct){
+          if(!selectedEntry(index)){
+            selectedAxes.push({index:index,order:selectedAxes.length+1});
+            drawSound();
+            showCorrectToast("已画出第"+selectedAxes.length+"条对称轴");
+          }else{
+            clickSound();
+            showCorrectToast("这是第"+selectedEntry(index).order+"条对称轴");
+          }
+        }else{
+          badSound();
+          showWrongToast("挑战线：这条线不是对称轴");
+        }
+        renderDrawScene();
+      }
+      function stopAuto(render){
+        autoToken++;
+        autoPlaying = false;
+        byId("autoBtn").textContent = "▶ 自动逐条";
+        if(render && currentScreen==="draw"){ renderDrawScene(); }
+      }
+      function clearDraw(){
+        stopAuto(false);
+        animationSerial++;
+        selectedAxes = [];
+        activeAxisIndex = null;
+        renderDrawScene();
+        clickSound();
+        showToast("已经清除，可以重新开始");
+      }
+      function foldSvg(s,def){
+        var points = shapePoints(s);
+        var half = clipHalf(points,def.angle,1);
+        var ends = def.ends;
+        var nx = -Math.sin(def.angle);
+        var ny = Math.cos(def.angle);
+        var start = point(CX+nx*80,CY+ny*80);
+        var control = point(CX+nx*150+Math.cos(def.angle)*95,CY+ny*150+Math.sin(def.angle)*95);
+        var end = point(CX-nx*145,CY-ny*145);
+        var arrowPath = "M"+start.x.toFixed(1)+" "+start.y.toFixed(1)+" Q"+control.x.toFixed(1)+" "+control.y.toFixed(1)+" "+end.x.toFixed(1)+" "+end.y.toFixed(1);
+        return "<svg viewBox=\"0 0 1000 650\" role=\"img\" aria-label=\"黄色的一半沿红色折痕对折\">"+
+          "<defs><marker id=\"arrowhead\" markerWidth=\"12\" markerHeight=\"12\" refX=\"9\" refY=\"4\" orient=\"auto\"><path d=\"M0,0 L10,4 L0,8 z\" fill=\"#7c3aed\"/></marker></defs>"+
+          "<rect class=\"svg-paper\" x=\"0\" y=\"0\" width=\"1000\" height=\"650\"/>"+
+          "<text class=\"fold-title\" x=\"500\" y=\"48\" text-anchor=\"middle\">黄色的一半沿红线对折</text>"+
+          "<polygon class=\"fold-base\" points=\""+pointString(points)+"\"/>"+
+          "<polygon id=\"foldHalf\" class=\"fold-half\" points=\""+pointString(half)+"\"/>"+
+          "<line class=\"crease\" x1=\""+ends[0].x.toFixed(1)+"\" y1=\""+ends[0].y.toFixed(1)+"\" x2=\""+ends[1].x.toFixed(1)+"\" y2=\""+ends[1].y.toFixed(1)+"\"/>"+
+          "<path class=\"fold-arrow\" d=\""+arrowPath+"\"/>"+
+          "<text class=\"fold-caption\" x=\"500\" y=\"605\" text-anchor=\"middle\">只折一半 · 看它会不会和另一半完全重合</text>"+
+          "<circle class=\"center-dot\" cx=\""+CX+"\" cy=\""+CY+"\" r=\"9\"/>"+
+          "</svg>";
+      }
+      function playFold(index,options){
+        options = options||{};
+        var s = shapeById(currentShapeId);
+        var def = axisDefs(s)[index];
+        if(!def){ return Promise.resolve(); }
+        var tokenShape = s.id;
+        byId("drawScene").innerHTML = foldSvg(s,def);
+        var hint = byId("drawHint");
+        hint.className = "draw-hint folding";
+        hint.innerHTML = "正在<strong class=\"keyword\">对折</strong>：只看黄色的一半绕着红线折过去……";
+        foldSound();
+        var half = byId("foldHalf");
+        var finalMatrix = reflectionMatrix(def.angle);
+        return new Promise(function(resolve){
+          animateMatrixElement(half,[1,0,0,1,0,0],finalMatrix,1050,function(){
+            if(currentShapeId!==tokenShape){ resolve();return; }
+            if(def.correct){
+              goodSound();
+              hint.className = "draw-hint good";
+              hint.innerHTML = "<strong class=\"keyword\">完全重合</strong>！所以红线是一条<strong class=\"keyword blue\">对称轴</strong>。";
+            }else{
+              badSound();
+              hint.className = "draw-hint bad";
+              hint.innerHTML = "<strong class=\"keyword\">没有完全重合</strong>！这条挑战线不是<strong class=\"keyword blue\">对称轴</strong>。";
+            }
+            setTimeout(function(){
+              if(currentShapeId===tokenShape){ renderDrawScene(); }
+              resolve();
+            },options.auto?750:1350);
+          });
+        });
+      }
+      async function runAuto(){
+        if(autoPlaying){
+          stopAuto(true);
+          showCorrectToast("已停止自动播放");
+          return;
+        }
+        var s = shapeById(currentShapeId);
+        var defs = axisDefs(s);
+        selectedAxes = [];
+        activeAxisIndex = null;
+        autoPlaying = true;
+        var token = ++autoToken;
+        byId("autoBtn").textContent = "■ 停止自动";
+        renderDrawScene();
+        for(var i=0;i<defs.length;i++){
+          if(!defs[i].correct){continue;}
+          if(token!==autoToken){return;}
+          activeAxisIndex = i;
+          selectedAxes.push({index:i,order:selectedAxes.length+1});
+          drawSound();
+          renderDrawScene();
+          await wait(360);
+          if(token!==autoToken){return;}
+          await playFold(i,{auto:true});
+          if(token!==autoToken){return;}
+          await wait(220);
+        }
+        if(token===autoToken){
+          autoPlaying = false;
+          byId("autoBtn").textContent = "▶ 自动逐条";
+          renderDrawScene();
+          if(defs.some(function(d){return d.correct;})){ goodSound();showCorrectToast("自动示范完成：一条一条数对称轴"); }
+          else{ showWrongToast("这个图形没有对称轴"); }
+        }
+      }
+
+      function allAxisSvg(s,showAxes){
+        var points = shapePoints(s);
+        var defs = showAxes ? axisDefs(s).filter(function(d){return d.correct;}) : [];
+        var lines = defs.map(function(def,i){
+          var p = labelPoint(def,i);
+          return "<line x1=\""+def.ends[0].x.toFixed(1)+"\" y1=\""+def.ends[0].y.toFixed(1)+"\" x2=\""+def.ends[1].x.toFixed(1)+"\" y2=\""+def.ends[1].y.toFixed(1)+"\" stroke=\""+axisColor(i)+"\" stroke-width=\"13\" stroke-linecap=\"round\"/>"+
+            "<text class=\"axis-label\" x=\""+p.x.toFixed(1)+"\" y=\""+(p.y+8).toFixed(1)+"\" text-anchor=\"middle\">第"+(i+1)+"条</text>";
+        }).join("");
+        var empty = showAxes && !defs.length ? "<text class=\"fold-title\" x=\"500\" y=\"570\" text-anchor=\"middle\">没有对称轴</text>" : "";
+        return "<svg viewBox=\"0 0 1000 650\" role=\"img\" aria-label=\""+escapeHtml(s.name)+"的对称轴\">"+
+          "<rect class=\"svg-paper\" x=\"0\" y=\"0\" width=\"1000\" height=\"650\"/>"+
+          "<polygon class=\"svg-shape-shadow\" points=\""+pointString(points)+"\"/>"+
+          "<polygon class=\"svg-shape\" points=\""+pointString(points)+"\" fill=\""+s.color+"\"/>"+
+          lines+empty+
+          "</svg>";
+      }
+      function renderSummary(){
+        var s = shapeById(summaryQuestions[summaryIndex%summaryQuestions.length]);
+        var total = correctCount(s);
+        byId("summaryScene").innerHTML = allAxisSvg(s,summaryReveal>=1);
+        byId("summaryShapeName").textContent = s.name+(s.id==="triangle"?"（等边三角形）":"");
+        byId("summaryNumber").textContent = summaryReveal>=2 ? total : "?";
+        byId("summaryRule").textContent = summaryReveal===0 ? "先观察图形，再找对称轴" : (summaryReveal===1 ? "数一数彩色对称轴" : "条对称轴");
+        byId("summaryProgress").textContent = "第 "+(summaryIndex+1)+" / "+summaryQuestions.length+" 题 · 已完成 "+summaryCompleted+" 题";
+        byId("summaryNext").textContent = summaryReveal===0 ? "① 显示对称轴" : (summaryReveal===1 ? "② 显示答案" : (summaryCompleted>=summaryQuestions.length ? "重新开始" : "换一个图形"));
+      }
+
+      function renderEvaluation(){
+        var goals = [
+          {key:"observe",name:"会观察"},
+          {key:"draw",name:"会绘制"},
+          {key:"explain",name:"会说明"}
+        ];
+        var done = 0;
+        var achieved = [];
+        var practice = [];
+        goals.forEach(function(goal){
+          var value = evaluationState[goal.key];
+          var card = document.querySelector('.evaluation-card[data-eval-key="'+goal.key+'"]');
+          if(card){
+            card.setAttribute("data-state",value==="yes" ? "achieved" : (value==="practice" ? "practice" : ""));
+            card.querySelectorAll(".evaluation-option").forEach(function(btn){
+              var selected = btn.getAttribute("data-evaluation-value")===value;
+              btn.classList.toggle("selected",selected);
+              btn.classList.toggle("yes",selected && value==="yes");
+              btn.classList.toggle("practice",selected && value==="practice");
+            });
+          }
+          if(value){done++;}
+          if(value==="yes"){achieved.push(goal.name);}
+          if(value==="practice"){practice.push(goal.name);}
+        });
+        byId("evaluationProgress").textContent = "已检查 "+done+" / "+goals.length;
+        if(done===0){
+          byId("evaluationSummary").textContent = "请同学逐项举手：做到了，还是还要练习？";
+          byId("teacherSummary").textContent = "今天我们观察、绘制和说明了对称轴。";
+        }else if(done<goals.length){
+          byId("evaluationSummary").textContent = "已经记录 "+done+" / "+goals.length+" 项，请继续完成自评。";
+          byId("teacherSummary").textContent = "请先完成三项自评，再一起说出关键句：对折后两半完全重合。";
+        }else if(practice.length===0){
+          byId("evaluationSummary").textContent = "三个学习目标都达成了！";
+          byId("teacherSummary").textContent = "今天我们学会了观察、绘制和说明对称轴。关键是：对折后两半完全重合。";
+        }else{
+          byId("evaluationSummary").textContent = "已做到："+achieved.join("、")+"；还要练习："+practice.join("、")+"。";
+          byId("teacherSummary").textContent = "我们已经会用‘完全重合’找对称轴；下一步再练习："+practice.join("、")+"。";
+        }
+      }
+
+      function mirrorAxis(s){
+        var defs = axisDefs(s);
+        if(s.id==="rectangle"){return defs[1];}
+        return defs.find(function(d){return d.correct;})||defs[0];
+      }
+      function mirrorSvg(s){
+        var def = mirrorAxis(s);
+        if(!def){ return "<svg viewBox=\"0 0 1000 650\"><rect class=\"svg-paper\" x=\"0\" y=\"0\" width=\"1000\" height=\"650\"/><text class=\"fold-title\" x=\"500\" y=\"320\" text-anchor=\"middle\">这个图形没有对称轴</text></svg>"; }
+        var points = shapePoints(s);
+        var half = clipHalf(points,def.angle,1);
+        return "<svg viewBox=\"0 0 1000 650\" role=\"img\" aria-label=\"用镜子检查对称\">"+
+          "<rect class=\"svg-paper\" x=\"0\" y=\"0\" width=\"1000\" height=\"650\"/>"+
+          "<polygon class=\"fold-base\" points=\""+pointString(points)+"\"/>"+
+          "<polygon id=\"mirrorHalf\" class=\"mirror-half\" points=\""+pointString(half)+"\"/>"+
+          "<line class=\"mirror-line\" x1=\""+def.ends[0].x.toFixed(1)+"\" y1=\""+def.ends[0].y.toFixed(1)+"\" x2=\""+def.ends[1].x.toFixed(1)+"\" y2=\""+def.ends[1].y.toFixed(1)+"\"/>"+
+          "<text class=\"fold-title\" x=\"500\" y=\"48\" text-anchor=\"middle\">绿色虚线是镜子</text>"+
+          "</svg>";
+      }
+      function renderMirror(){
+        var s = shapeById(mirrorShapeId);
+        byId("mirrorScene").innerHTML = mirrorSvg(s);
+        byId("mirrorButtons").innerHTML = ["triangle","square","rectangle"].map(function(id){
+          var sh = shapeById(id);
+          return "<button type=\"button\" class=\"mirror-btn"+(id===mirrorShapeId?" selected":"")+"\" data-mirror-shape=\""+id+"\">"+escapeHtml(sh.name)+"</button>";
+        }).join("");
+        byId("mirrorHint").innerHTML = "绿色虚线是镜子。<strong class=\"keyword\">点击</strong>检查，<strong class=\"keyword\">观察</strong>一半图形能不能补成完整图形。";
+      }
+      function playMirror(){
+        if(mirrorPlaying){return;}
+        var s = shapeById(mirrorShapeId);
+        var def = mirrorAxis(s);
+        if(!def){byId("mirrorHint").innerHTML="这个图形<strong class=\"keyword blue\">没有对称轴</strong>，镜子不能补成<strong class=\"keyword\">完全重合</strong>的图形。";badSound();showWrongToast("这一个图形没有对称轴");return;}
+        mirrorPlaying = true;
+        byId("mirrorScene").innerHTML = mirrorSvg(s);
+        var half = byId("mirrorHalf");
+        foldSound();
+        animateMatrixElement(half,[1,0,0,1,0,0],reflectionMatrix(def.angle),900,function(){
+          goodSound();
+          byId("mirrorHint").className = "draw-hint good";
+          byId("mirrorHint").innerHTML = "镜子里的另一半和原来的一半<strong class=\"keyword\">完全重合</strong>。";
+          showCorrectToast("镜子检查正确");
+          setTimeout(function(){mirrorPlaying=false;renderMirror();},1100);
+        });
+      }
+
+      function smallShapeSvg(s){
+        var points = shapePoints(s);
+        return "<svg viewBox=\"0 0 1000 650\" aria-label=\""+escapeHtml(s.name)+"\"><rect class=\"svg-paper\" x=\"0\" y=\"0\" width=\"1000\" height=\"650\"/><polygon class=\"svg-shape\" points=\""+pointString(points)+"\" fill=\""+s.color+"\"/></svg>";
+      }
+      function renderDetective(){
+        if(detectiveRound>=detectiveRounds.length){
+          byId("detectiveShape").innerHTML = "<div style=\"font-size:70px;text-align:center;padding:30px\">🎉</div>";
+          byId("detectiveQuestion").textContent = "挑战完成！";
+          byId("answerGrid").innerHTML = "";
+          byId("detectiveResult").innerHTML = "你的得分是 "+detectiveScore+" / "+detectiveRounds.length+"。请<strong class=\"keyword\">观察</strong>自己的答案。";
+          byId("detectiveNext").hidden = false;
+          byId("detectiveNext").textContent = "↺ 再玩一次";
+          byId("detectiveScore").textContent = "得分 "+detectiveScore+" / 8";
+          return;
+        }
+        var s = shapeById(detectiveRounds[detectiveRound]);
+        var total = correctCount(s);
+        byId("detectiveShape").innerHTML = smallShapeSvg(s);
+        byId("detectiveQuestion").textContent = s.name+(s.id==="triangle"?"（等边三角形）":"")+"有几条对称轴？";
+        byId("answerGrid").innerHTML = [0,1,2,3,4,5,6,7,8].map(function(n){
+          return "<button class=\"answer-btn\" type=\"button\" data-answer=\""+n+"\">"+n+"</button>";
+        }).join("");
+        byId("detectiveResult").innerHTML = "先<strong class=\"keyword\">观察</strong>图形，再<strong class=\"keyword\">点击</strong>答案。";
+        byId("detectiveNext").hidden = true;
+        byId("detectiveScore").textContent = "得分 "+detectiveScore+" / 8";
+        detectiveLocked = false;
+      }
+      function answerDetective(answer){
+        if(detectiveLocked || detectiveRound>=detectiveRounds.length){return;}
+        detectiveLocked = true;
+        var s = shapeById(detectiveRounds[detectiveRound]);
+        var correct = correctCount(s);
+        var buttons = document.querySelectorAll("#answerGrid button[data-answer]");
+        buttons.forEach(function(btn){
+          var n = Number(btn.getAttribute("data-answer"));
+          if(n===correct){btn.classList.add("correct");}
+          if(n===answer && n!==correct){btn.classList.add("wrong");}
+          btn.disabled = true;
+        });
+        if(answer===correct){
+          detectiveScore++;
+          goodSound();
+          byId("detectiveResult").innerHTML = "答对了！"+s.name+"有 <strong class=\"keyword blue\">"+correct+" 条对称轴</strong>。";
+          showCorrectToast("答对了！");
+        }else{
+          badSound();
+          byId("detectiveResult").innerHTML = "再<strong class=\"keyword\">观察</strong>：正确答案是 <strong class=\"keyword blue\">"+correct+" 条</strong>。";
+          showWrongToast("再观察一次图形");
+        }
+        byId("detectiveScore").textContent = "得分 "+detectiveScore+" / 8";
+        byId("detectiveNext").hidden = false;
+        byId("detectiveNext").textContent = detectiveRound===detectiveRounds.length-1 ? "看成绩 ▶" : "下一题 ▶";
+      }
+      function nextDetective(){
+        if(detectiveRound>=detectiveRounds.length){
+          detectiveRound=0;detectiveScore=0;detectiveLocked=false;
+        }else{
+          detectiveRound++;
+        }
+        renderDetective();
+      }
+
+      function restartCurrent(){
+        animationSerial++;
+        stopAuto(false);
+        if(activityData[currentScreen]){setCountdownMinutes(activityData[currentScreen].minutes);}
+        if(currentScreen==="start") {
+          byId("butterflyCard").classList.remove("playing");
+          byId("butterflyHalf").setAttribute("transform","");
+          byId("butterflyCheckHalf").setAttribute("transform","");
+          byId("butterflyMessage").innerHTML = "<strong class=\"keyword\">点击</strong>“播放对折”看左边折过去；也可以点“<strong class=\"keyword blue\">检查</strong>”看右边红色的一半往左边黄色的一半折过去。";
+        }else if(currentScreen==="draw"){
+          selectedAxes=[];activeAxisIndex=null;renderDrawScene();
+        }else if(currentScreen==="summary"){
+          summaryIndex=0;summaryReveal=0;summaryCompleted=0;renderSummary();
+        }else if(currentScreen==="mirror"){
+          mirrorPlaying=false;renderMirror();
+        }else if(currentScreen==="detective"){
+          detectiveRound=0;detectiveScore=0;detectiveLocked=false;renderDetective();
+        }else if(currentScreen==="exit"){
+          document.querySelectorAll("#exitOptions button").forEach(function(btn){btn.className="exit-option";});
+          byId("exitResult").innerHTML = "请选择一个答案，并<strong class=\"keyword\">观察</strong>长方形的对角线。";
+        }else if(currentScreen==="evaluation"){
+          evaluationState={observe:null,draw:null,explain:null};renderEvaluation();
+        }else if(currentScreen==="thanks"){
+          showScreen("start");
+        }
+        clickSound();
+        showToast("这一页已经重来");
+      }
+
+      function setNavCollapsed(collapsed){
+        var nav = byId("lessonNav");
+        var toggle = byId("navToggleBtn");
+        nav.classList.toggle("is-collapsed",collapsed);
+        document.body.classList.toggle("nav-collapsed",collapsed);
+        nav.setAttribute("aria-hidden",collapsed ? "true" : "false");
+        toggle.setAttribute("aria-expanded",collapsed ? "false" : "true");
+        toggle.textContent = collapsed ? "☰ 显示导航" : "▲ 隐藏导航";
+      }
+      byId("navToggleBtn").addEventListener("click",function(){
+        var collapsed = !byId("lessonNav").classList.contains("is-collapsed");
+        setNavCollapsed(collapsed);
+        clickSound();
+      });
+
+      byId("soundBtn").addEventListener("click",function(){
+        soundEnabled = !soundEnabled;
+        this.textContent = soundEnabled ? "🔊 声音：开" : "🔇 声音：关";
+        if(soundEnabled){clickSound();}
+      });
+      byId("restartBtn").addEventListener("click",restartCurrent);
+      document.querySelector(".nav").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-go]");
+        if(!btn){return;}
+        clickSound();
+        showScreen(btn.getAttribute("data-go"),{showCover:true});
+      });
+      byId("clockFab").addEventListener("click",function(){clickSound();openClock("countdown");});
+      byId("clockClose").addEventListener("click",function(){clickSound();closeClock();});
+      byId("clockModal").addEventListener("click",function(e){if(e.target===this){closeClock();}});
+      byId("tabStopwatch").addEventListener("click",function(){clickSound();setClockMode("stopwatch");});
+      byId("tabCountdown").addEventListener("click",function(){clickSound();setClockMode("countdown");});
+      byId("stopwatchStart").addEventListener("click",startStopwatch);
+      byId("stopwatchPause").addEventListener("click",pauseStopwatch);
+      byId("stopwatchReset").addEventListener("click",resetStopwatch);
+      byId("countdownStart").addEventListener("click",startCountdown);
+      byId("countdownPause").addEventListener("click",pauseCountdown);
+      byId("countdownReset").addEventListener("click",resetCountdown);
+      document.querySelectorAll(".timer-preset").forEach(function(btn){
+        btn.addEventListener("click",function(){setCountdownMinutes(Number(btn.getAttribute("data-timer-min")));clickSound();});
+      });
+      ["timerHour","timerMinute","timerSecond"].forEach(function(id){
+        byId(id).addEventListener("change",setCountdownFromInputs);
+      });
+      byId("coverStart").addEventListener("click",function(){clickSound();startActivityTimer(coverActivityId);});
+      byId("coverClock").addEventListener("click",function(){clickSound();openClock("countdown");});
+      byId("coverClose").addEventListener("click",function(){clickSound();closeActivityCover();});
+      byId("activityCover").addEventListener("click",function(e){if(e.target===this){closeActivityCover();}});
+      document.addEventListener("click",function(e){
+        var pageButton = e.target.closest("[data-page-go]");
+        if(pageButton && !pageButton.disabled){clickSound();showScreen(pageButton.getAttribute("data-page-go"));return;}
+        var openButton = e.target.closest("[data-open-cover]");
+        if(openButton){clickSound();openActivityCover(openButton.getAttribute("data-open-cover"));return;}
+        var startButton = e.target.closest("[data-start-activity]");
+        if(startButton){clickSound();startActivityTimer(startButton.getAttribute("data-start-activity"));}
+      });
+      document.addEventListener("keydown",function(e){
+        if(e.key==="Escape"){closeActivityCover();closeClock();}
+      });
+      byId("butterflyPlay").addEventListener("click",function(){playButterfly("left");});
+      byId("butterflyAuto").addEventListener("click",function(){playButterfly("left");});
+      byId("butterflyCheck").addEventListener("click",function(){playButterfly("right");});
+      byId("butterflyReset").addEventListener("click",function(){restartCurrent();});
+      byId("shapeButtons").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-shape]");
+        if(!btn){return;}
+        stopAuto(false);
+        currentShapeId = btn.getAttribute("data-shape");
+        selectedAxes=[];activeAxisIndex=null;
+        clickSound();
+        renderDrawScene();
+      });
+      byId("axisButtons").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-axis-index]");
+        if(!btn){return;}
+        selectAxis(Number(btn.getAttribute("data-axis-index")),false);
+      });
+      byId("drawScene").addEventListener("click",function(e){
+        var line = e.target.closest("line[data-axis-index]");
+        if(!line){return;}
+        selectAxis(Number(line.getAttribute("data-axis-index")),false);
+      });
+      byId("foldBtn").addEventListener("click",function(){
+        var s = shapeById(currentShapeId);
+        var index = activeAxisIndex;
+        if(index===null && selectedAxes.length){index=selectedAxes[selectedAxes.length-1].index;}
+        if(index===null){showToast("请先点击一条候选线");clickSound();return;}
+        playFold(index);
+      });
+      byId("autoBtn").addEventListener("click",runAuto);
+      byId("clearBtn").addEventListener("click",clearDraw);
+      byId("summaryNext").addEventListener("click",function(){
+        clickSound();
+        if(summaryReveal<2){
+          summaryReveal++;
+          if(summaryReveal===2){summaryCompleted=Math.max(summaryCompleted,summaryIndex+1);}
+          summaryReveal===1 ? drawSound() : goodSound();
+          renderSummary();
+        }else{
+          if(summaryCompleted>=summaryQuestions.length){
+            summaryIndex=0;summaryReveal=0;summaryCompleted=0;
+          }else{
+            summaryIndex++;
+            summaryReveal=0;
+          }
+          renderSummary();
+        }
+      });
+      byId("summaryMirror").addEventListener("click",function(){clickSound();showScreen("mirror");});
+      byId("mirrorButtons").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-mirror-shape]");
+        if(!btn){return;}
+        mirrorShapeId = btn.getAttribute("data-mirror-shape");
+        clickSound();renderMirror();
+      });
+      byId("mirrorPlay").addEventListener("click",playMirror);
+      byId("answerGrid").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-answer]");
+        if(!btn){return;}
+        answerDetective(Number(btn.getAttribute("data-answer")));
+      });
+      byId("detectiveNext").addEventListener("click",nextDetective);
+      byId("evaluationGoals").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-evaluation-key]");
+        if(!btn){return;}
+        var key = btn.getAttribute("data-evaluation-key");
+        var value = btn.getAttribute("data-evaluation-value");
+        evaluationState[key]=value;
+        clickSound();
+        value==="yes" ? (goodSound(),showCorrectToast("已记录：做到了")) : (badSound(),showToast("已记录：还要练习","wrong"));
+        renderEvaluation();
+      });
+      byId("evaluationReset").addEventListener("click",function(){
+        evaluationState={observe:null,draw:null,explain:null};
+        clickSound();renderEvaluation();showToast("评价已经重设");
+      });
+      byId("thanksHome").addEventListener("click",function(){clickSound();showScreen("start");});
+      byId("exitOptions").addEventListener("click",function(e){
+        var btn = e.target.closest("button[data-exit-answer]");
+        if(!btn){return;}
+        document.querySelectorAll("#exitOptions button").forEach(function(other){other.className="exit-option";});
+        var answer = btn.getAttribute("data-exit-answer");
+        var correct = answer==="no";
+        btn.classList.add("selected",correct?"correct":"wrong");
+        if(correct){goodSound();byId("exitResult").innerHTML="答对了！长方形沿对角线<strong class=\"keyword\">对折</strong>，<strong class=\"keyword\">不能完全重合</strong>。";showCorrectToast("答对了！");}
+        else{badSound();byId("exitResult").innerHTML="再想一想：长方形的<strong class=\"keyword blue\">对称轴</strong>是横向和竖向的中线。";showWrongToast("再观察一次长方形");}
+      });
+
+      function playButterfly(direction){
+        animationSerial++;
+        var card = byId("butterflyCard");
+        var leftHalf = byId("butterflyHalf");
+        var rightHalf = byId("butterflyCheckHalf");
+        direction = direction || "left";
+        leftHalf.setAttribute("transform","");
+        rightHalf.setAttribute("transform","");
+        card.classList.add("playing");
+        if(direction==="right"){
+          byId("butterflyMessage").innerHTML = '<strong class="keyword blue">检查</strong>：右边红色的一半和<strong class="keyword">身体右半边</strong>正在绕红色<strong class="keyword blue">对称轴</strong>往左边黄色的一半折过去……';
+          foldSound();
+          animateMatrixElement(rightHalf,[1,0,0,1,0,0],[-1,0,0,1,900,0],1250,function(){
+            goodSound();
+            byId("butterflyMessage").innerHTML = '<strong class="keyword">检查完成</strong>！右边折过去也能<strong class="keyword">完全重合</strong>，所以红线就是蝴蝶的<strong class="keyword blue">对称轴</strong>。';
+            setTimeout(function(){card.classList.remove("playing");},900);
+          });
+          return;
+        }
+        byId("butterflyMessage").innerHTML = '黄色左半边和<strong class="keyword">身体左半边</strong>正在绕红色<strong class="keyword blue">对称轴</strong>折过去……';
+        foldSound();
+        animateMatrixElement(leftHalf,[1,0,0,1,0,0],[-1,0,0,1,900,0],1250,function(){
+          goodSound();
+          byId("butterflyMessage").innerHTML = '<strong class="keyword">完全重合</strong>！红线就是蝴蝶的<strong class="keyword blue">对称轴</strong>。';
+          setTimeout(function(){card.classList.remove("playing");},900);
+        });
+      }
+
+      injectActivityHeaders();
+      injectPageNavigation();
+      bindGlossary();
+      setCountdownMinutes(5);
+      paintStopwatch();
+      renderDrawScene();
+      renderSummary();
+      renderMirror();
+      renderDetective();
+      setActiveNav("start");
+    })();
+  </script>
+</body>
+</html>
