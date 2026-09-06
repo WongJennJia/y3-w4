@@ -1,0 +1,27 @@
+{
+  "name": "y3-w4-symmetry-lesson",
+  "version": "1.0.0",
+  "description": "三年级数学 对称轴 课件与 Google Sheets 退出小纸条统计",
+  "scripts": {
+    "clasp": "clasp",
+    "clasp:login": "clasp login",
+    "clasp:logout": "clasp logout",
+    "clasp:create": "clasp create --type sheets --rootDir ./gas",
+    "clasp:push": "clasp push",
+    "clasp:pull": "clasp pull",
+    "clasp:deploy": "clasp deploy --description \"Exit Ticket WebApp\"",
+    "clasp:open": "clasp open",
+    "clasp:status": "clasp status"
+  },
+  "keywords": [
+    "google-apps-script",
+    "clasp",
+    "google-sheets",
+    "exit-ticket"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@google/clasp": "^2.4.2"
+  }
+}
