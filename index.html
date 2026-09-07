@@ -2438,12 +2438,12 @@
         clickSound();
         var authed = sessionStorage.getItem("teacher_authed") === "true";
         if(!authed){
-          var pwd = prompt("请输入教师管理密码（默认: 1234）：");
+          var pwd = prompt("请输入教师管理密码：");
           if(pwd === "1234" || pwd === "admin"){
             sessionStorage.setItem("teacher_authed", "true");
             authed = true;
           }else if(pwd !== null){
-            showToast("密码不正确（默认: 1234）", "wrong");
+            showToast("密码不正确", "wrong");
             return;
           }else{
             return;
