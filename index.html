@@ -325,8 +325,6 @@
     .exit-label{font-size:clamp(18px,1.6vw,24px);font-weight:950;color:var(--ink)}
     .exit-input{flex:1;min-width:200px;min-height:50px;padding:8px 16px;border:2px solid #b8d2f0;border-radius:14px;font-size:clamp(18px,1.6vw,24px);font-weight:900;color:var(--ink);background:#fff}
     .exit-input:focus{outline:3px solid var(--blue);border-color:var(--blue)}
-    .gas-config-btn{min-height:48px;padding:8px 16px;border:2px solid #c9d8ef;border-radius:14px;background:#fff;font-size:clamp(16px,1.4vw,20px);font-weight:900;color:var(--ink2);cursor:pointer}
-    .gas-config-btn:hover{background:#e8f2ff}
     .exit-options{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
     .exit-option{min-height:76px;border:3px solid #cbd8ec;border-radius:18px;background:#fff;font-size:clamp(22px,2vw,32px);font-weight:950}
     .exit-option.selected.correct{color:#fff;background:var(--green);border-color:var(--green)}
@@ -336,14 +334,72 @@
     .exit-sync-status.syncing{background:#fef3c7;color:#92400e;border:2px solid #fde68a}
     .exit-sync-status.success{background:#dcfce7;color:#166534;border:2px solid #bbf7d0}
     .exit-sync-status.error{background:#fee2e2;color:#991b1b;border:2px solid #fecaca}
-    .gas-modal{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(13,28,48,.75)}
-    .gas-modal.open{display:flex}
-    .gas-panel{position:relative;width:min(680px,94vw);padding:28px;border-radius:24px;border:4px solid #17345b;background:#fffdf6;box-shadow:0 25px 80px rgba(0,0,0,.35)}
-    .gas-panel h3{margin:0 0 12px;color:var(--blue);font-size:clamp(24px,2.4vw,34px);font-weight:1000}
-    .gas-panel p{margin:0 0 14px;color:#48647f;font-size:clamp(16px,1.4vw,20px);line-height:1.45;font-weight:800}
-    .gas-panel input{width:100%;min-height:50px;padding:10px 14px;border:2px solid #b8d2f0;border-radius:12px;font-size:16px;font-weight:800;margin-bottom:16px;box-sizing:border-box}
-    .gas-panel-actions{display:flex;justify-content:flex-end;gap:10px}
-    .gas-panel-actions button{min-height:48px;padding:8px 20px;border-radius:14px;font-weight:950;font-size:18px}
+    .exit-teacher-zone{margin-top:28px;padding-top:18px;border-top:2px dashed #cbd8ec;display:flex;justify-content:center}
+    .teacher-dashboard-btn{min-height:48px;padding:9px 20px;border:2px solid #b8d2f0;border-radius:14px;background:#fff;color:var(--blue);font-size:clamp(16px,1.4vw,20px);font-weight:950;cursor:pointer;box-shadow:0 4px 12px rgba(35,100,170,.1);transition:all .18s ease}
+    .teacher-dashboard-btn:hover{background:#edf5ff;border-color:var(--blue);transform:translateY(-1px)}
+    
+    /* 教师统计看板 Modal 样式 */
+    .stats-modal{position:fixed;inset:0;z-index:115;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(13,28,48,.78);backdrop-filter:blur(3px)}
+    .stats-modal.open{display:flex}
+    .stats-panel{position:relative;width:min(1080px,96vw);max-height:92vh;overflow-y:auto;padding:26px;border-radius:26px;border:4px solid #17345b;background:#fffdf8;box-shadow:0 25px 80px rgba(0,0,0,.4)}
+    .stats-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;padding-bottom:14px;border-bottom:2px solid #e2eaf5}
+    .stats-header h2{margin:0 0 6px;color:var(--blue);font-size:clamp(24px,2.4vw,34px);font-weight:1000}
+    .stats-subtitle{margin:0;color:#55708e;font-size:clamp(16px,1.35vw,20px);font-weight:850}
+    .stats-close-btn{width:44px;height:44px;border-radius:50%;border:0;background:#edf3fa;color:#17345b;font-size:22px;font-weight:1000;cursor:pointer;display:grid;place-items:center}
+    .stats-close-btn:hover{background:#fee2e2;color:#dc2626}
+    .stats-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+    .stats-tool-btn{min-height:44px;padding:8px 16px;border-radius:12px;border:2px solid #cbd8ec;background:#fff;font-size:16px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+    .stats-tool-btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .stats-tool-btn.green{background:#20956f;color:#fff;border-color:#20956f}
+    .stats-tool-btn.light{color:#55708e;background:#f4f7fb}
+    .gas-setting-drawer{padding:14px 18px;margin-bottom:18px;border-radius:16px;background:#f1f5fa;border:2px dashed #cbd8ec}
+    .gas-drawer-label{display:block;margin-bottom:8px;font-size:15px;font-weight:900;color:var(--ink)}
+    .gas-drawer-row{display:flex;gap:10px}
+    .gas-drawer-row input{flex:1;min-height:44px;padding:8px 12px;border:2px solid #b8d2f0;border-radius:10px;font-size:15px;font-weight:800}
+    .stats-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+    @media (max-width:768px){.stats-kpi-grid{grid-template-columns:repeat(2,1fr)}}
+    .stats-kpi-card{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:#fff;border:2px solid #e0e8f5;box-shadow:0 4px 14px rgba(33,67,111,.06)}
+    .stats-kpi-card.total{border-color:#b8d2f0;background:#f6faff}
+    .stats-kpi-card.correct{border-color:#a7f3d0;background:#f0fdf4}
+    .stats-kpi-card.wrong{border-color:#fecaca;background:#fef2f2}
+    .stats-kpi-card.unsure{border-color:#fde68a;background:#fffbeb}
+    .kpi-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;font-weight:1000;background:rgba(0,0,0,.05)}
+    .stats-kpi-card.total .kpi-icon{color:var(--blue);background:#dbeafe}
+    .stats-kpi-card.correct .kpi-icon{color:#16a34a;background:#dcfce7}
+    .stats-kpi-card.wrong .kpi-icon{color:#dc2626;background:#fee2e2}
+    .stats-kpi-card.unsure .kpi-icon{color:#d97706;background:#fef3c7}
+    .kpi-info{display:flex;flex-direction:column}
+    .kpi-label{font-size:14px;color:#55708e;font-weight:900}
+    .kpi-val{font-size:clamp(20px,2vw,26px);color:var(--ink);font-weight:1000}
+    .kpi-val small{font-size:14px;font-weight:800;color:#64748b}
+    .stats-body-grid{display:grid;grid-template-columns:minmax(320px,1fr) minmax(360px,1.2fr);gap:18px;align-items:start}
+    @media (max-width:860px){.stats-body-grid{grid-template-columns:1fr}}
+    .stats-chart-card, .stats-students-card{padding:18px 20px;border-radius:20px;border:2px solid #dce6f3;background:#fff;box-shadow:0 4px 16px rgba(33,67,111,.06)}
+    .stats-chart-card h3, .stats-students-card h3{margin:0 0 14px;font-size:clamp(18px,1.6vw,22px);color:var(--blue);font-weight:1000}
+    .pie-chart-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+    #pieSvgContainer{width:100%;max-width:260px;min-height:220px;display:grid;place-items:center}
+    .pie-legend{display:flex;flex-direction:column;gap:8px;width:100%}
+    .pie-legend-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:#f8fafc;font-size:15px;font-weight:900}
+    .legend-color-dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px}
+    .students-head{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+    .student-filters{display:flex;gap:6px;flex-wrap:wrap}
+    .filter-tab{min-height:36px;padding:6px 12px;border-radius:10px;border:2px solid #cbd8ec;background:#fff;font-size:14px;font-weight:900;color:#475569;cursor:pointer}
+    .filter-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .filter-tab.correct.active{background:#20956f;border-color:#20956f}
+    .filter-tab.wrong.active{background:#dc2626;border-color:#dc2626}
+    .filter-tab.unsure.active{background:#d97706;border-color:#d97706}
+    .students-list-container{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px}
+    .student-chip{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;border:2px solid #e2e8f0;background:#f8fafc;font-size:16px;font-weight:900;animation:fadeIn .2s ease}
+    .student-chip.correct{background:#f0fdf4;border-color:#bbf7d0}
+    .student-chip.wrong{background:#fef2f2;border-color:#fecaca}
+    .student-chip.unsure{background:#fffbeb;border-color:#fde68a}
+    .student-chip-name{display:flex;align-items:center;gap:8px;color:var(--ink)}
+    .student-chip-badge{padding:4px 10px;border-radius:8px;font-size:13px;font-weight:1000}
+    .student-chip.correct .student-chip-badge{background:#dcfce7;color:#166534}
+    .student-chip.wrong .student-chip-badge{background:#fee2e2;color:#991b1b}
+    .student-chip.unsure .student-chip-badge{background:#fef3c7;color:#92400e}
+    .student-chip-time{font-size:13px;color:#94a3b8;font-weight:800}
+    .stats-loading, .stats-empty{text-align:center;padding:36px 16px;color:#64748b;font-weight:850;font-size:16px}
     @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
     .evaluation-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:20px;align-items:start}
     .evaluation-goals{display:grid;gap:14px}
@@ -945,8 +1001,7 @@
         <h2>最后想一想</h2>
         <div class="exit-student-bar">
           <label for="studentNameInput" class="exit-label">👤 姓名/学号：</label>
-          <input type="text" id="studentNameInput" class="exit-input" placeholder="输入姓名或代号（例如：小明）" autocomplete="name">
-          <button type="button" id="gasConfigBtn" class="gas-config-btn" title="配置 Google Sheets 统计接口">⚙️ Google Sheets 设置</button>
+          <input type="text" id="studentNameInput" class="exit-input" placeholder="输入姓名或学号（例如：JJ 或 3A01）" autocomplete="name">
         </div>
         <p class="question">长方形沿着对角线对折，会完全重合吗？</p>
         <div class="exit-options" id="exitOptions">
@@ -956,6 +1011,10 @@
         </div>
         <div class="exit-result" id="exitResult">请选择一个答案，并<strong class="keyword">观察</strong>长方形的对角线。</div>
         <div class="exit-sync-status" id="exitSyncStatus" style="display:none;"></div>
+        
+        <div class="exit-teacher-zone">
+          <button type="button" id="openStatsBtn" class="teacher-dashboard-btn">📊 查看班级答题统计 (教师)</button>
+        </div>
       </div>
     </section>
 
@@ -998,15 +1057,90 @@
     <div class="glossary-row"><span class="glossary-label">Bahasa Melayu</span><span id="glossaryMalay"></span></div>
   </div>
 
-  <div id="gasModal" class="gas-modal" role="dialog" aria-modal="true" aria-labelledby="gasModalTitle">
-    <div class="gas-panel">
-      <h3 id="gasModalTitle">📊 Google Sheets 统计设置</h3>
-      <p>将 Google Apps Script 部署后生成的 <strong>Web 应用 URL</strong>（以 <code>https://script.google.com/macros/s/.../exec</code> 开头）填在下方：</p>
-      <input type="url" id="gasUrlInput" placeholder="https://script.google.com/macros/s/.../exec" spellcheck="false">
-      <p style="font-size:14px;color:#6b7280;margin-top:-6px;">提示：配置保存在本地浏览器中。学生答题时会自动静默上报数据到该 Google Sheet。</p>
-      <div class="gas-panel-actions">
-        <button type="button" class="top-btn" id="gasModalCancel">取消</button>
-        <button type="button" class="top-btn primary" id="gasModalSave">保存设置</button>
+  <!-- 教师端 班级答题统计看板 Modal -->
+  <div id="statsModal" class="stats-modal" role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
+    <div class="stats-panel">
+      <div class="stats-header">
+        <div>
+          <h2 id="statsModalTitle">📊 退出小纸条 · 班级答题统计看板</h2>
+          <p class="stats-subtitle">题目：长方形沿着对角线对折，会完全重合吗？（正确答案：不会）</p>
+        </div>
+        <button type="button" class="stats-close-btn" id="statsModalClose" aria-label="关闭统计看板">✕</button>
+      </div>
+
+      <div class="stats-toolbar">
+        <button type="button" class="stats-tool-btn primary" id="statsRefreshBtn">🔄 刷新最新数据</button>
+        <a href="https://docs.google.com/spreadsheets/d/1x03SctM-Bmuk8q2acAjth3gjndE2KC3ZTjMwWq1CdFQ/edit" target="_blank" rel="noopener noreferrer" class="stats-tool-btn green" id="openSheetLink">📊 打开 Google Sheets 统计表 ↗</a>
+        <button type="button" class="stats-tool-btn light" id="toggleGasSettingBtn">⚙️ 接口配置</button>
+      </div>
+
+      <!-- 可折叠的接口配置 -->
+      <div id="gasSettingDrawer" class="gas-setting-drawer" style="display:none;">
+        <label for="gasUrlInput" class="gas-drawer-label">Google Apps Script Web App 接口 URL：</label>
+        <div class="gas-drawer-row">
+          <input type="url" id="gasUrlInput" placeholder="https://script.google.com/macros/s/.../exec" spellcheck="false">
+          <button type="button" class="top-btn primary" id="gasModalSave">保存配置</button>
+        </div>
+      </div>
+
+      <!-- 统计指标 KPI 卡片 -->
+      <div class="stats-kpi-grid">
+        <div class="stats-kpi-card total">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-info">
+            <span class="kpi-label">已作答学生</span>
+            <strong class="kpi-val" id="kpiTotal">0 <small>人</small></strong>
+          </div>
+        </div>
+        <div class="stats-kpi-card correct">
+          <div class="kpi-icon">✓</div>
+          <div class="kpi-info">
+            <span class="kpi-label">正确：不会 (答对)</span>
+            <strong class="kpi-val" id="kpiCorrect">0 <small>人 (0%)</small></strong>
+          </div>
+        </div>
+        <div class="stats-kpi-card wrong">
+          <div class="kpi-icon">✗</div>
+          <div class="kpi-info">
+            <span class="kpi-label">错误：会 (误选)</span>
+            <strong class="kpi-val" id="kpiWrong">0 <small>人 (0%)</small></strong>
+          </div>
+        </div>
+        <div class="stats-kpi-card unsure">
+          <div class="kpi-icon">?</div>
+          <div class="kpi-info">
+            <span class="kpi-label">还不确定</span>
+            <strong class="kpi-val" id="kpiUnsure">0 <small>人 (0%)</small></strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- 图表与名单区域 -->
+      <div class="stats-body-grid">
+        <!-- 饼分图区域 -->
+        <div class="stats-chart-card">
+          <h3>正误比例分布 (饼分图)</h3>
+          <div class="pie-chart-wrap" id="pieChartWrap">
+            <div id="pieSvgContainer"></div>
+            <div class="pie-legend" id="pieLegend"></div>
+          </div>
+        </div>
+
+        <!-- 学生名单区域 -->
+        <div class="stats-students-card">
+          <div class="students-head">
+            <h3>学生作答名单</h3>
+            <div class="student-filters" id="studentFilters">
+              <button type="button" class="filter-tab active" data-filter="all">全部 (<span id="filterCountAll">0</span>)</button>
+              <button type="button" class="filter-tab correct" data-filter="correct">✓ 正确 (<span id="filterCountCorrect">0</span>)</button>
+              <button type="button" class="filter-tab wrong" data-filter="wrong">✗ 错误 (<span id="filterCountWrong">0</span>)</button>
+              <button type="button" class="filter-tab unsure" data-filter="unsure">? 不确定 (<span id="filterCountUnsure">0</span>)</button>
+            </div>
+          </div>
+          <div class="students-list-container" id="studentsListContainer">
+            <div class="stats-loading">正在获取数据...</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2164,7 +2298,10 @@
       });
       byId("thanksHome").addEventListener("click",function(){clickSound();showScreen("start");});
       // Google Apps Script 统计配置与通信
-      var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwHLOUUxfH4qFD2mI1_ocRD6i33jA-Cxdv3PpMGR6omEcmKpFvuLQein0xENEcQzE1oag/exec";
+      var DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbz1uSXk3KwN9by8J1fICjhxyz1ZuDzFytRthQrkshI3mCQBFx2XV3eTPCSsUZ7g139sZg/exec";
+      var currentStatsData = null;
+      var currentStudentFilter = "all";
+
       function getGasUrl(){
         return localStorage.getItem("gas_webapp_url") || DEFAULT_GAS_URL;
       }
@@ -2184,27 +2321,41 @@
         });
       }
 
-      var gasModal = byId("gasModal");
+      // 统计看板 Modal 逻辑
+      var statsModal = byId("statsModal");
       var gasUrlInput = byId("gasUrlInput");
-      byId("gasConfigBtn").addEventListener("click", function(){
+      var gasSettingDrawer = byId("gasSettingDrawer");
+
+      byId("openStatsBtn").addEventListener("click", function(){
         clickSound();
-        gasUrlInput.value = getGasUrl();
-        gasModal.classList.add("open");
+        if(gasUrlInput){ gasUrlInput.value = getGasUrl(); }
+        statsModal.classList.add("open");
+        fetchExitTicketStats();
       });
-      byId("gasModalCancel").addEventListener("click", function(){
+      byId("statsModalClose").addEventListener("click", function(){
         clickSound();
-        gasModal.classList.remove("open");
+        statsModal.classList.remove("open");
+      });
+      statsModal.addEventListener("click", function(e){
+        if(e.target === this){ statsModal.classList.remove("open"); }
+      });
+      byId("toggleGasSettingBtn").addEventListener("click", function(){
+        clickSound();
+        gasSettingDrawer.style.display = gasSettingDrawer.style.display === "none" ? "block" : "none";
       });
       byId("gasModalSave").addEventListener("click", function(){
         clickSound();
         setGasUrl(gasUrlInput.value);
-        gasModal.classList.remove("open");
-        showToast("Google Sheets 接口 URL 已保存！");
+        gasSettingDrawer.style.display = "none";
+        showToast("接口 URL 已更新！");
+        fetchExitTicketStats();
       });
-      gasModal.addEventListener("click", function(e){
-        if(e.target === this){ gasModal.classList.remove("open"); }
+      byId("statsRefreshBtn").addEventListener("click", function(){
+        clickSound();
+        fetchExitTicketStats();
       });
 
+      // 答题提交函数
       function submitExitTicketToGoogle(payload){
         var statusEl = byId("exitSyncStatus");
         if(!statusEl) return;
@@ -2216,7 +2367,7 @@
           statusEl.style.background = "#f1f5f9";
           statusEl.style.color = "#475569";
           statusEl.style.border = "2px dashed #cbd5e1";
-          statusEl.innerHTML = "<span>💡 提示：点击上方【⚙️ Google Sheets 设置】填入 Web App URL，即可将此答题结果自动存入表格。</span>";
+          statusEl.innerHTML = "<span>💡 提示：未配置统计接口，本次答题仅保存在本地。</span>";
           return;
         }
 
@@ -2240,6 +2391,196 @@
           statusEl.innerHTML = "<span>⚠️ 同步失败，请检查网络连接或接口设置。</span>";
         });
       }
+
+      // 获取统计数据 (支持 JSONP 跨域与普通 Fetch 混合)
+      function fetchExitTicketStats(){
+        var container = byId("studentsListContainer");
+        if(container){
+          container.innerHTML = '<div class="stats-loading"><span>🔄 正在从 Google Sheets 获取最新统计数据...</span></div>';
+        }
+        var url = getGasUrl();
+        if(!url){
+          if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 尚未配置 Google Apps Script 接口 URL</div>'; }
+          return;
+        }
+
+        // 使用 JSONP 确保在任何跨域/本地环境都能稳定获取
+        var callbackName = "gasStatsCallback_" + Date.now();
+        var jsonpUrl = url + (url.indexOf("?") === -1 ? "?" : "&") + "action=getStats&callback=" + callbackName + "&t=" + Date.now();
+        
+        var script = document.createElement("script");
+        script.src = jsonpUrl;
+        
+        var timer = setTimeout(function(){
+          if(window[callbackName]){
+            delete window[callbackName];
+            if(script.parentNode){ script.parentNode.removeChild(script); }
+            // JSONP 超时则尝试 fetch
+            fetch(url + (url.indexOf("?") === -1 ? "?" : "&") + "action=getStats&t=" + Date.now())
+              .then(function(res){ return res.json(); })
+              .then(function(data){ renderStatsData(data); })
+              .catch(function(e){
+                if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 获取统计数据失败，请确认已在 Google 后台授权并发布 Web App。<br><small style="color:#94a3b8">'+escapeHtml(e.toString())+'</small></div>'; }
+              });
+          }
+        }, 6000);
+
+        window[callbackName] = function(data){
+          clearTimeout(timer);
+          delete window[callbackName];
+          if(script.parentNode){ script.parentNode.removeChild(script); }
+          renderStatsData(data);
+        };
+
+        script.onerror = function(){
+          clearTimeout(timer);
+          delete window[callbackName];
+          if(script.parentNode){ script.parentNode.removeChild(script); }
+          if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 请求失败，请检查网络或点击上方【打开 Google Sheets 统计表】直接查看。</div>'; }
+        };
+
+        document.head.appendChild(script);
+      }
+
+      // 渲染统计数据到看板
+      function renderStatsData(stats){
+        if(!stats || stats.status !== "success"){
+          byId("studentsListContainer").innerHTML = '<div class="stats-empty">暂无有效统计数据</div>';
+          return;
+        }
+
+        currentStatsData = stats;
+        var total = stats.total || 0;
+        var correct = stats.correct || 0;
+        var wrong = stats.wrong || 0;
+        var unsure = stats.unsure || 0;
+        var rates = stats.rates || { correct: 0, wrong: 0, unsure: 0 };
+
+        // 更新 KPI 卡片
+        byId("kpiTotal").innerHTML = total + ' <small>人</small>';
+        byId("kpiCorrect").innerHTML = correct + ' <small>人 (' + rates.correct + '%)</small>';
+        byId("kpiWrong").innerHTML = wrong + ' <small>人 (' + rates.wrong + '%)</small>';
+        byId("kpiUnsure").innerHTML = unsure + ' <small>人 (' + rates.unsure + '%)</small>';
+
+        // 更新过滤选项数量
+        byId("filterCountAll").textContent = total;
+        byId("filterCountCorrect").textContent = correct;
+        byId("filterCountWrong").textContent = wrong;
+        byId("filterCountUnsure").textContent = unsure;
+
+        // 渲染饼分图
+        renderPieChart(total, correct, wrong, unsure, rates);
+
+        // 渲染学生名单
+        renderStudentList();
+      }
+
+      // 绘制高质量 SVG 饼分图 (Donut / Pie Chart)
+      function renderPieChart(total, correct, wrong, unsure, rates){
+        var container = byId("pieSvgContainer");
+        var legend = byId("pieLegend");
+        if(!container || !legend) return;
+
+        if(total === 0){
+          container.innerHTML = '<svg viewBox="0 0 200 200" width="180" height="180"><circle cx="100" cy="100" r="70" fill="none" stroke="#e2e8f0" stroke-width="26"/><text x="100" y="106" text-anchor="middle" font-size="16" font-weight="900" fill="#94a3b8">暂无数据</text></svg>';
+          legend.innerHTML = '<div class="pie-legend-item"><span style="color:#94a3b8;">等待学生作答中...</span></div>';
+          return;
+        }
+
+        var slices = [
+          { key: "correct", label: "正确 (不会)", count: correct, rate: rates.correct, color: "#20956f" },
+          { key: "wrong", label: "错误 (会)", count: wrong, rate: rates.wrong, color: "#dc2626" },
+          { key: "unsure", label: "还不确定", count: unsure, rate: rates.unsure, color: "#d97706" }
+        ];
+
+        var cx = 100, cy = 100, R = 76, r = 44;
+        var startAngle = -Math.PI / 2;
+        var svgPaths = [];
+
+        slices.forEach(function(slice){
+          if(slice.count === 0) return;
+          var angle = (slice.count / total) * 2 * Math.PI;
+          var endAngle = startAngle + angle;
+
+          if(slice.count === total){
+            // 100% 单一完整圆环
+            svgPaths.push('<path d="M '+(cx-R)+' '+cy+' A '+R+' '+R+' 0 1 0 '+(cx+R)+' '+cy+' A '+R+' '+R+' 0 1 0 '+(cx-R)+' '+cy+' M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx+r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx-r)+' '+cy+' Z" fill="'+slice.color+'"/>');
+          }else{
+            var x1 = cx + R * Math.cos(startAngle);
+            var y1 = cy + R * Math.sin(startAngle);
+            var x2 = cx + R * Math.cos(endAngle);
+            var y2 = cy + R * Math.sin(endAngle);
+            var x3 = cx + r * Math.cos(endAngle);
+            var y3 = cy + r * Math.sin(endAngle);
+            var x4 = cx + r * Math.cos(startAngle);
+            var y4 = cy + r * Math.sin(startAngle);
+            var largeArc = angle > Math.PI ? 1 : 0;
+
+            var d = 'M ' + x1.toFixed(2) + ' ' + y1.toFixed(2) +
+                    ' A ' + R + ' ' + R + ' 0 ' + largeArc + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) +
+                    ' L ' + x3.toFixed(2) + ' ' + y3.toFixed(2) +
+                    ' A ' + r + ' ' + r + ' 0 ' + largeArc + ' 0 ' + x4.toFixed(2) + ' ' + y4.toFixed(2) + ' Z';
+            svgPaths.push('<path d="' + d + '" fill="' + slice.color + '"/>');
+          }
+          startAngle = endAngle;
+        });
+
+        container.innerHTML = '<svg viewBox="0 0 200 200" width="180" height="180" role="img" aria-label="答题正误比例饼图">' +
+          svgPaths.join("") +
+          '<text x="100" y="94" text-anchor="middle" font-size="22" font-weight="1000" fill="#17345b">' + rates.correct + '%</text>' +
+          '<text x="100" y="114" text-anchor="middle" font-size="13" font-weight="900" fill="#55708e">正确率</text>' +
+          '</svg>';
+
+        // 渲染图例
+        legend.innerHTML = slices.map(function(s){
+          return '<div class="pie-legend-item">' +
+            '<div><span class="legend-color-dot" style="background:' + s.color + ';"></span><span>' + escapeHtml(s.label) + '</span></div>' +
+            '<strong>' + s.count + ' 人 <small style="color:#64748b;">(' + s.rate + '%)</small></strong>' +
+            '</div>';
+        }).join("");
+      }
+
+      // 渲染学生名单
+      function renderStudentList(){
+        var container = byId("studentsListContainer");
+        if(!container || !currentStatsData) return;
+
+        var list = currentStatsData.students || [];
+        var filtered = list.filter(function(item){
+          if(currentStudentFilter === "all") return true;
+          return item.result === currentStudentFilter;
+        });
+
+        if(filtered.length === 0){
+          container.innerHTML = '<div class="stats-empty">当前分类下暂无学生数据</div>';
+          return;
+        }
+
+        container.innerHTML = filtered.map(function(item){
+          var icon = item.result === "correct" ? "✓" : (item.result === "wrong" ? "✗" : "?");
+          var shortTime = item.timestamp ? item.timestamp.split(" ")[1] || item.timestamp : "";
+          return '<div class="student-chip ' + item.result + '">' +
+            '<div class="student-chip-name">' +
+              '<span>👤</span><strong>' + escapeHtml(item.name || "匿名学生") + '</strong>' +
+            '</div>' +
+            '<div style="display:flex;align-items:center;gap:10px;">' +
+              '<span class="student-chip-badge">' + icon + ' ' + escapeHtml(item.optionText || item.option) + '</span>' +
+              (shortTime ? '<span class="student-chip-time">' + escapeHtml(shortTime) + '</span>' : '') +
+            '</div>' +
+          '</div>';
+        }).join("");
+      }
+
+      // 学生名单标签切换事件
+      byId("studentFilters").addEventListener("click", function(e){
+        var tab = e.target.closest("button[data-filter]");
+        if(!tab) return;
+        clickSound();
+        document.querySelectorAll("#studentFilters button").forEach(function(b){ b.classList.remove("active"); });
+        tab.classList.add("active");
+        currentStudentFilter = tab.getAttribute("data-filter");
+        renderStudentList();
+      });
 
       byId("exitOptions").addEventListener("click",function(e){
         var btn = e.target.closest("button[data-exit-answer]");

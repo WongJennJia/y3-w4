@@ -135,6 +135,91 @@ function recordExitTicket(data) {
 }
 
 /**
+ * 获取所有答题统计数据及学生列表
+ * @return {Object}
+ */
+function getExitTicketStats() {
+  const sheet = getOrCreateSheet();
+  const lastRow = sheet.getLastRow();
+  
+  if (lastRow <= 1) {
+    return {
+      status: "success",
+      total: 0,
+      correct: 0,
+      wrong: 0,
+      unsure: 0,
+      rates: { correct: 0, wrong: 0, unsure: 0 },
+      students: []
+    };
+  }
+
+  // 获取所有答题数据行 (从第2行到最后一行，共8列)
+  const data = sheet.getRange(2, 1, lastRow - 1, 8).getValues();
+  
+  let correct = 0;
+  let wrong = 0;
+  let unsure = 0;
+  const students = [];
+
+  for (let i = 0; i < data.length; i++) {
+    const row = data[i];
+    let timeStr = "";
+    if (row[0]) {
+      try {
+        timeStr = typeof row[0] === "string" ? row[0] : Utilities.formatDate(new Date(row[0]), Session.getScriptTimeZone() || "Asia/Shanghai", "yyyy-MM-dd HH:mm:ss");
+      } catch (te) {
+        timeStr = row[0].toString();
+      }
+    }
+    const name = (row[1] || "匿名学生").toString();
+    const lesson = (row[2] || "").toString();
+    const question = (row[3] || "").toString();
+    const option = (row[4] || "").toString();
+    const optionText = (row[5] || "").toString();
+    const result = (row[6] || "").toString();
+
+    const isCorrect = result.indexOf("正确") !== -1 || option === "no";
+    const isUnsure = option === "not-sure" || optionText.indexOf("不确定") !== -1;
+    const isWrong = !isCorrect && !isUnsure;
+
+    if (isCorrect) {
+      correct++;
+    } else if (isUnsure) {
+      unsure++;
+    } else {
+      wrong++;
+    }
+
+    students.push({
+      name: name,
+      option: option,
+      optionText: optionText,
+      result: isCorrect ? "correct" : (isUnsure ? "unsure" : "wrong"),
+      resultText: isCorrect ? "正确 (不会)" : (isUnsure ? "还不确定" : "错误 (会)"),
+      timestamp: timeStr
+    });
+  }
+
+  const total = students.length;
+  const rates = {
+    correct: total > 0 ? Math.round((correct / total) * 100) : 0,
+    wrong: total > 0 ? Math.round((wrong / total) * 100) : 0,
+    unsure: total > 0 ? Math.round((unsure / total) * 100) : 0
+  };
+
+  return {
+    status: "success",
+    total: total,
+    correct: correct,
+    wrong: wrong,
+    unsure: unsure,
+    rates: rates,
+    students: students
+  };
+}
+
+/**
  * Web App HTTP POST 请求处理函数
  * @param {Object} e 事件对象
  */
@@ -145,11 +230,17 @@ function doPost(e) {
       try {
         payload = JSON.parse(e.postData.contents);
       } catch (jsonErr) {
-        // 如果不是纯 JSON，尝试按参数解析
         payload = e.parameter || {};
       }
     } else if (e && e.parameter) {
       payload = e.parameter;
+    }
+
+    if (payload.action === "getStats" || payload.action === "stats") {
+      const stats = getExitTicketStats();
+      return ContentService
+        .createTextOutput(JSON.stringify(stats))
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
     const result = recordExitTicket(payload);
@@ -169,42 +260,51 @@ function doPost(e) {
 }
 
 /**
- * Web App HTTP GET 请求处理函数（支持测试以及 URL 参数直接提交）
+ * Web App HTTP GET 请求处理函数（支持查询统计、提交答题及 JSONP）
  * @param {Object} e 事件对象
  */
 function doGet(e) {
-  if (e && e.parameter && (e.parameter.answer || e.parameter.selectedOption)) {
-    try {
-      const result = recordExitTicket(e.parameter);
-      return ContentService
-        .createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON);
-    } catch (err) {
-      return ContentService
-        .createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-  }
+  try {
+    const callback = e && e.parameter && e.parameter.callback ? e.parameter.callback : null;
+    let outputData = null;
 
-  // 默认返回服务运行状态说明
-  const statusInfo = {
-    service: "三年级数学退出小纸条统计服务",
-    status: "online",
-    time: Utilities.formatDate(new Date(), Session.getScriptTimeZone() || "Asia/Shanghai", "yyyy-MM-dd HH:mm:ss"),
-    usage: "请向此 URL 发送 POST 或 GET 请求以提交答题数据。"
-  };
-  
-  return ContentService
-    .createTextOutput(JSON.stringify(statusInfo, null, 2))
-    .setMimeType(ContentService.MimeType.JSON);
+    if (e && e.parameter && (e.parameter.action === "getStats" || e.parameter.action === "stats" || e.parameter.stats === "1")) {
+      outputData = getExitTicketStats();
+    } else if (e && e.parameter && (e.parameter.answer || e.parameter.selectedOption)) {
+      outputData = recordExitTicket(e.parameter);
+    } else {
+      // 默认直接返回当前答题统计，方便直接打开 Web App 链接查看实时数据
+      outputData = getExitTicketStats();
+    }
+
+    if (callback) {
+      return ContentService
+        .createTextOutput(callback + "(" + JSON.stringify(outputData) + ");")
+        .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify(outputData))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    const errObj = { status: "error", message: err.toString() };
+    if (e && e.parameter && e.parameter.callback) {
+      return ContentService
+        .createTextOutput(e.parameter.callback + "(" + JSON.stringify(errObj) + ");")
+        .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
+    return ContentService
+      .createTextOutput(JSON.stringify(errObj))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }
 
 /**
- * 测试函数：直接在 Google Apps Script 编辑器内运行此函数即可验证写入
+ * 测试函数：直接在 Google Apps Script 编辑器内运行此函数即可验证写入和统计
  */
 function testRecordExitTicket() {
   const sampleData = {
-    studentName: "测试同学-小明",
+    studentName: "测试同学-JJ",
     lesson: "三年级数学｜对称轴｜Week 4-L1",
     question: "长方形沿着对角线对折，会完全重合吗？",
     selectedOption: "no",
@@ -216,7 +316,6 @@ function testRecordExitTicket() {
   const res = recordExitTicket(sampleData);
   console.log("测试写入结果:", JSON.stringify(res));
   
-  const sheet = getOrCreateSheet();
-  console.log("表格名称:", sheet.getName());
-  console.log("总记录行数:", sheet.getLastRow());
+  const stats = getExitTicketStats();
+  console.log("当前统计数据:", JSON.stringify(stats));
 }
