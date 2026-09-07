@@ -334,52 +334,58 @@
     .exit-sync-status.syncing{background:#fef3c7;color:#92400e;border:2px solid #fde68a}
     .exit-sync-status.success{background:#dcfce7;color:#166534;border:2px solid #bbf7d0}
     .exit-sync-status.error{background:#fee2e2;color:#991b1b;border:2px solid #fecaca}
-    .exit-teacher-zone{margin-top:28px;padding-top:18px;border-top:2px dashed #cbd8ec;display:flex;justify-content:center}
-    .teacher-dashboard-btn{min-height:48px;padding:9px 20px;border:2px solid #b8d2f0;border-radius:14px;background:#fff;color:var(--blue);font-size:clamp(16px,1.4vw,20px);font-weight:950;cursor:pointer;box-shadow:0 4px 12px rgba(35,100,170,.1);transition:all .18s ease}
-    .teacher-dashboard-btn:hover{background:#edf5ff;border-color:var(--blue);transform:translateY(-1px)}
+    .exit-teacher-zone{margin-top:24px;padding-top:14px;border-top:1px dashed #cbd8ec;display:flex;justify-content:center}
+    .teacher-link-btn{background:transparent;border:0;color:#94a3b8;font-size:14px;font-weight:900;cursor:pointer;padding:6px 14px;border-radius:8px;transition:all .18s ease}
+    .teacher-link-btn:hover{color:var(--blue);background:#eef6ff}
+
+    /* 学生端答题后展现的饼分图 */
+    .student-stats-section{margin-top:24px;padding:20px;border-radius:20px;border:3px solid #b8d2f0;background:linear-gradient(135deg,#f6faff 0%,#fffdf6 100%);box-shadow:0 6px 20px rgba(35,100,170,.08);animation:fadeIn .3s ease}
+    .student-stats-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .student-stats-head h3{margin:0;font-size:clamp(20px,1.9vw,28px);color:var(--blue);font-weight:1000}
+    .student-stats-tip{font-size:14px;color:#55708e;font-weight:850;padding:4px 12px;border-radius:999px;background:#e2edf8}
+    .student-pie-layout{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:center}
+    @media (max-width:640px){.student-pie-layout{grid-template-columns:1fr;justify-items:center}}
+    #studentPieSvg{width:200px;height:200px;display:grid;place-items:center}
+    .student-pie-legend{display:flex;flex-direction:column;gap:10px;width:100%}
+    .student-pie-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;background:#fff;border:2px solid #e0e8f5;font-size:16px;font-weight:900}
+    .student-stats-foot{margin:14px 0 0;text-align:center;font-size:15px;color:#64748b;font-weight:850}
     
-    /* 教师统计看板 Modal 样式 */
-    .stats-modal{position:fixed;inset:0;z-index:115;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(13,28,48,.78);backdrop-filter:blur(3px)}
-    .stats-modal.open{display:flex}
-    .stats-panel{position:relative;width:min(1080px,96vw);max-height:92vh;overflow-y:auto;padding:26px;border-radius:26px;border:4px solid #17345b;background:#fffdf8;box-shadow:0 25px 80px rgba(0,0,0,.4)}
-    .stats-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;padding-bottom:14px;border-bottom:2px solid #e2eaf5}
-    .stats-header h2{margin:0 0 6px;color:var(--blue);font-size:clamp(24px,2.4vw,34px);font-weight:1000}
-    .stats-subtitle{margin:0;color:#55708e;font-size:clamp(16px,1.35vw,20px);font-weight:850}
-    .stats-close-btn{width:44px;height:44px;border-radius:50%;border:0;background:#edf3fa;color:#17345b;font-size:22px;font-weight:1000;cursor:pointer;display:grid;place-items:center}
-    .stats-close-btn:hover{background:#fee2e2;color:#dc2626}
-    .stats-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-    .stats-tool-btn{min-height:44px;padding:8px 16px;border-radius:12px;border:2px solid #cbd8ec;background:#fff;font-size:16px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-    .stats-tool-btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-    .stats-tool-btn.green{background:#20956f;color:#fff;border-color:#20956f}
-    .stats-tool-btn.light{color:#55708e;background:#f4f7fb}
+    /* 教师专用管理看板 Modal 样式 */
+    .teacher-modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(13,28,48,.82);backdrop-filter:blur(4px)}
+    .teacher-modal.open{display:flex}
+    .teacher-panel{position:relative;width:min(980px,96vw);max-height:92vh;overflow-y:auto;padding:26px;border-radius:26px;border:4px solid #17345b;background:#fffdf8;box-shadow:0 25px 80px rgba(0,0,0,.45)}
+    .teacher-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;padding-bottom:14px;border-bottom:2px solid #e2eaf5}
+    .teacher-header h2{margin:0 0 6px;color:var(--blue);font-size:clamp(22px,2.2vw,30px);font-weight:1000}
+    .teacher-subtitle{margin:0;color:#55708e;font-size:15px;font-weight:850}
+    .teacher-close-btn{width:40px;height:40px;border-radius:50%;border:0;background:#edf3fa;color:#17345b;font-size:20px;font-weight:1000;cursor:pointer;display:grid;place-items:center}
+    .teacher-close-btn:hover{background:#fee2e2;color:#dc2626}
+    .teacher-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+    .teacher-tool-btn{min-height:42px;padding:8px 16px;border-radius:12px;border:2px solid #cbd8ec;background:#fff;font-size:15px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+    .teacher-tool-btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .teacher-tool-btn.green{background:#20956f;color:#fff;border-color:#20956f}
+    .teacher-tool-btn.light{color:#55708e;background:#f4f7fb}
     .gas-setting-drawer{padding:14px 18px;margin-bottom:18px;border-radius:16px;background:#f1f5fa;border:2px dashed #cbd8ec}
     .gas-drawer-label{display:block;margin-bottom:8px;font-size:15px;font-weight:900;color:var(--ink)}
     .gas-drawer-row{display:flex;gap:10px}
-    .gas-drawer-row input{flex:1;min-height:44px;padding:8px 12px;border:2px solid #b8d2f0;border-radius:10px;font-size:15px;font-weight:800}
-    .stats-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
-    @media (max-width:768px){.stats-kpi-grid{grid-template-columns:repeat(2,1fr)}}
-    .stats-kpi-card{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:#fff;border:2px solid #e0e8f5;box-shadow:0 4px 14px rgba(33,67,111,.06)}
-    .stats-kpi-card.total{border-color:#b8d2f0;background:#f6faff}
-    .stats-kpi-card.correct{border-color:#a7f3d0;background:#f0fdf4}
-    .stats-kpi-card.wrong{border-color:#fecaca;background:#fef2f2}
-    .stats-kpi-card.unsure{border-color:#fde68a;background:#fffbeb}
-    .kpi-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;font-weight:1000;background:rgba(0,0,0,.05)}
-    .stats-kpi-card.total .kpi-icon{color:var(--blue);background:#dbeafe}
-    .stats-kpi-card.correct .kpi-icon{color:#16a34a;background:#dcfce7}
-    .stats-kpi-card.wrong .kpi-icon{color:#dc2626;background:#fee2e2}
-    .stats-kpi-card.unsure .kpi-icon{color:#d97706;background:#fef3c7}
+    .gas-drawer-row input{flex:1;min-height:42px;padding:8px 12px;border:2px solid #b8d2f0;border-radius:10px;font-size:15px;font-weight:800}
+    .teacher-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+    @media (max-width:768px){.teacher-kpi-grid{grid-template-columns:repeat(2,1fr)}}
+    .teacher-kpi-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:#fff;border:2px solid #e0e8f5;box-shadow:0 4px 12px rgba(33,67,111,.05)}
+    .teacher-kpi-card.total{border-color:#b8d2f0;background:#f6faff}
+    .teacher-kpi-card.correct{border-color:#a7f3d0;background:#f0fdf4}
+    .teacher-kpi-card.wrong{border-color:#fecaca;background:#fef2f2}
+    .teacher-kpi-card.unsure{border-color:#fde68a;background:#fffbeb}
+    .kpi-icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:20px;font-weight:1000;background:rgba(0,0,0,.05)}
+    .teacher-kpi-card.total .kpi-icon{color:var(--blue);background:#dbeafe}
+    .teacher-kpi-card.correct .kpi-icon{color:#16a34a;background:#dcfce7}
+    .teacher-kpi-card.wrong .kpi-icon{color:#dc2626;background:#fee2e2}
+    .teacher-kpi-card.unsure .kpi-icon{color:#d97706;background:#fef3c7}
     .kpi-info{display:flex;flex-direction:column}
-    .kpi-label{font-size:14px;color:#55708e;font-weight:900}
-    .kpi-val{font-size:clamp(20px,2vw,26px);color:var(--ink);font-weight:1000}
-    .kpi-val small{font-size:14px;font-weight:800;color:#64748b}
-    .stats-body-grid{display:grid;grid-template-columns:minmax(320px,1fr) minmax(360px,1.2fr);gap:18px;align-items:start}
-    @media (max-width:860px){.stats-body-grid{grid-template-columns:1fr}}
-    .stats-chart-card, .stats-students-card{padding:18px 20px;border-radius:20px;border:2px solid #dce6f3;background:#fff;box-shadow:0 4px 16px rgba(33,67,111,.06)}
-    .stats-chart-card h3, .stats-students-card h3{margin:0 0 14px;font-size:clamp(18px,1.6vw,22px);color:var(--blue);font-weight:1000}
-    .pie-chart-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
-    #pieSvgContainer{width:100%;max-width:260px;min-height:220px;display:grid;place-items:center}
-    .pie-legend{display:flex;flex-direction:column;gap:8px;width:100%}
-    .pie-legend-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:#f8fafc;font-size:15px;font-weight:900}
+    .kpi-label{font-size:13px;color:#55708e;font-weight:900}
+    .kpi-val{font-size:clamp(19px,1.8vw,24px);color:var(--ink);font-weight:1000}
+    .kpi-val small{font-size:13px;font-weight:800;color:#64748b}
+    .teacher-students-card{padding:18px 20px;border-radius:20px;border:2px solid #dce6f3;background:#fff;box-shadow:0 4px 16px rgba(33,67,111,.06)}
+    .teacher-students-card h3{margin:0 0 12px;font-size:clamp(18px,1.6vw,22px);color:var(--blue);font-weight:1000}
     .legend-color-dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px}
     .students-head{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
     .student-filters{display:flex;gap:6px;flex-wrap:wrap}
@@ -388,8 +394,8 @@
     .filter-tab.correct.active{background:#20956f;border-color:#20956f}
     .filter-tab.wrong.active{background:#dc2626;border-color:#dc2626}
     .filter-tab.unsure.active{background:#d97706;border-color:#d97706}
-    .students-list-container{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px}
-    .student-chip{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;border:2px solid #e2e8f0;background:#f8fafc;font-size:16px;font-weight:900;animation:fadeIn .2s ease}
+    .students-list-container{max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px}
+    .student-chip{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;border:2px solid #e2e8f0;background:#f8fafc;font-size:15px;font-weight:900;animation:fadeIn .2s ease}
     .student-chip.correct{background:#f0fdf4;border-color:#bbf7d0}
     .student-chip.wrong{background:#fef2f2;border-color:#fecaca}
     .student-chip.unsure{background:#fffbeb;border-color:#fde68a}
@@ -399,7 +405,8 @@
     .student-chip.wrong .student-chip-badge{background:#fee2e2;color:#991b1b}
     .student-chip.unsure .student-chip-badge{background:#fef3c7;color:#92400e}
     .student-chip-time{font-size:13px;color:#94a3b8;font-weight:800}
-    .stats-loading, .stats-empty{text-align:center;padding:36px 16px;color:#64748b;font-weight:850;font-size:16px}
+    .stats-loading, .stats-empty{text-align:center;padding:28px 16px;color:#64748b;font-weight:850;font-size:15px}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
     @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
     .evaluation-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:20px;align-items:start}
     .evaluation-goals{display:grid;gap:14px}
@@ -1012,8 +1019,22 @@
         <div class="exit-result" id="exitResult">请选择一个答案，并<strong class="keyword">观察</strong>长方形的对角线。</div>
         <div class="exit-sync-status" id="exitSyncStatus" style="display:none;"></div>
         
+        <!-- 学生答题后即时展现的班级饼分图 (不含学生名单) -->
+        <div id="studentStatsSection" class="student-stats-section" style="display:none;">
+          <div class="student-stats-head">
+            <h3>📊 全班答题统计分布</h3>
+            <span class="student-stats-tip">答题后实时更新</span>
+          </div>
+          <div class="student-pie-layout">
+            <div id="studentPieSvg"></div>
+            <div id="studentPieLegend" class="student-pie-legend"></div>
+          </div>
+          <p class="student-stats-foot">✨ 感谢作答！上面是全班同学目前的答题分布情况。</p>
+        </div>
+
+        <!-- 底部低调的教师入口 -->
         <div class="exit-teacher-zone">
-          <button type="button" id="openStatsBtn" class="teacher-dashboard-btn">📊 查看班级答题统计 (教师)</button>
+          <button type="button" id="openTeacherModalBtn" class="teacher-link-btn">🔒 教师端：学生名单与数据管理</button>
         </div>
       </div>
     </section>
@@ -1057,21 +1078,21 @@
     <div class="glossary-row"><span class="glossary-label">Bahasa Melayu</span><span id="glossaryMalay"></span></div>
   </div>
 
-  <!-- 教师端 班级答题统计看板 Modal -->
-  <div id="statsModal" class="stats-modal" role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
-    <div class="stats-panel">
-      <div class="stats-header">
+  <!-- 教师专用管理看板 Modal (包含学生名单与原表格链接) -->
+  <div id="teacherModal" class="teacher-modal" role="dialog" aria-modal="true" aria-labelledby="teacherModalTitle">
+    <div class="teacher-panel">
+      <div class="teacher-header">
         <div>
-          <h2 id="statsModalTitle">📊 退出小纸条 · 班级答题统计看板</h2>
-          <p class="stats-subtitle">题目：长方形沿着对角线对折，会完全重合吗？（正确答案：不会）</p>
+          <h2 id="teacherModalTitle">🔒 教师管理看板 · 答题学生名单与后台</h2>
+          <p class="teacher-subtitle">题目：长方形沿着对角线对折，会完全重合吗？（正确答案：不会）</p>
         </div>
-        <button type="button" class="stats-close-btn" id="statsModalClose" aria-label="关闭统计看板">✕</button>
+        <button type="button" class="teacher-close-btn" id="teacherModalClose" aria-label="关闭教师看板">✕</button>
       </div>
 
-      <div class="stats-toolbar">
-        <button type="button" class="stats-tool-btn primary" id="statsRefreshBtn">🔄 刷新最新数据</button>
-        <a href="https://docs.google.com/spreadsheets/d/1x03SctM-Bmuk8q2acAjth3gjndE2KC3ZTjMwWq1CdFQ/edit" target="_blank" rel="noopener noreferrer" class="stats-tool-btn green" id="openSheetLink">📊 打开 Google Sheets 统计表 ↗</a>
-        <button type="button" class="stats-tool-btn light" id="toggleGasSettingBtn">⚙️ 接口配置</button>
+      <div class="teacher-toolbar">
+        <button type="button" class="teacher-tool-btn primary" id="teacherRefreshBtn">🔄 刷新最新名单</button>
+        <a href="https://docs.google.com/spreadsheets/d/1x03SctM-Bmuk8q2acAjth3gjndE2KC3ZTjMwWq1CdFQ/edit" target="_blank" rel="noopener noreferrer" class="teacher-tool-btn green" id="openSheetLink">📊 打开 Google Sheets 统计表 ↗</a>
+        <button type="button" class="teacher-tool-btn light" id="toggleGasSettingBtn">⚙️ 接口配置</button>
       </div>
 
       <!-- 可折叠的接口配置 -->
@@ -1084,62 +1105,50 @@
       </div>
 
       <!-- 统计指标 KPI 卡片 -->
-      <div class="stats-kpi-grid">
-        <div class="stats-kpi-card total">
+      <div class="teacher-kpi-grid">
+        <div class="teacher-kpi-card total">
           <div class="kpi-icon">👥</div>
           <div class="kpi-info">
             <span class="kpi-label">已作答学生</span>
-            <strong class="kpi-val" id="kpiTotal">0 <small>人</small></strong>
+            <strong class="kpi-val" id="teacherKpiTotal">0 <small>人</small></strong>
           </div>
         </div>
-        <div class="stats-kpi-card correct">
+        <div class="teacher-kpi-card correct">
           <div class="kpi-icon">✓</div>
           <div class="kpi-info">
-            <span class="kpi-label">正确：不会 (答对)</span>
-            <strong class="kpi-val" id="kpiCorrect">0 <small>人 (0%)</small></strong>
+            <span class="kpi-label">正确：不会</span>
+            <strong class="kpi-val" id="teacherKpiCorrect">0 <small>人 (0%)</small></strong>
           </div>
         </div>
-        <div class="stats-kpi-card wrong">
+        <div class="teacher-kpi-card wrong">
           <div class="kpi-icon">✗</div>
           <div class="kpi-info">
-            <span class="kpi-label">错误：会 (误选)</span>
-            <strong class="kpi-val" id="kpiWrong">0 <small>人 (0%)</small></strong>
+            <span class="kpi-label">错误：会</span>
+            <strong class="kpi-val" id="teacherKpiWrong">0 <small>人 (0%)</small></strong>
           </div>
         </div>
-        <div class="stats-kpi-card unsure">
+        <div class="teacher-kpi-card unsure">
           <div class="kpi-icon">?</div>
           <div class="kpi-info">
             <span class="kpi-label">还不确定</span>
-            <strong class="kpi-val" id="kpiUnsure">0 <small>人 (0%)</small></strong>
+            <strong class="kpi-val" id="teacherKpiUnsure">0 <small>人 (0%)</small></strong>
           </div>
         </div>
       </div>
 
-      <!-- 图表与名单区域 -->
-      <div class="stats-body-grid">
-        <!-- 饼分图区域 -->
-        <div class="stats-chart-card">
-          <h3>正误比例分布 (饼分图)</h3>
-          <div class="pie-chart-wrap" id="pieChartWrap">
-            <div id="pieSvgContainer"></div>
-            <div class="pie-legend" id="pieLegend"></div>
+      <!-- 学生名单区域 (仅教师可见) -->
+      <div class="teacher-students-card">
+        <div class="students-head">
+          <h3>📋 学生作答详细名单</h3>
+          <div class="student-filters" id="studentFilters">
+            <button type="button" class="filter-tab active" data-filter="all">全部 (<span id="filterCountAll">0</span>)</button>
+            <button type="button" class="filter-tab correct" data-filter="correct">✓ 正确 (<span id="filterCountCorrect">0</span>)</button>
+            <button type="button" class="filter-tab wrong" data-filter="wrong">✗ 错误 (<span id="filterCountWrong">0</span>)</button>
+            <button type="button" class="filter-tab unsure" data-filter="unsure">? 不确定 (<span id="filterCountUnsure">0</span>)</button>
           </div>
         </div>
-
-        <!-- 学生名单区域 -->
-        <div class="stats-students-card">
-          <div class="students-head">
-            <h3>学生作答名单</h3>
-            <div class="student-filters" id="studentFilters">
-              <button type="button" class="filter-tab active" data-filter="all">全部 (<span id="filterCountAll">0</span>)</button>
-              <button type="button" class="filter-tab correct" data-filter="correct">✓ 正确 (<span id="filterCountCorrect">0</span>)</button>
-              <button type="button" class="filter-tab wrong" data-filter="wrong">✗ 错误 (<span id="filterCountWrong">0</span>)</button>
-              <button type="button" class="filter-tab unsure" data-filter="unsure">? 不确定 (<span id="filterCountUnsure">0</span>)</button>
-            </div>
-          </div>
-          <div class="students-list-container" id="studentsListContainer">
-            <div class="stats-loading">正在获取数据...</div>
-          </div>
+        <div class="students-list-container" id="studentsListContainer">
+          <div class="stats-loading">正在获取数据...</div>
         </div>
       </div>
     </div>
@@ -2151,6 +2160,8 @@
           byId("exitResult").innerHTML = "请选择一个答案，并<strong class=\"keyword\">观察</strong>长方形的对角线。";
           var statusEl = byId("exitSyncStatus");
           if(statusEl){ statusEl.style.display = "none"; statusEl.innerHTML = ""; }
+          var statsSec = byId("studentStatsSection");
+          if(statsSec){ statsSec.style.display = "none"; }
         }else if(currentScreen==="evaluation"){
           evaluationState={observe:null,draw:null,explain:null};renderEvaluation();
         }else if(currentScreen==="thanks"){
@@ -2321,171 +2332,51 @@
         });
       }
 
-      // 统计看板 Modal 逻辑
-      var statsModal = byId("statsModal");
-      var gasUrlInput = byId("gasUrlInput");
-      var gasSettingDrawer = byId("gasSettingDrawer");
-
-      byId("openStatsBtn").addEventListener("click", function(){
-        clickSound();
-        if(gasUrlInput){ gasUrlInput.value = getGasUrl(); }
-        statsModal.classList.add("open");
-        fetchExitTicketStats();
-      });
-      byId("statsModalClose").addEventListener("click", function(){
-        clickSound();
-        statsModal.classList.remove("open");
-      });
-      statsModal.addEventListener("click", function(e){
-        if(e.target === this){ statsModal.classList.remove("open"); }
-      });
-      byId("toggleGasSettingBtn").addEventListener("click", function(){
-        clickSound();
-        gasSettingDrawer.style.display = gasSettingDrawer.style.display === "none" ? "block" : "none";
-      });
-      byId("gasModalSave").addEventListener("click", function(){
-        clickSound();
-        setGasUrl(gasUrlInput.value);
-        gasSettingDrawer.style.display = "none";
-        showToast("接口 URL 已更新！");
-        fetchExitTicketStats();
-      });
-      byId("statsRefreshBtn").addEventListener("click", function(){
-        clickSound();
-        fetchExitTicketStats();
-      });
-
-      // 答题提交函数
-      function submitExitTicketToGoogle(payload){
-        var statusEl = byId("exitSyncStatus");
-        if(!statusEl) return;
-        statusEl.style.display = "flex";
-
+      // 获取统计数据 (通用数据请求)
+      function fetchStatsData(callback){
         var url = getGasUrl();
         if(!url){
-          statusEl.className = "exit-sync-status";
-          statusEl.style.background = "#f1f5f9";
-          statusEl.style.color = "#475569";
-          statusEl.style.border = "2px dashed #cbd5e1";
-          statusEl.innerHTML = "<span>💡 提示：未配置统计接口，本次答题仅保存在本地。</span>";
+          if(callback) callback(null);
           return;
         }
 
-        statusEl.className = "exit-sync-status syncing";
-        statusEl.style.background = "";
-        statusEl.style.color = "";
-        statusEl.style.border = "";
-        statusEl.innerHTML = "<span>🔄 正在同步记录至 Google Sheet...</span>";
-
-        fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        }).then(function(){
-          statusEl.className = "exit-sync-status success";
-          statusEl.innerHTML = "<span>✓ 答题结果已成功记录到 Google Sheet！</span>";
-        }).catch(function(err){
-          console.error("同步失败:", err);
-          statusEl.className = "exit-sync-status error";
-          statusEl.innerHTML = "<span>⚠️ 同步失败，请检查网络连接或接口设置。</span>";
-        });
+        var fetchUrl = url + (url.indexOf("?") === -1 ? "?" : "&") + "action=getStats&t=" + Date.now();
+        fetch(fetchUrl, { method: "GET" })
+          .then(function(res){ return res.json(); })
+          .then(function(data){
+            if(data && data.status === "success"){
+              currentStatsData = data;
+              if(callback) callback(data);
+            }else{
+              if(callback) callback(null);
+            }
+          })
+          .catch(function(err){
+            console.warn("获取统计数据异常 (静默处理):", err);
+            if(callback) callback(null);
+          });
       }
 
-      // 获取统计数据 (支持 JSONP 跨域与普通 Fetch 混合)
-      function fetchExitTicketStats(){
-        var container = byId("studentsListContainer");
-        if(container){
-          container.innerHTML = '<div class="stats-loading"><span>🔄 正在从 Google Sheets 获取最新统计数据...</span></div>';
-        }
-        var url = getGasUrl();
-        if(!url){
-          if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 尚未配置 Google Apps Script 接口 URL</div>'; }
+      // 绘制学生端查看的班级正误比例饼分图 (只含图表和比例，绝不泄露其他学生名字)
+      function renderStudentPieChart(stats){
+        var statsSection = byId("studentStatsSection");
+        var pieSvg = byId("studentPieSvg");
+        var pieLegend = byId("studentPieLegend");
+        if(!statsSection || !pieSvg || !pieLegend) return;
+
+        statsSection.style.display = "block";
+
+        if(!stats || stats.total === 0){
+          pieSvg.innerHTML = '<svg viewBox="0 0 200 200" width="180" height="180"><circle cx="100" cy="100" r="70" fill="none" stroke="#e2e8f0" stroke-width="26"/><text x="100" y="106" text-anchor="middle" font-size="16" font-weight="900" fill="#94a3b8">暂无统计</text></svg>';
+          pieLegend.innerHTML = '<div class="student-pie-item"><span style="color:#64748b;">你是第 1 位完成作答的同学！🎉</span></div>';
           return;
         }
 
-        // 使用 JSONP 确保在任何跨域/本地环境都能稳定获取
-        var callbackName = "gasStatsCallback_" + Date.now();
-        var jsonpUrl = url + (url.indexOf("?") === -1 ? "?" : "&") + "action=getStats&callback=" + callbackName + "&t=" + Date.now();
-        
-        var script = document.createElement("script");
-        script.src = jsonpUrl;
-        
-        var timer = setTimeout(function(){
-          if(window[callbackName]){
-            delete window[callbackName];
-            if(script.parentNode){ script.parentNode.removeChild(script); }
-            // JSONP 超时则尝试 fetch
-            fetch(url + (url.indexOf("?") === -1 ? "?" : "&") + "action=getStats&t=" + Date.now())
-              .then(function(res){ return res.json(); })
-              .then(function(data){ renderStatsData(data); })
-              .catch(function(e){
-                if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 获取统计数据失败，请确认已在 Google 后台授权并发布 Web App。<br><small style="color:#94a3b8">'+escapeHtml(e.toString())+'</small></div>'; }
-              });
-          }
-        }, 6000);
-
-        window[callbackName] = function(data){
-          clearTimeout(timer);
-          delete window[callbackName];
-          if(script.parentNode){ script.parentNode.removeChild(script); }
-          renderStatsData(data);
-        };
-
-        script.onerror = function(){
-          clearTimeout(timer);
-          delete window[callbackName];
-          if(script.parentNode){ script.parentNode.removeChild(script); }
-          if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 请求失败，请检查网络或点击上方【打开 Google Sheets 统计表】直接查看。</div>'; }
-        };
-
-        document.head.appendChild(script);
-      }
-
-      // 渲染统计数据到看板
-      function renderStatsData(stats){
-        if(!stats || stats.status !== "success"){
-          byId("studentsListContainer").innerHTML = '<div class="stats-empty">暂无有效统计数据</div>';
-          return;
-        }
-
-        currentStatsData = stats;
-        var total = stats.total || 0;
+        var total = stats.total;
         var correct = stats.correct || 0;
         var wrong = stats.wrong || 0;
         var unsure = stats.unsure || 0;
         var rates = stats.rates || { correct: 0, wrong: 0, unsure: 0 };
-
-        // 更新 KPI 卡片
-        byId("kpiTotal").innerHTML = total + ' <small>人</small>';
-        byId("kpiCorrect").innerHTML = correct + ' <small>人 (' + rates.correct + '%)</small>';
-        byId("kpiWrong").innerHTML = wrong + ' <small>人 (' + rates.wrong + '%)</small>';
-        byId("kpiUnsure").innerHTML = unsure + ' <small>人 (' + rates.unsure + '%)</small>';
-
-        // 更新过滤选项数量
-        byId("filterCountAll").textContent = total;
-        byId("filterCountCorrect").textContent = correct;
-        byId("filterCountWrong").textContent = wrong;
-        byId("filterCountUnsure").textContent = unsure;
-
-        // 渲染饼分图
-        renderPieChart(total, correct, wrong, unsure, rates);
-
-        // 渲染学生名单
-        renderStudentList();
-      }
-
-      // 绘制高质量 SVG 饼分图 (Donut / Pie Chart)
-      function renderPieChart(total, correct, wrong, unsure, rates){
-        var container = byId("pieSvgContainer");
-        var legend = byId("pieLegend");
-        if(!container || !legend) return;
-
-        if(total === 0){
-          container.innerHTML = '<svg viewBox="0 0 200 200" width="180" height="180"><circle cx="100" cy="100" r="70" fill="none" stroke="#e2e8f0" stroke-width="26"/><text x="100" y="106" text-anchor="middle" font-size="16" font-weight="900" fill="#94a3b8">暂无数据</text></svg>';
-          legend.innerHTML = '<div class="pie-legend-item"><span style="color:#94a3b8;">等待学生作答中...</span></div>';
-          return;
-        }
 
         var slices = [
           { key: "correct", label: "正确 (不会)", count: correct, rate: rates.correct, color: "#20956f" },
@@ -2493,7 +2384,7 @@
           { key: "unsure", label: "还不确定", count: unsure, rate: rates.unsure, color: "#d97706" }
         ];
 
-        var cx = 100, cy = 100, R = 76, r = 44;
+        var cx = 100, cy = 100, R = 78, r = 46;
         var startAngle = -Math.PI / 2;
         var svgPaths = [];
 
@@ -2503,7 +2394,6 @@
           var endAngle = startAngle + angle;
 
           if(slice.count === total){
-            // 100% 单一完整圆环
             svgPaths.push('<path d="M '+(cx-R)+' '+cy+' A '+R+' '+R+' 0 1 0 '+(cx+R)+' '+cy+' A '+R+' '+R+' 0 1 0 '+(cx-R)+' '+cy+' M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx+r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx-r)+' '+cy+' Z" fill="'+slice.color+'"/>');
           }else{
             var x1 = cx + R * Math.cos(startAngle);
@@ -2525,23 +2415,101 @@
           startAngle = endAngle;
         });
 
-        container.innerHTML = '<svg viewBox="0 0 200 200" width="180" height="180" role="img" aria-label="答题正误比例饼图">' +
+        pieSvg.innerHTML = '<svg viewBox="0 0 200 200" width="180" height="180" role="img" aria-label="全班答题正误比例">' +
           svgPaths.join("") +
           '<text x="100" y="94" text-anchor="middle" font-size="22" font-weight="1000" fill="#17345b">' + rates.correct + '%</text>' +
-          '<text x="100" y="114" text-anchor="middle" font-size="13" font-weight="900" fill="#55708e">正确率</text>' +
+          '<text x="100" y="114" text-anchor="middle" font-size="13" font-weight="900" fill="#55708e">全班正确率</text>' +
           '</svg>';
 
-        // 渲染图例
-        legend.innerHTML = slices.map(function(s){
-          return '<div class="pie-legend-item">' +
+        pieLegend.innerHTML = slices.map(function(s){
+          return '<div class="student-pie-item">' +
             '<div><span class="legend-color-dot" style="background:' + s.color + ';"></span><span>' + escapeHtml(s.label) + '</span></div>' +
             '<strong>' + s.count + ' 人 <small style="color:#64748b;">(' + s.rate + '%)</small></strong>' +
             '</div>';
         }).join("");
       }
 
-      // 渲染学生名单
-      function renderStudentList(){
+      // 教师端管理看板交互与名单渲染
+      var teacherModal = byId("teacherModal");
+      var gasUrlInput = byId("gasUrlInput");
+      var gasSettingDrawer = byId("gasSettingDrawer");
+
+      byId("openTeacherModalBtn").addEventListener("click", function(){
+        clickSound();
+        var authed = sessionStorage.getItem("teacher_authed") === "true";
+        if(!authed){
+          var pwd = prompt("请输入教师管理密码（默认: 1234）：");
+          if(pwd === "1234" || pwd === "admin"){
+            sessionStorage.setItem("teacher_authed", "true");
+            authed = true;
+          }else if(pwd !== null){
+            showToast("密码不正确（默认: 1234）", "wrong");
+            return;
+          }else{
+            return;
+          }
+        }
+        if(authed){
+          if(gasUrlInput){ gasUrlInput.value = getGasUrl(); }
+          teacherModal.classList.add("open");
+          loadTeacherDashboard();
+        }
+      });
+
+      byId("teacherModalClose").addEventListener("click", function(){
+        clickSound();
+        teacherModal.classList.remove("open");
+      });
+      teacherModal.addEventListener("click", function(e){
+        if(e.target === this){ teacherModal.classList.remove("open"); }
+      });
+      byId("toggleGasSettingBtn").addEventListener("click", function(){
+        clickSound();
+        gasSettingDrawer.style.display = gasSettingDrawer.style.display === "none" ? "block" : "none";
+      });
+      byId("gasModalSave").addEventListener("click", function(){
+        clickSound();
+        setGasUrl(gasUrlInput.value);
+        gasSettingDrawer.style.display = "none";
+        showToast("接口 URL 已保存！");
+        loadTeacherDashboard();
+      });
+      byId("teacherRefreshBtn").addEventListener("click", function(){
+        clickSound();
+        loadTeacherDashboard();
+      });
+
+      function loadTeacherDashboard(){
+        var container = byId("studentsListContainer");
+        if(container){
+          container.innerHTML = '<div class="stats-loading"><span>🔄 正在同步 Google Sheets 最新学生数据...</span></div>';
+        }
+        fetchStatsData(function(stats){
+          if(!stats){
+            if(container){ container.innerHTML = '<div class="stats-empty">⚠️ 暂未获取到数据，请检查网络或点击【打开 Google Sheets 统计表】直接查看。</div>'; }
+            return;
+          }
+          var total = stats.total || 0;
+          var correct = stats.correct || 0;
+          var wrong = stats.wrong || 0;
+          var unsure = stats.unsure || 0;
+          var rates = stats.rates || { correct: 0, wrong: 0, unsure: 0 };
+
+          byId("teacherKpiTotal").innerHTML = total + ' <small>人</small>';
+          byId("teacherKpiCorrect").innerHTML = correct + ' <small>人 (' + rates.correct + '%)</small>';
+          byId("teacherKpiWrong").innerHTML = wrong + ' <small>人 (' + rates.wrong + '%)</small>';
+          byId("teacherKpiUnsure").innerHTML = unsure + ' <small>人 (' + rates.unsure + '%)</small>';
+
+          byId("filterCountAll").textContent = total;
+          byId("filterCountCorrect").textContent = correct;
+          byId("filterCountWrong").textContent = wrong;
+          byId("filterCountUnsure").textContent = unsure;
+
+          renderTeacherStudentList();
+        });
+      }
+
+      function renderTeacherStudentList(){
         var container = byId("studentsListContainer");
         if(!container || !currentStatsData) return;
 
@@ -2552,7 +2520,7 @@
         });
 
         if(filtered.length === 0){
-          container.innerHTML = '<div class="stats-empty">当前分类下暂无学生数据</div>';
+          container.innerHTML = '<div class="stats-empty">当前分类下暂无学生记录</div>';
           return;
         }
 
@@ -2571,7 +2539,6 @@
         }).join("");
       }
 
-      // 学生名单标签切换事件
       byId("studentFilters").addEventListener("click", function(e){
         var tab = e.target.closest("button[data-filter]");
         if(!tab) return;
@@ -2579,9 +2546,31 @@
         document.querySelectorAll("#studentFilters button").forEach(function(b){ b.classList.remove("active"); });
         tab.classList.add("active");
         currentStudentFilter = tab.getAttribute("data-filter");
-        renderStudentList();
+        renderTeacherStudentList();
       });
 
+      // 静默后台提交函数
+      function submitExitTicketToGoogle(payload){
+        var url = getGasUrl();
+        if(!url) return;
+        fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        }).then(function(){
+          // 提交后稍作延迟拉取最新全班统计展示给学生
+          setTimeout(function(){
+            fetchStatsData(function(stats){
+              renderStudentPieChart(stats);
+            });
+          }, 600);
+        }).catch(function(err){
+          console.warn("后台提交记录提示 (静默):", err);
+        });
+      }
+
+      // 学生答题点击事件
       byId("exitOptions").addEventListener("click",function(e){
         var btn = e.target.closest("button[data-exit-answer]");
         if(!btn){return;}
@@ -2601,6 +2590,8 @@
 
         var studentName = (studentInput ? studentInput.value.trim() : "") || "匿名学生";
         var optionLabels = { "yes": "会", "no": "不会", "not-sure": "还不确定" };
+        
+        // 1. 立即静默上报数据
         submitExitTicketToGoogle({
           studentName: studentName,
           lesson: "三年级数学｜对称轴｜Week 4-L1",
@@ -2609,6 +2600,11 @@
           optionText: optionLabels[answer] || answer,
           isCorrect: correct,
           userAgent: navigator.userAgent
+        });
+
+        // 2. 立即拉取并展示全班饼分图
+        fetchStatsData(function(stats){
+          renderStudentPieChart(stats);
         });
       });
 
