@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>三年级数学｜空间｜解决问题｜Week 4-L2</title>
+<style>
+:root{
+  --ink:#17345b;--ink2:#365b7d;--blue:#2364aa;--blueSoft:#eaf4ff;
+  --green:#20956f;--greenSoft:#e5f8ef;--purple:#6d43bd;--purpleSoft:#f0eaff;
+  --orange:#e58a00;--orangeSoft:#fff4dc;--red:#cc3d3d;--redSoft:#fff0f0;
+  --line:#d8e2ef;--paper:#fffdfa;--shadow:0 10px 30px rgba(35,74,116,.11);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Microsoft YaHei","Noto Sans SC","PingFang SC",Arial,sans-serif;color:var(--ink);background:#f5f9ff}
+body{font-size:20px;line-height:1.45}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:5px solid #ffc84d;outline-offset:3px}
+.topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(26,67,110,.07)}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px clamp(14px,2.3vw,34px)}
+.brand{font-weight:950;color:var(--blue);font-size:clamp(21px,2vw,31px);white-space:nowrap}
+.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.small-btn,.nav-btn,.btn,.choice,.tab,.tool-btn{border:2px solid #cbd8e8;background:#fff;border-radius:14px;font-weight:900}
+.small-btn{padding:7px 13px;min-height:44px;font-size:clamp(16px,1.3vw,20px)}
+.navrow{display:flex;gap:8px;overflow-x:auto;padding:8px clamp(14px,2.3vw,34px);background:#f8fbff;border-top:1px solid #edf2f8}
+.nav-btn{flex:0 0 auto;padding:8px 15px;min-height:46px;font-size:clamp(16px,1.35vw,21px);color:var(--ink2)}
+.nav-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav-btn.extension{margin-left:auto;border-color:#e3b84b;background:#fff8df;color:#7a5900}
+main{width:min(1540px,100%);margin:auto;padding:24px clamp(14px,2.8vw,42px) 55px}
+.screen{display:none}.screen.active{display:block;animation:fadeIn .22s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.screen-head{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;margin-bottom:18px}
+.screen-head h1{margin:0;color:var(--blue);font-size:clamp(35px,4vw,60px);line-height:1.08}
+.screen-head p{margin:0;color:var(--purple);font-weight:900;font-size:clamp(17px,1.5vw,23px)}
+.lesson-intent{margin:0 0 16px;padding:11px 17px;border-left:7px solid var(--purple);border-radius:12px;background:var(--purpleSoft);font-size:clamp(19px,1.7vw,26px);font-weight:850}
+.card{background:#fff;border:2px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.btn{min-height:56px;padding:9px 18px;font-size:clamp(19px,1.65vw,25px)}
+.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn.green{background:var(--green);color:#fff;border-color:var(--green)}
+.btn.purple{background:var(--purple);color:#fff;border-color:var(--purple)}
+.btn.orange{background:#ffd166;color:#6b4900;border-color:#dea62c}
+.btn.ghost{background:#f6f9fd}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.button-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.status-pill{padding:8px 14px;border-radius:999px;background:var(--greenSoft);color:#176047;border:2px solid #a9ddc7;font-weight:900;white-space:nowrap}
+.prompt{padding:15px 18px;border-radius:16px;background:#f2f7fd;border:2px solid #d7e5f4;font-size:clamp(22px,2vw,30px);font-weight:900}
+.feedback{min-height:58px;padding:12px 16px;border-radius:15px;background:#f5f8fc;border:2px solid #e0e7f0;font-weight:850;font-size:clamp(18px,1.55vw,23px)}
+.feedback.good{background:var(--greenSoft);border-color:#a9ddc7;color:#176047}.feedback.bad{background:var(--redSoft);border-color:#efb5b5;color:#8a2d2d}.feedback.note{background:var(--orangeSoft);border-color:#efd092;color:#795200}
+.keyword{color:var(--purple);font-weight:950}.blue{color:var(--blue)}
+.page-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px;padding-top:14px;border-top:2px dashed #cedbe9}.page-nav .btn{min-width:155px}.page-position{font-weight:900;color:#667f99}
+
+/* Screen 1 */
+.recall-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}
+.recall-card{padding:14px;text-align:center;min-width:0}.model-mini{height:280px}.model-mini svg{width:100%;height:100%;display:block}.model-letter{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;font-size:24px;font-weight:1000;margin-bottom:3px}.hidden-name{min-height:45px;font-size:clamp(21px,1.8vw,28px);font-weight:950;color:var(--blue)}.hidden-name.masked{color:#a4b2c0}.recall-question{text-align:center;font-size:clamp(25px,2.4vw,36px);font-weight:950;margin:12px 0}.center-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+/* 3D viewer */
+.lab-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(330px,.6fr);gap:18px;align-items:start}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:12px}.tab{padding:8px 15px;min-height:50px;font-size:clamp(18px,1.5vw,23px)}.tab.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.viewer-card{padding:12px;position:relative;min-height:530px;overflow:hidden;background:linear-gradient(180deg,#fff,#fbfdff)}.viewer{height:500px;touch-action:none;user-select:none}.viewer svg{width:100%;height:100%;display:block}.drag-hint{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.92);border:2px solid #d7e2ef;color:#5b728a;font-weight:850;pointer-events:none}.control-card{padding:18px;position:sticky;top:132px}.control-card h3{margin:0 0 10px;color:var(--blue);font-size:clamp(24px,2vw,30px)}.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tool-btn{min-height:58px;padding:8px 10px;font-size:clamp(18px,1.45vw,22px)}.tool-btn.active{background:var(--blueSoft);border-color:#76addc;color:#184f80}.tool-btn.wide{grid-column:1/-1}.count-board{margin-top:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.count-cell{padding:10px;border-radius:13px;background:#f4f8fd;border:2px solid #e0e8f1;font-weight:900}.count-cell strong{display:block;color:var(--purple);font-size:25px}.base-fact{margin-top:12px;padding:13px;border-radius:14px;background:var(--orangeSoft);border:2px solid #f0d49b;font-weight:900}.concept-board{margin-top:14px;display:none;grid-template-columns:repeat(3,1fr);gap:10px}.concept-board.show{display:grid}.concept-item{padding:10px;border:2px solid var(--line);border-radius:14px;text-align:center;background:#fff;font-weight:900}.concept-shape{font-size:48px;line-height:1}.concept-arrow{color:var(--purple);font-size:28px}.concept-rule{grid-column:1/-1;padding:10px 16px;border-radius:13px;background:var(--greenSoft);border:2px solid #afdfca;text-align:center;font-weight:950;font-size:24px}
+
+/* Screen 3 */
+.classify-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.solid-choice{padding:12px;border:3px solid var(--line);border-radius:18px;background:#fff;text-align:center;transition:.2s}.solid-choice.selected{border-color:var(--purple);background:#f5f1ff}.solid-choice.correct-after{border-color:var(--green);background:var(--greenSoft)}.solid-choice.dim{opacity:.32}.solid-visual{height:245px}.solid-visual svg{width:100%;height:100%}.solid-label{font-weight:1000;font-size:25px}.evidence-check{display:none;margin-top:15px;padding:16px;border:2px solid #b8d1e8;border-radius:16px;background:#eef7ff}.evidence-check.show{display:block}.evidence-check h3{margin:0 0 8px;color:var(--blue)}.evidence-row{display:flex;gap:10px;align-items:center;margin:7px 0;font-weight:900}.check-dot{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#d8ecff;color:var(--blue);font-weight:1000}
+
+/* Screen 4 */
+.sym-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);gap:18px}.sym-canvas{padding:12px;min-height:530px;display:grid;place-items:center}.sym-canvas svg{width:100%;height:500px;overflow:visible}.sym-panel{padding:18px}.sym-panel h3{margin:0 0 9px;color:var(--blue)}.answer-pair{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.choice{min-height:62px;padding:8px 12px;font-size:24px}.choice.selected{background:var(--purpleSoft);border-color:var(--purple)}.sym-rule{margin-top:15px;padding:14px;border-radius:15px;background:var(--greenSoft);border:2px solid #abdcc8;font-size:23px;font-weight:950}.sym-outline{fill:#fffaf0;stroke:#9ab2c9;stroke-width:4}.sym-static{opacity:.78}.sym-moving{opacity:.92}.sym-moving.is-animating{filter:drop-shadow(0 6px 10px rgba(60,96,140,.18))}.sym-moving.fade-soft{opacity:.62}.sym-axis-dot{fill:#f59e0b;stroke:#fff;stroke-width:3}.target-glow{filter:drop-shadow(0 0 10px rgba(109,67,189,.45))}
+
+/* Screen 5 */
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:15px}.progress-step{padding:9px 10px;border-radius:13px;border:2px solid #dbe4ef;background:#fff;text-align:center;font-weight:900;color:#71869b}.progress-step.active{background:var(--purpleSoft);border-color:#9c84d4;color:#56339a}.progress-step.done{background:var(--greenSoft);border-color:#a6d9c2;color:#176047}.mission-card{padding:20px}.mission-title{text-align:center;font-size:clamp(35px,3.8vw,54px);color:var(--blue);font-weight:1000;margin:0 0 12px}.conditions{max-width:850px;margin:14px auto;font-size:clamp(24px,2.1vw,32px);font-weight:900}.condition-line{margin:9px 0;padding:10px 14px;border-radius:13px;background:#f6f9fd;border:2px solid #e0e8f1}.condition-line.highlight{background:#fff1c9;border-color:#efc35b}.gift-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}.gift-card{position:relative;padding:10px;border:3px solid var(--line);border-radius:18px;background:#fff;text-align:center}.gift-card.selected{border-color:var(--purple);background:#f6f1ff}.gift-card.excluded{opacity:.2;transform:scale(.97)}.gift-model{height:230px}.gift-model svg{width:100%;height:100%}.gift-ribbon{position:absolute;right:13px;top:12px;font-size:35px;filter:saturate(.8)}.gift-letter{font-weight:1000;font-size:26px}.stage-note{text-align:center;margin:12px 0;font-size:clamp(21px,1.8vw,27px);font-weight:950}.base-extract-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.base-column{padding:11px;border:2px solid var(--line);border-radius:17px;background:#fff;text-align:center}.base-small3d{height:155px;opacity:.32}.base-small3d svg{width:100%;height:100%}.connector{height:26px;border-left:4px solid #a9bed2;width:1px;margin:auto}.base2d{height:160px;display:grid;place-items:center}.base2d svg{width:90%;height:100%}.predict-btn{width:100%;min-height:58px;border:3px solid #d5deea;border-radius:14px;background:#fff;font-size:23px;font-weight:950}.predict-btn.selected{border-color:var(--purple);background:var(--purpleSoft)}.axis-work{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:16px;align-items:center}.axis-canvas{min-height:480px;padding:10px;display:grid;place-items:center}.axis-canvas svg{width:100%;height:460px}.axis-panel{padding:16px}.axis-count{font-size:clamp(44px,5vw,72px);font-weight:1000;color:var(--purple);line-height:1}.axis-equation{font-size:clamp(26px,2.5vw,38px);font-weight:1000;color:var(--blue);min-height:55px}.answer-frame{max-width:920px;margin:auto;padding:18px;border:3px solid #bdcee1;border-radius:18px;background:#fff;font-size:clamp(24px,2.1vw,32px);font-weight:900}.blank{display:inline-block;min-width:175px;border-bottom:4px solid #6b82a0;color:var(--purple);text-align:center}.complete-answer{margin-top:12px;padding:14px 17px;border-radius:15px;background:var(--greenSoft);border:2px solid #aedec9;color:#155d44;font-weight:950}.hidden{display:none!important}
+
+/* Exit */
+.exit-shell{max-width:1050px;margin:auto}.exit-identity{padding:16px 18px;margin-bottom:16px;display:grid;grid-template-columns:minmax(240px,1fr) auto;gap:14px;align-items:end}.exit-name-wrap{display:grid;gap:7px}.exit-name-wrap label{font-weight:950;color:var(--blue)}.exit-name-input,.gas-url-input{width:100%;min-height:52px;padding:9px 13px;border:3px solid #cfdbea;border-radius:13px;background:#fff;font:inherit;font-size:20px}.exit-name-input:focus,.gas-url-input:focus{outline:4px solid #ffd166;outline-offset:2px;border-color:var(--blue)}.exit-sync{min-width:220px;padding:11px 14px;border-radius:13px;background:var(--blueSoft);border:2px solid #b9d5ee;color:#24527e;font-weight:900;text-align:center}.exit-sync.saving{background:var(--orangeSoft);border-color:#edcf8d;color:#795200}.exit-sync.saved{background:var(--greenSoft);border-color:#a9ddc7;color:#176047}.exit-sync.error{background:var(--redSoft);border-color:#efb5b5;color:#8a2d2d}.exit-settings{grid-column:1/-1;border-top:1px dashed #cbd8e8;padding-top:10px}.exit-settings summary{cursor:pointer;font-weight:900;color:#617891}.gas-setting-row{display:grid;grid-template-columns:1fr auto auto;gap:9px;margin-top:10px;align-items:center}.sheet-link{display:inline-flex;align-items:center;min-height:50px;padding:8px 13px;border-radius:13px;background:#e5f8ef;border:2px solid #a9ddc7;color:#176047;font-weight:900;text-decoration:none;white-space:nowrap}.exit-progress{display:flex;align-items:center;justify-content:center;gap:10px;margin:10px 0 20px}.exit-dot{width:20px;height:20px;border-radius:50%;background:#dce4ed;border:2px solid #bdcbd9}.exit-dot.active{background:var(--purple);border-color:var(--purple)}.exit-dot.done{background:var(--green);border-color:var(--green)}.question-card{padding:24px}.question-card h2{font-size:clamp(29px,3vw,44px);color:var(--blue);margin:0 0 18px}.exit-options-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.exit-option{min-height:70px;padding:10px 15px;border:3px solid #d2dce8;border-radius:16px;background:#fff;font-size:clamp(21px,1.9vw,28px);font-weight:900;text-align:left}.exit-option.selected{border-color:var(--purple);background:var(--purpleSoft)}.exit-option.correct-review{border-color:var(--green);background:var(--greenSoft)}.exit-option.wrong-review{border-color:var(--red);background:var(--redSoft)}.multi-list{display:grid;gap:10px}.multi-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:3px solid #d2dce8;border-radius:14px;background:#fff;font-size:23px;font-weight:850}.multi-item input{width:26px;height:26px;margin-top:3px}.question-visual{height:280px;margin-bottom:10px}.question-visual svg{width:100%;height:100%}.exit-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}.completion{padding:28px;text-align:center}.completion h2{font-size:48px;color:var(--green);margin:0 0 10px}.completion p{font-size:25px;font-weight:850}.answer-key{display:none;margin-top:18px;padding:17px;border-radius:16px;background:#f4f8fd;border:2px solid #dce5ef}.answer-key.show{display:block}.answer-key table{width:100%;border-collapse:collapse;font-size:20px}.answer-key th,.answer-key td{padding:8px;border-bottom:1px solid #d7e1ec;text-align:left}
+
+/* Extension */
+.extension-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.extension-card{padding:20px}.extension-card h3{margin:0 0 8px;color:var(--blue);font-size:28px}.extension-card p{margin:0;color:#58728b;font-weight:800}.extension-card.ready{border-color:#b9d9cb;background:#fbfffd}.extension-card.pending{border-style:dashed}.extension-badge{display:inline-block;margin-bottom:8px;padding:5px 10px;border-radius:999px;background:#edf3f9;font-size:16px;font-weight:900}.extension-badge.ready{background:var(--greenSoft);color:#176047}
+
+/* SVG shared */
+.face{stroke:#2a5d8b;stroke-width:3;stroke-linejoin:round;transition:fill .2s,opacity .2s,stroke .2s}.edge-line{stroke:#234f77;stroke-width:3;stroke-linecap:round;transition:stroke-width .2s,opacity .2s}.vertex-dot{fill:#e44949;stroke:#fff;stroke-width:2}.base-face{fill:#ffe59a}.side-face{fill:#cde7f8}.side-face.alt{fill:#d9f0e4}.side-face.alt2{fill:#ded2f6}.face.dim-face,.edge-line.dim-edge{opacity:.18}.face.base-highlight{fill:#ffd166;stroke:#d67c00;stroke-width:5}.edge-line.edge-highlight{stroke:#7c3aed;stroke-width:7}.viewer-title{font-size:26px;font-weight:950;fill:#24527e}.viewer-caption{font-size:20px;font-weight:850;fill:#667f99}.svg-label{font-size:23px;font-weight:950;fill:#24527e}.svg-soft{fill:#f9fcff}.candidate-axis{stroke:#f59e0b;stroke-width:9;stroke-dasharray:15 10;stroke-linecap:round}.proved-axis{stroke-width:9;stroke-linecap:round}.square-shape{fill:#d9f0e4;stroke:#2364aa;stroke-width:7}.rect-shape{fill:#dbeafd;stroke:#2364aa;stroke-width:7}.tri-shape{fill:#fff0b8;stroke:#c57c00;stroke-width:7}.hex-shape{fill:#eadffd;stroke:#6d43bd;stroke-width:7}
+
+@media(max-width:980px){.lab-layout,.sym-layout,.axis-work{grid-template-columns:1fr}.control-card{position:static}.recall-grid,.gift-grid,.classify-grid{grid-template-columns:repeat(2,1fr)}.base-extract-grid{grid-template-columns:1fr}.extension-grid{grid-template-columns:1fr 1fr}.progress{grid-template-columns:1fr 1fr}.viewer-card{min-height:430px}.viewer{height:410px}}
+@media(max-width:640px){body{font-size:17px}.recall-grid,.gift-grid,.classify-grid,.extension-grid,.exit-options-grid,.exit-identity,.gas-setting-row{grid-template-columns:1fr}.model-mini{height:220px}.gift-model{height:210px}.toprow{align-items:flex-start}.brand{white-space:normal}.page-nav{flex-wrap:wrap}.page-position{order:3;width:100%;text-align:center}.exit-sync{min-width:0}.sheet-link{justify-content:center}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="toprow">
+    <div class="brand">Week 4-L2 · 三年级数学 · 空间 · 解决问题</div>
+    <div class="top-actions">
+      <button class="small-btn" id="resetPage">↺ 本页重来</button>
+      <button class="small-btn" id="soundToggle">🔊 声音：开</button>
+      <button class="small-btn" id="timerBtn">⏱ <span id="timerText">00:00</span></button>
+    </div>
+  </div>
+  <nav class="navrow" id="navRow">
+    <button class="nav-btn active" data-go="recall">① 回忆</button>
+    <button class="nav-btn" data-go="lab">② 棱柱实验室</button>
+    <button class="nav-btn" data-go="classify">③ 谁是棱柱体</button>
+    <button class="nav-btn" data-go="symmetry">④ 对称轴</button>
+    <button class="nav-btn" data-go="mission">⑤ 礼物盒</button>
+    <button class="nav-btn" data-go="exit">⑥ Exit</button>
+    <button class="nav-btn extension" data-go="extension">⭐ 课后复习</button>
+  </nav>
+</header>
+
+<main>
+<section class="screen active" id="screen-recall">
+  <div class="screen-head"><div><p>课堂主线 · Retrieval</p><h1>你还记得这些立体吗？</h1></div><div class="status-pill">建议 3 分钟</div></div>
+  <p class="lesson-intent">今天我会用<strong>棱柱体</strong>和<strong>对称轴</strong>解决问题。</p>
+  <div class="recall-grid" id="recallGrid"></div>
+  <div class="recall-question" id="recallQuestion">先不要说名字：它们有什么共同的地方？</div>
+  <div class="center-actions">
+    <button class="btn primary" id="revealNames">显示名称</button>
+    <button class="btn purple hidden" id="recallEvidence">它们为什么都是棱柱体？</button>
+  </div>
+  <div class="feedback note" id="recallFeedback" style="margin-top:14px">先听同学的想法，再检查。</div>
+  <div class="page-nav"><button class="btn ghost" disabled>◀ 上一页</button><span class="page-position">第 1 / 6 屏</span><button class="btn primary" data-next="lab">下一页：找证据 ▶</button></div>
+</section>
+
+<section class="screen" id="screen-lab">
+  <div class="screen-head"><div><p>复习 · 观察与验证</p><h1>棱柱实验室</h1></div><div class="status-pill">建议 6 分钟</div></div>
+  <div class="tabs" id="labTabs">
+    <button class="tab active" data-prism="tri">三角棱柱体</button>
+    <button class="tab" data-prism="square">正方棱柱体</button>
+    <button class="tab" data-prism="rect">长方棱柱体</button>
+  </div>
+  <div class="lab-layout">
+    <div>
+      <div class="card viewer-card"><div class="viewer" id="labViewer"></div><div class="drag-hint">↔ 拖动模型，从不同方向观察</div></div>
+      <div class="concept-board" id="conceptBoard">
+        <div class="concept-item"><div class="concept-shape">△</div>三角形<div class="concept-arrow">↓</div>三角棱柱体</div>
+        <div class="concept-item"><div class="concept-shape">□</div>正方形<div class="concept-arrow">↓</div>正方棱柱体</div>
+        <div class="concept-item"><div class="concept-shape">▭</div>长方形<div class="concept-arrow">↓</div>长方棱柱体</div>
+        <div class="concept-rule">棱柱体根据<strong>底面的形状</strong>来命名。</div>
+      </div>
+    </div>
+    <aside class="card control-card">
+      <h3>我们来观察</h3>
+      <div class="tool-grid" id="labTools">
+        <button class="tool-btn" data-mode="bases">底面</button>
+        <button class="tool-btn" data-mode="faces">平面</button>
+        <button class="tool-btn" data-mode="vertices">顶点</button>
+        <button class="tool-btn" data-mode="edges">边</button>
+        <button class="tool-btn wide" id="revealCounts">检查数量</button>
+        <button class="tool-btn wide" id="extractBase">只看底面</button>
+      </div>
+      <div class="count-board">
+        <div class="count-cell">底面<strong id="countBases">？</strong></div>
+        <div class="count-cell">平面<strong id="countFaces">？</strong></div>
+        <div class="count-cell">顶点<strong id="countVertices">？</strong></div>
+        <div class="count-cell">边<strong id="countEdges">？</strong></div>
+      </div>
+      <div class="base-fact" id="baseFact">先找出两个底面，再说一说它们有什么关系。</div>
+    </aside>
+  </div>
+  <div class="page-nav"><button class="btn ghost" data-prev="recall">◀ 上一页</button><span class="page-position">第 2 / 6 屏</span><button class="btn primary" data-next="classify">下一页：判断棱柱体 ▶</button></div>
+</section>
+
+<section class="screen" id="screen-classify">
+  <div class="screen-head"><div><p>比较 · 用特征说明</p><h1>哪些是棱柱体？</h1></div><div class="status-pill">建议 4 分钟</div></div>
+  <div class="prompt">不只说答案，也要说一个理由。</div>
+  <div class="classify-grid" id="classifyGrid"></div>
+  <div class="center-actions"><button class="btn primary" id="checkClassify">检查大家的选择</button><button class="btn ghost" id="clearClassify">清除选择</button></div>
+  <div class="feedback" id="classifyFeedback" style="margin-top:14px">你可以先根据同学的口头答案点选，不立即揭晓。</div>
+  <div class="evidence-check" id="classifyEvidence">
+    <h3>判断棱柱体时，可以检查：</h3>
+    <div class="evidence-row"><span class="check-dot">1</span>有两个底面吗？</div>
+    <div class="evidence-row"><span class="check-dot">2</span>两个底面互相平行吗？</div>
+    <div class="evidence-row"><span class="check-dot">3</span>两个底面的形状和大小都相同吗？</div>
+  </div>
+  <div class="page-nav"><button class="btn ghost" data-prev="lab">◀ 上一页</button><span class="page-position">第 3 / 6 屏</span><button class="btn primary" data-next="symmetry">下一页：验证对称轴 ▶</button></div>
+</section>
+
+<section class="screen" id="screen-symmetry">
+  <div class="screen-head"><div><p>复习 · 对折找证据</p><h1>这条线是对称轴吗？</h1></div><div class="status-pill" id="symProgress">第 1 / 3 题</div></div>
+  <div class="sym-layout">
+    <div class="card sym-canvas" id="symCanvas"></div>
+    <aside class="card sym-panel">
+      <h3 id="symTitle">先观察，再预测。</h3>
+      <p id="symQuestion" style="font-size:25px;font-weight:900">这条橙色虚线是对称轴吗？</p>
+      <div class="answer-pair"><button class="choice" data-sym-answer="yes">是</button><button class="choice" data-sym-answer="no">不是</button></div>
+      <button class="btn green" id="foldCheck" style="width:100%">对折检查</button>
+      <div class="feedback" id="symFeedback" style="margin-top:12px">先记录预测，不立即显示答案。</div>
+      <button class="btn purple" id="nextSym" style="width:100%;margin-top:10px" disabled>下一题 ▶</button>
+      <div class="sym-rule">判断对称轴：对折后两个部分的<strong>形状和大小相同</strong>。</div>
+    </aside>
+  </div>
+  <div class="page-nav"><button class="btn ghost" data-prev="classify">◀ 上一页</button><span class="page-position">第 4 / 6 屏</span><button class="btn primary" data-next="mission">下一页：解决问题 ▶</button></div>
+</section>
+
+<section class="screen" id="screen-mission">
+  <div class="screen-head"><div><p>7.5.1 · Problem Solving</p><h1>选择礼物盒</h1></div><div class="status-pill">建议 8 分钟</div></div>
+  <div class="progress" id="missionProgress">
+    <div class="progress-step active" data-pstep="1">① 读题找条件</div><div class="progress-step" data-pstep="2">② 用模型</div><div class="progress-step" data-pstep="3">③ 找证据</div><div class="progress-step" data-pstep="4">④ 说明检查</div>
+  </div>
+  <div class="card mission-card" id="missionStage"></div>
+  <div class="page-nav"><button class="btn ghost" data-prev="symmetry">◀ 上一页</button><span class="page-position">第 5 / 6 屏</span><button class="btn primary" data-next="exit">下一页：Exit Ticket ▶</button></div>
+</section>
+
+<section class="screen" id="screen-exit">
+  <div class="screen-head"><div><p>Evaluate · 个人诊断</p><h1>退出小纸条</h1></div><div class="status-pill">5 题 · 建议 5 分钟</div></div>
+  <div class="exit-shell">
+    <div class="card exit-identity">
+      <div class="exit-name-wrap">
+        <label for="exitStudentName">姓名 / 学号</label>
+        <input class="exit-name-input" id="exitStudentName" type="text" autocomplete="name" placeholder="例如：JJ 或 3A01">
+      </div>
+      <div class="exit-sync" id="exitSync" role="status" aria-live="polite">准备记录 5 题</div>
+      <details class="exit-settings">
+        <summary>教师设置 · Google Sheets</summary>
+        <div class="gas-setting-row">
+          <input class="gas-url-input" id="gasUrlInput" type="url" spellcheck="false" aria-label="Google Apps Script Web App URL" placeholder="https://script.google.com/macros/s/.../exec">
+          <button class="small-btn" id="saveGasUrl" type="button">保存接口</button>
+          <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1x03SctM-Bmuk8q2acAjth3gjndE2KC3ZTjMwWq1CdFQ/edit" target="_blank" rel="noopener noreferrer">打开统计表 ↗</a>
+        </div>
+      </details>
+    </div>
+    <div class="exit-progress" id="exitDots"></div>
+    <div id="exitHost"></div>
+  </div>
+  <div class="page-nav"><button class="btn ghost" data-prev="mission">◀ 上一页</button><span class="page-position">第 6 / 6 屏</span><button class="btn orange" data-next="extension">⭐ 课后复习</button></div>
+</section>
+
+<section class="screen" id="screen-extension">
+  <div class="screen-head"><div><p>课后 · A2 自主操作</p><h1>⭐ Unit 7 自主复习</h1></div><div class="status-pill">不占 30 分钟主课</div></div>
+  <div class="prompt">这一版先锁定课堂主线。现有活动会在下一轮逐项接回这里。</div>
+  <div class="extension-grid" style="margin-top:16px">
+    <div class="card extension-card ready"><span class="extension-badge ready">已可复用</span><h3>① 棱柱实验室</h3><p>开放自由旋转、底面、平面、顶点、边的自主检查。</p></div>
+    <div class="card extension-card ready"><span class="extension-badge ready">已可复用</span><h3>② 棱柱 / 非棱柱</h3><p>增加更多模型，让学生自己分类并查看证据。</p></div>
+    <div class="card extension-card pending"><span class="extension-badge">下一轮接回</span><h3>③ 正多边形</h3><p>复用原 HTML 的正三至正八边形内容。</p></div>
+    <div class="card extension-card pending"><span class="extension-badge">下一轮接回</span><h3>④ 对称轴练习</h3><p>复用候选线、点击、对折检查与更多图形。</p></div>
+    <div class="card extension-card pending"><span class="extension-badge">下一轮接回</span><h3>⑤ 半图案挑战</h3><p>保留原来的先预测、第二次才揭晓的三题机制。</p></div>
+    <div class="card extension-card pending"><span class="extension-badge">下一轮接回</span><h3>⑥ 解决问题挑战</h3><p>把原来的两次切割、4 个三角形等放在 extension。</p></div>
+  </div>
+  <div class="page-nav"><button class="btn ghost" data-prev="exit">◀ 回 Exit</button><span class="page-position">课后区</span><button class="btn primary" data-next="recall">回到课堂开头</button></div>
+</section>
+</main>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+let soundOn=true;
+function beep(freq=520,dur=.055){if(!soundOn)return;try{const ac=new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=freq;g.gain.value=.035;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+dur);o.onended=()=>ac.close();}catch(e){}}
+function good(){beep(720,.08)}function clickSound(){beep(480,.035)}
+
+/* timer */
+let timerRunning=false,timerStart=0,timerElapsed=0,timerTick=null;
+function fmtTime(ms){const s=Math.floor(ms/1000),m=Math.floor(s/60),r=s%60;return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0")}
+function updateTimer(){const now=timerRunning?(timerElapsed+performance.now()-timerStart):timerElapsed;$("timerText").textContent=fmtTime(now)}
+$("timerBtn").addEventListener("click",()=>{clickSound();if(timerRunning){timerElapsed+=performance.now()-timerStart;timerRunning=false;clearInterval(timerTick)}else{timerStart=performance.now();timerRunning=true;timerTick=setInterval(updateTimer,250)}updateTimer()});
+$("soundToggle").addEventListener("click",function(){soundOn=!soundOn;this.textContent=soundOn?"🔊 声音：开":"🔇 声音：关";if(soundOn)clickSound()});
+
+const order=["recall","lab","classify","symmetry","mission","exit"];
+let current="recall";
+function show(id){current=id;document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id==="screen-"+id));document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.go===id));window.scrollTo({top:0,behavior:"smooth"});if(id==="lab")requestAnimationFrame(()=>renderLab());if(id==="symmetry")requestAnimationFrame(()=>renderSym());if(id==="mission")requestAnimationFrame(()=>renderMission());if(id==="exit")requestAnimationFrame(()=>renderExit());}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go],[data-next],[data-prev]");if(!b)return;const id=b.dataset.go||b.dataset.next||b.dataset.prev;if(id){clickSound();show(id)}});
+
+/* ===== 3D PRISM ENGINE ===== */
+const prismDefs={
+ tri:{name:"三角棱柱体",baseLabel:"三角形",rx:-.24,ry:.72,scale:148,miniScale:92,points:[[-1.05,-.85,-1.05],[1.05,-.85,-1.05],[0,1.02,-1.05],[-1.05,-.85,1.05],[1.05,-.85,1.05],[0,1.02,1.05]],faces:[[0,1,2],[3,5,4],[0,3,4,1],[1,4,5,2],[2,5,3,0]],bases:[0,1],counts:{bases:2,faces:5,vertices:6,edges:9}},
+ square:{name:"正方棱柱体",baseLabel:"正方形",rx:-.12,ry:.74,scale:152,miniScale:94,points:[[-.86,-.86,-1.35],[.86,-.86,-1.35],[.86,.86,-1.35],[-.86,.86,-1.35],[-.86,-.86,1.35],[.86,-.86,1.35],[.86,.86,1.35],[-.86,.86,1.35]],faces:[[0,1,2,3],[4,7,6,5],[0,4,5,1],[1,5,6,2],[2,6,7,3],[3,7,4,0]],bases:[0,1],counts:{bases:2,faces:6,vertices:8,edges:12}},
+ rect:{name:"长方棱柱体",baseLabel:"长方形",rx:-.12,ry:.74,scale:150,miniScale:92,points:[[-1.18,-.72,-1.3],[1.18,-.72,-1.3],[1.18,.72,-1.3],[-1.18,.72,-1.3],[-1.18,-.72,1.3],[1.18,-.72,1.3],[1.18,.72,1.3],[-1.18,.72,1.3]],faces:[[0,1,2,3],[4,7,6,5],[0,4,5,1],[1,5,6,2],[2,6,7,3],[3,7,4,0]],bases:[0,1],counts:{bases:2,faces:6,vertices:8,edges:12}}
+};
+function rotatePoint(p,rx,ry){let [x,y,z]=p;const cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);let x1=x*cy+z*sy,z1=-x*sy+z*cy;let y1=y*cx-z1*sx,z2=y*sx+z1*cx;return [x1,y1,z2]}
+function project(p,w,h,scale=145){const weak=1+p[2]*0.08;return [w/2+p[0]*scale*weak,h/2-p[1]*scale*weak,p[2]]}
+function uniqueEdges(faces){const m=new Map();faces.forEach(face=>face.forEach((a,i)=>{const b=face[(i+1)%face.length],key=a<b?a+"-"+b:b+"-"+a;if(!m.has(key))m.set(key,[a,b])}));return [...m.values()]}
+function prismSvg(def,opts={}){const w=opts.w||700,h=opts.h||470,rx=opts.rx??def.rx??-.24,ry=opts.ry??def.ry??.72,scale=opts.scale||def.scale||145,mode=opts.mode||"normal",title=opts.title||"";const rot=def.points.map(p=>rotatePoint(p,rx,ry)),pts=rot.map(p=>project(p,w,h,scale));const faceData=def.faces.map((f,i)=>({i,f,z:f.reduce((s,j)=>s+rot[j][2],0)/f.length})).sort((a,b)=>a.z-b.z);let out=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${def.name}"><rect class="svg-soft" x="0" y="0" width="${w}" height="${h}" rx="20"/>`;
+if(title)out+=`<text x="${w/2}" y="36" text-anchor="middle" class="viewer-title">${title}</text>`;
+faceData.forEach(fd=>{const isBase=def.bases.includes(fd.i);let cls="face "+(isBase?"base-face":"side-face "+(fd.i%3===0?"alt":fd.i%3===1?"alt2":""));if(mode==="bases"){if(isBase)cls+=" base-highlight";else cls+=" dim-face"}if(mode==="vertices"||mode==="edges")cls+=" dim-face";const poly=fd.f.map(j=>pts[j][0].toFixed(1)+","+pts[j][1].toFixed(1)).join(" ");out+=`<polygon class="${cls}" points="${poly}"/>`});
+const edges=uniqueEdges(def.faces);edges.forEach(([a,b])=>{let cls="edge-line";if(mode==="edges")cls+=" edge-highlight";if(mode==="bases")cls+=" dim-edge";out+=`<line class="${cls}" x1="${pts[a][0]}" y1="${pts[a][1]}" x2="${pts[b][0]}" y2="${pts[b][1]}"/>`});
+if(mode==="vertices")pts.forEach((p,i)=>out+=`<circle class="vertex-dot" cx="${p[0]}" cy="${p[1]}" r="9"/><text class="svg-label" x="${p[0]+12}" y="${p[1]-9}">${i+1}</text>`);
+if(mode==="faces"){faceData.forEach((fd,k)=>{const cx=fd.f.reduce((s,j)=>s+pts[j][0],0)/fd.f.length,cy=fd.f.reduce((s,j)=>s+pts[j][1],0)/fd.f.length;out+=`<circle cx="${cx}" cy="${cy}" r="18" fill="#fff" stroke="#6d43bd" stroke-width="4"/><text x="${cx}" y="${cy+7}" text-anchor="middle" font-size="19" font-weight="1000" fill="#6d43bd">${fd.i+1}</text>`})}
+if(mode==="bases")out+=`<text x="${w/2}" y="${h-24}" text-anchor="middle" class="viewer-caption">两个底面同时高亮</text>`;
+out+="</svg>";return out}
+
+/* draggable viewer */
+function makeDraggable(host,getDef,onRender){let rx=(getDef().rx??-.24),ry=(getDef().ry??.72),drag=false,last=null;function render(mode="normal"){const def=getDef();host.innerHTML=prismSvg(def,{w:760,h:500,rx,ry,scale:def.scale||155,mode});onRender&&onRender({rx,ry,render})}function setAngles(nx,ny){rx=nx;ry=ny;render(host.dataset.mode||"normal")}host._renderMode=mode=>render(mode);host.addEventListener("pointerdown",e=>{drag=true;last=[e.clientX,e.clientY];host.setPointerCapture?.(e.pointerId)});host.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-last[0],dy=e.clientY-last[1];last=[e.clientX,e.clientY];ry+=dx*.012;rx+=dy*.009;rx=Math.max(-1.05,Math.min(.85,rx));render(host.dataset.mode||"normal")});host.addEventListener("pointerup",()=>drag=false);host.addEventListener("pointercancel",()=>drag=false);render();return {render,setAngles,angles:()=>({rx,ry})}}
+function staticSolidSvg(kind,w=520,h=330){if(kind==="cylinder")return `<svg viewBox="0 0 ${w} ${h}"><rect class="svg-soft" width="${w}" height="${h}" rx="18"/><ellipse cx="260" cy="88" rx="112" ry="42" fill="#ffe49b" stroke="#2a5d8b" stroke-width="6"/><path d="M148 88 V235 C148 260 372 260 372 235 V88" fill="#cde7f8" stroke="#2a5d8b" stroke-width="6"/><ellipse cx="260" cy="235" rx="112" ry="42" fill="#d8edf9" stroke="#2a5d8b" stroke-width="6"/></svg>`;if(kind==="pyramid")return `<svg viewBox="0 0 ${w} ${h}"><rect class="svg-soft" width="${w}" height="${h}" rx="18"/><polygon points="260,48 118,235 390,235" fill="#d9f0e4" stroke="#2a5d8b" stroke-width="6"/><polygon points="260,48 390,235 435,198" fill="#ded2f6" stroke="#2a5d8b" stroke-width="6"/><polygon points="118,235 390,235 435,198 168,198" fill="#ffe59a" stroke="#2a5d8b" stroke-width="6"/></svg>`;return prismSvg(prismDefs[kind],{w,h,scale:prismDefs[kind].miniScale||95,rx:prismDefs[kind].rx,ry:prismDefs[kind].ry})}
+
+/* screen 1 */
+function renderRecall(){const items=[["A","tri","三角棱柱体"],["B","square","正方棱柱体"],["C","rect","长方棱柱体"]];$("recallGrid").innerHTML=items.map(([L,k,n])=>`<div class="card recall-card"><div class="model-letter">${L}</div><div class="model-mini">${prismSvg(prismDefs[k],{w:480,h:300,scale:prismDefs[k].miniScale||90,rx:prismDefs[k].rx,ry:prismDefs[k].ry})}</div><div class="hidden-name masked" data-recall-name>${"？"}</div></div>`).join("")}
+renderRecall();
+$("revealNames").addEventListener("click",()=>{clickSound();["三角棱柱体","正方棱柱体","长方棱柱体"].forEach((n,i)=>{const el=document.querySelectorAll("[data-recall-name]")[i];el.textContent=n;el.classList.remove("masked")});$("recallQuestion").textContent="A、B、C 的名字回来了。现在：它们为什么都能放在“棱柱体”这一组？";$("recallEvidence").classList.remove("hidden");$("recallFeedback").textContent="先让学生说一个共同点，再进入下一页找证据。"});
+$("recallEvidence").addEventListener("click",()=>{$("recallFeedback").className="feedback note";$("recallFeedback").innerHTML="不要急着背定义：下一页用模型检查<strong>底面、平面、顶点和边</strong>。";good()});
+
+/* screen 2 */
+let labPrism="tri",labMode="normal",labViewerController=null,labExtracted=false;
+function initLab(){labViewerController=makeDraggable($("labViewer"),()=>prismDefs[labPrism]);$("labViewer").dataset.mode="normal"}
+initLab();
+function renderLab(){if(!labViewerController)return;$("labViewer").dataset.mode=labMode;labViewerController.render(labMode);document.querySelectorAll("#labTabs .tab").forEach(b=>b.classList.toggle("active",b.dataset.prism===labPrism));document.querySelectorAll("#labTools [data-mode]").forEach(b=>b.classList.toggle("active",b.dataset.mode===labMode));if(!labExtracted)$("conceptBoard").classList.remove("show")}
+function resetLabCounts(){["countBases","countFaces","countVertices","countEdges"].forEach(id=>$(id).textContent="？");$("baseFact").innerHTML="先找出两个底面，再说一说它们有什么关系。";labMode="normal";labExtracted=false;$("conceptBoard").classList.remove("show")}
+$("labTabs").addEventListener("click",e=>{const b=e.target.closest("[data-prism]");if(!b)return;labPrism=b.dataset.prism;resetLabCounts();labViewerController.setAngles(prismDefs[labPrism].rx,prismDefs[labPrism].ry);renderLab();clickSound()});
+$("labTools").addEventListener("click",e=>{const b=e.target.closest("[data-mode]");if(!b)return;labMode=b.dataset.mode;$("labViewer").dataset.mode=labMode;labViewerController.render(labMode);document.querySelectorAll("#labTools [data-mode]").forEach(x=>x.classList.toggle("active",x===b));if(labMode==="bases"){$("countBases").textContent="2 个";$("baseFact").innerHTML="棱柱体的底面是两个<strong>互相平行</strong>和<strong>大小相同</strong>的平面。"}else if(labMode==="faces"){$("baseFact").textContent="先让学生观察并数平面，再点击“检查数量”。"}else if(labMode==="vertices"){$("baseFact").textContent="红点标出所有顶点。先让学生数，再检查。"}else if(labMode==="edges"){$("baseFact").textContent="紫色加粗线标出所有边。先让学生数，再检查。"}clickSound()});
+$("revealCounts").addEventListener("click",()=>{const c=prismDefs[labPrism].counts;$("countBases").textContent=c.bases+" 个";$("countFaces").textContent=c.faces+" 个";$("countVertices").textContent=c.vertices+" 个";$("countEdges").textContent=c.edges+" 条";$("baseFact").innerHTML=labPrism==="tri"?"三角棱柱体：<strong>5 个平面、6 个顶点、9 条边</strong>。":"这两个棱柱体都有<strong>6 个平面、8 个顶点、12 条边</strong>；名字不同，要回去看底面的形状。";good()});
+$("extractBase").addEventListener("click",()=>{labExtracted=true;labMode="bases";$("labViewer").dataset.mode=labMode;labViewerController.render(labMode);$("conceptBoard").classList.add("show");$("baseFact").innerHTML="一个底面从立体中“抽出来”后，我们看见的是<strong>二维图形</strong>。棱柱体根据底面的形状来命名。";good()});
+
+/* screen 3 */
+const classifyItems=[{id:"A",kind:"tri",isPrism:true},{id:"B",kind:"rect",isPrism:true},{id:"C",kind:"cylinder",isPrism:false},{id:"D",kind:"pyramid",isPrism:false}];
+let classifySelected=new Set();
+function renderClassify(){$("classifyGrid").innerHTML=classifyItems.map(it=>`<button class="solid-choice ${classifySelected.has(it.id)?"selected":""}" data-classify="${it.id}"><div class="solid-visual">${staticSolidSvg(it.kind)}</div><div class="solid-label">${it.id}</div></button>`).join("")}
+renderClassify();
+$("classifyGrid").addEventListener("click",e=>{const b=e.target.closest("[data-classify]");if(!b)return;const id=b.dataset.classify;classifySelected.has(id)?classifySelected.delete(id):classifySelected.add(id);renderClassify();clickSound()});
+$("clearClassify").addEventListener("click",()=>{classifySelected.clear();renderClassify();$("classifyEvidence").classList.remove("show");$("classifyFeedback").className="feedback";$("classifyFeedback").textContent="你可以先根据同学的口头答案点选，不立即揭晓。"});
+$("checkClassify").addEventListener("click",()=>{renderClassify();document.querySelectorAll("[data-classify]").forEach(b=>{const it=classifyItems.find(x=>x.id===b.dataset.classify);if(it.isPrism)b.classList.add("correct-after");else b.classList.add("dim")});$("classifyEvidence").classList.add("show");const ok=classifySelected.size===2&&classifySelected.has("A")&&classifySelected.has("B");$("classifyFeedback").className="feedback "+(ok?"good":"note");$("classifyFeedback").innerHTML=ok?"A、B 是棱柱体。追问：<strong>D 也有平面、顶点和边，为什么还不是？</strong>":"正确的棱柱体是 A、B。不要只纠正答案，回到<strong>两个底面</strong>的特征追问理由。";good()});
+
+/* screen 4 */
+let symIndex=0,symSelected=null,symChecked=false;
+const symCases=[
+ {name:"正方形 + 对角线",correct:"yes",kind:"square",note:"正方形沿这条对角线对折，两个部分会完全重合。"},
+ {name:"长方形 + 对角线",correct:"no",kind:"rect",note:"非正方形的长方形沿对角线对折，两个部分不能完全重合。"},
+ {name:"正三角形 + 顶点到对边中点",correct:"yes",kind:"tri",note:"正三角形从顶点连到对边中点，对折后两个部分的形状和大小相同。"}
+];
+const symGeom={
+ square:{outline:[[190,85],[510,85],[510,405],[190,405]],axis:[[190,85],[510,405]],static:[[190,85],[510,85],[510,405]],movingStart:[[190,85],[190,405],[510,405]],movingEnd:[[190,85],[510,85],[510,405]],label:"正方形 · 对角线"},
+ rect:{outline:[[125,125],[575,125],[575,375],[125,375]],axis:[[125,125],[575,375]],static:[[125,125],[575,125],[575,375]],movingStart:[[125,125],[125,375],[575,375]],movingEnd:[[125,125],[340,52],[575,375]],label:"长方形（不是正方形）· 对角线"},
+ tri:{outline:[[350,65],[120,405],[580,405]],axis:[[350,65],[350,405]],static:[[350,65],[580,405],[350,405]],movingStart:[[350,65],[350,405],[120,405]],movingEnd:[[350,65],[350,405],[580,405]],label:"正三角形 · 顶点到对边中点"}
+};
+function ptsAttr(arr){return arr.map(p=>p[0]+","+p[1]).join(" ")}
+function symSvg(c){const g=symGeom[c.kind];const outPts=ptsAttr(g.outline),axis=g.axis;return `<svg viewBox="0 0 700 500" data-sym-kind="${c.kind}"><rect width="700" height="500" rx="20" fill="#fffdfa"/><polygon class="sym-outline ${c.kind==="square"?"square-shape":c.kind==="rect"?"rect-shape":"tri-shape"}" points="${outPts}" fill="#fff8e6" opacity=".22"/><polygon id="symStatic" class="sym-static ${c.kind==="square"?"square-shape":c.kind==="rect"?"rect-shape":"tri-shape"}" points="${ptsAttr(g.static)}"/><polygon id="symMoving" class="sym-moving ${c.kind==="square"?"square-shape":c.kind==="rect"?"rect-shape":"tri-shape"}" points="${ptsAttr(g.movingStart)}"/><line class="candidate-axis" x1="${axis[0][0]}" y1="${axis[0][1]}" x2="${axis[1][0]}" y2="${axis[1][1]}"/><circle class="sym-axis-dot" cx="${axis[0][0]}" cy="${axis[0][1]}" r="7"/><circle class="sym-axis-dot" cx="${axis[1][0]}" cy="${axis[1][1]}" r="7"/><text x="350" y="460" text-anchor="middle" class="svg-label">${g.label}</text></svg>`}
+function animateSymFold(kind){const host=$("symCanvas");const svg=host.querySelector("svg");if(!svg)return;const moving=svg.querySelector("#symMoving"),stat=svg.querySelector("#symStatic");if(!moving||!stat)return;const g=symGeom[kind],start=g.movingStart,end=g.movingEnd;moving.classList.add("is-animating");stat.classList.add("target-glow");const t0=performance.now(),duration=820;function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t}function step(now){const raw=Math.min(1,(now-t0)/duration),e=ease(raw);const pts=start.map((p,i)=>[p[0]+(end[i][0]-p[0])*e,p[1]+(end[i][1]-p[1])*e]);moving.setAttribute("points",ptsAttr(pts));moving.style.opacity=String(.96-.36*e);if(raw<1){requestAnimationFrame(step)}else{moving.classList.add("fade-soft");setTimeout(()=>{moving.setAttribute("points",ptsAttr(start));moving.style.opacity=".92";moving.classList.remove("is-animating","fade-soft");stat.classList.remove("target-glow")},260)}}requestAnimationFrame(step)}
+function renderSym(){const c=symCases[symIndex];$("symCanvas").innerHTML=symSvg(c);$("symTitle").textContent=c.name;$("symProgress").textContent="第 "+(symIndex+1)+" / 3 题";document.querySelectorAll("[data-sym-answer]").forEach(b=>b.classList.toggle("selected",b.dataset.symAnswer===symSelected));$("symFeedback").className="feedback";$("symFeedback").textContent=symChecked?c.note:"先记录预测，不立即显示答案。";$("nextSym").disabled=!symChecked;$("nextSym").textContent=symIndex===2?"↺ 再看三题":"下一题 ▶"}
+document.querySelector(".answer-pair").addEventListener("click",e=>{const b=e.target.closest("[data-sym-answer]");if(!b||symChecked)return;symSelected=b.dataset.symAnswer;renderSym();clickSound()});
+$("foldCheck").addEventListener("click",()=>{if(!symSelected){$("symFeedback").className="feedback note";$("symFeedback").textContent="先请学生预测“是 / 不是”，再对折检查。";return}const c=symCases[symIndex];symChecked=true;animateSymFold(c.kind);$("symFeedback").className="feedback "+(symSelected===c.correct?"good":"note");$("symFeedback").innerHTML=(symSelected===c.correct?"预测正确。":"先比较预测与对折结果。")+" "+c.note;$("nextSym").disabled=false;good()});
+$("nextSym").addEventListener("click",()=>{symIndex=symIndex===2?0:symIndex+1;symSelected=null;symChecked=false;renderSym();clickSound()});
+renderSym();
+
+/* screen 5 mission */
+let missionStage=1,missionChoice=null,axisCount=0,diagPrediction=null;
+function updateProgress(){document.querySelectorAll(".progress-step").forEach(el=>{const n=Number(el.dataset.pstep);el.classList.toggle("active",n===Math.min(missionStage,4));el.classList.toggle("done",n<Math.min(missionStage,4)||(missionStage>4&&n<=4))})}
+function giftSvg(kind){return staticSolidSvg(kind,480,300)}
+function missionStage1(){return `<h2 class="mission-title">学校要选择一个礼物盒</h2><div class="conditions"><div class="condition-line" data-cond>① 它必须是 <strong>棱柱体</strong>。</div><div class="condition-line" data-cond>② 一个 <strong>底面</strong>有 <strong>4 条对称轴</strong>。</div></div><div class="stage-note">哪一个礼物盒符合条件？</div><div class="center-actions"><button class="btn primary" id="highlightConditions">找出条件</button><button class="btn purple hidden" id="missionNext1">下一步：看模型 ▶</button></div><div class="feedback note" id="missionFeedback">先让学生说出最重要的条件，再点击“找出条件”。</div>`}
+function missionStage2(){const items=[["A","tri"],["B","square"],["C","rect"],["D","cylinder"]];return `<div class="stage-note">条件 ①：必须是<strong class="keyword">棱柱体</strong>。哪一个可以先排除？</div><div class="gift-grid">${items.map(([L,k])=>`<button class="gift-card" data-gift="${L}"><span class="gift-ribbon">🎁</span><div class="gift-model">${giftSvg(k)}</div><div class="gift-letter">${L}</div></button>`).join("")}</div><div class="center-actions"><button class="btn green" id="excludeGift">排除不是棱柱体的模型</button><button class="btn purple hidden" id="missionNext2">下一步：检查底面 ▶</button></div><div class="feedback" id="missionFeedback">先口头说：为什么 D 不是棱柱体？</div>`}
+function base2dSvg(kind){if(kind==="tri")return `<svg viewBox="0 0 300 180"><polygon class="tri-shape" points="150,18 42,162 258,162"/></svg>`;if(kind==="square")return `<svg viewBox="0 0 300 180"><rect class="square-shape" x="70" y="18" width="160" height="160"/></svg>`;return `<svg viewBox="0 0 300 180"><rect class="rect-shape" x="38" y="43" width="224" height="112"/></svg>`}
+function missionStage3(){const items=[["A","tri"],["B","square"],["C","rect"]];return `<div class="stage-note">条件 ② 跟<strong class="keyword">底面</strong>有关。先把每个底面从立体里“拿出来”。</div><div class="base-extract-grid">${items.map(([L,k])=>`<div class="base-column"><strong style="font-size:27px">${L}</strong><div class="base-small3d">${giftSvg(k)}</div><div class="connector"></div><div class="base2d">${base2dSvg(k)}</div><button class="predict-btn ${missionChoice===L?"selected":""}" data-mission-predict="${L}">预测 ${L}</button></div>`).join("")}</div><div class="feedback note" id="missionFeedback">哪一个底面<strong>可能</strong>有 4 条对称轴？先预测，不立即揭晓。</div><div class="center-actions" style="margin-top:11px"><button class="btn purple" id="missionNext3" ${missionChoice?"":"disabled"}>找证据 ▶</button></div>`}
+function squareAxisSvg(n){const lines=[`<line class="proved-axis" x1="350" y1="72" x2="350" y2="428" stroke="#d33b3b"/>`,`<line class="proved-axis" x1="172" y1="250" x2="528" y2="250" stroke="#2364aa"/>`,`<line class="proved-axis" x1="172" y1="72" x2="528" y2="428" stroke="#6d43bd"/>`,`<line class="proved-axis" x1="528" y1="72" x2="172" y2="428" stroke="#20956f"/>`];return `<svg viewBox="0 0 700 500"><rect width="700" height="500" fill="#fffdfa" rx="20"/><rect class="square-shape" x="172" y="72" width="356" height="356"/>${lines.slice(0,n).join("")}<text x="350" y="470" text-anchor="middle" class="svg-label">正方形底面</text></svg>`}
+function animateMissionDiagonal(){const box=document.querySelector(".axis-canvas svg");if(!box)return;const overlay=document.createElementNS("http://www.w3.org/2000/svg","polygon");overlay.setAttribute("points","172,72 172,428 528,428");overlay.setAttribute("fill","#d9f0e4");overlay.setAttribute("stroke","#2364aa");overlay.setAttribute("stroke-width","7");overlay.setAttribute("opacity",".9");box.appendChild(overlay);const start=[[172,72],[172,428],[528,428]],end=[[172,72],[528,72],[528,428]];const t0=performance.now(),dur=780;function ease(t){return t<.5?2*t*t:-1+(4-2*t)*t}function pts(a){return a.map(p=>p[0]+","+p[1]).join(" ")}function step(now){const raw=Math.min(1,(now-t0)/dur),e=ease(raw);overlay.setAttribute("points",pts(start.map((p,i)=>[p[0]+(end[i][0]-p[0])*e,p[1]+(end[i][1]-p[1])*e])));overlay.setAttribute("opacity",String(.95-.35*e));if(raw<1)requestAnimationFrame(step);else setTimeout(()=>overlay.remove(),120)}requestAnimationFrame(step)}
+function missionStage4(){const eq=axisCount?Array(axisCount).fill("1").join(" + ")+(axisCount===4?" = 4":""):"";return `<div class="axis-work"><div class="card axis-canvas">${squareAxisSvg(axisCount)}</div><aside class="card axis-panel"><p style="margin:0;color:var(--purple);font-weight:900">③ 找证据</p><h2 style="color:var(--blue);margin:5px 0 10px">怎样证明正方形有 4 条对称轴？</h2><div class="axis-count">${axisCount} / 4</div><div class="axis-equation">${eq}</div>${axisCount<2?`<button class="btn green" id="addAxis" style="width:100%">画下一条</button>`:axisCount===2?`<p style="font-weight:900;font-size:23px">正方形的对角线可以是对称轴吗？</p><div class="answer-pair"><button class="choice ${diagPrediction==="yes"?"selected":""}" data-diag="yes">可以</button><button class="choice ${diagPrediction==="no"?"selected":""}" data-diag="no">不可以</button></div><button class="btn green" id="checkDiagonal" style="width:100%" ${diagPrediction?"":"disabled"}>对折检查</button>`:axisCount===3?`<button class="btn green" id="addAxis" style="width:100%">再找最后一条</button>`:`<div class="feedback good">1 + 1 + 1 + 1 = <strong>4 条对称轴</strong></div><button class="btn purple" id="missionNext4" style="width:100%;margin-top:10px">说明并检查 ▶</button>`}<div class="feedback note" id="missionFeedback" style="margin-top:11px">${axisCount<4?"每画一条，都要能用对折证明两个部分的形状和大小相同。":"证据已经完整。现在回到题目说明答案。"}</div></aside></div>`}
+function missionStage5(){return `<div style="display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:18px;align-items:center"><div class="card" style="padding:12px"><div style="height:390px">${giftSvg("square")}</div><div style="text-align:center;font-size:28px;font-weight:1000">B · 正方棱柱体</div></div><div><div class="answer-frame">我选择 <span class="blank" id="blank1">________</span>。<br><br>因为它的底面是 <span class="blank" id="blank2">________</span>，<br><br>有 <span class="blank" id="blank3">________</span> 条对称轴。</div><div class="center-actions" style="margin-top:13px"><button class="btn green" id="showMissionAnswer">显示完整答案</button></div><div class="complete-answer hidden" id="completeMissionAnswer">我选择 <strong>B，正方棱柱体</strong>。因为它的底面是<strong>正方形</strong>，正方形有 <strong>4 条对称轴</strong>。</div><div class="feedback note" id="missionChallenge" style="margin-top:12px">追问：“因为它是正方棱柱体。”这个理由完整吗？</div><div class="answer-pair"><button class="choice" data-complete="yes">完整</button><button class="choice" data-complete="no">还缺证据</button></div></div></div>`}
+function renderMission(){updateProgress();let html=missionStage===1?missionStage1():missionStage===2?missionStage2():missionStage===3?missionStage3():missionStage===4?missionStage4():missionStage5();$("missionStage").innerHTML=html;bindMissionStage()}
+function bindMissionStage(){if(missionStage===1){$("highlightConditions").onclick=()=>{document.querySelectorAll("[data-cond]").forEach((el,i)=>setTimeout(()=>el.classList.add("highlight"),i*220));$("missionFeedback").className="feedback good";$("missionFeedback").innerHTML="找到了：<strong>棱柱体</strong>、<strong>底面</strong>、<strong>4 条对称轴</strong>。";$("missionNext1").classList.remove("hidden");good()};$("missionNext1").onclick=()=>{missionStage=2;renderMission();clickSound()}}
+else if(missionStage===2){document.querySelectorAll("[data-gift]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-gift]").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");missionChoice=b.dataset.gift;clickSound()});$("excludeGift").onclick=()=>{const d=document.querySelector('[data-gift="D"]');d.classList.add("excluded");$("missionFeedback").className="feedback good";$("missionFeedback").innerHTML="D 是圆柱体，可以先排除。接着不要看外形，去检查 A、B、C 的<strong>底面</strong>。";$("missionNext2").classList.remove("hidden");good()};$("missionNext2").onclick=()=>{missionStage=3;missionChoice=null;renderMission();clickSound()}}
+else if(missionStage===3){document.querySelectorAll("[data-mission-predict]").forEach(b=>b.onclick=()=>{missionChoice=b.dataset.missionPredict;renderMission();$("missionFeedback").className="feedback note";$("missionFeedback").innerHTML="已记录预测：<strong>"+missionChoice+"</strong>。现在先找证据，不立即判对错。";clickSound()});$("missionNext3").onclick=()=>{missionStage=4;axisCount=0;diagPrediction=null;renderMission();clickSound()}}
+else if(missionStage===4){const add=$("addAxis");if(add)add.onclick=()=>{axisCount++;renderMission();good()};document.querySelectorAll("[data-diag]").forEach(b=>b.onclick=()=>{diagPrediction=b.dataset.diag;renderMission();clickSound()});const cd=$("checkDiagonal");if(cd)cd.onclick=()=>{animateMissionDiagonal();setTimeout(()=>{axisCount=3;renderMission();const mf=$("missionFeedback");mf.className="feedback good";mf.innerHTML="可以。正方形沿对角线对折，两个部分会完全重合，所以这也是一条对称轴。";good()},860)};const nx=$("missionNext4");if(nx)nx.onclick=()=>{missionStage=5;renderMission();clickSound()}}
+else{$("showMissionAnswer").onclick=()=>{$("blank1").textContent="B，正方棱柱体";$("blank2").textContent="正方形";$("blank3").textContent="4";$("completeMissionAnswer").classList.remove("hidden");good()};document.querySelectorAll("[data-complete]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-complete]").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");$("missionChallenge").className="feedback "+(b.dataset.complete==="no"?"good":"note");$("missionChallenge").innerHTML=b.dataset.complete==="no"?"对。还需要说出证据：<strong>底面是正方形，而且有 4 条对称轴。</strong>":"再想一想：这个说法还没有解释<strong>为什么符合 4 条对称轴</strong>这个条件。";if(b.dataset.complete==="no")good();else clickSound()})}}
+renderMission();
+
+/* exit ticket */
+const exitQuestions=[
+ {type:"visual",title:"Q1　下面哪一个是三角棱柱体？",options:["A","B","C","D"],answer:"A",visual:"solids"},
+ {type:"multi",title:"Q2　关于棱柱体的底面，以下哪些说法正确？",items:["I　棱柱体有两个底面。","II　两个底面互相平行。","III　两个底面的形状和大小都相同。","IV　两个底面一定是正方形。"],answer:[0,1,2]},
+ {type:"single",title:"Q3　一个三角棱柱体有多少个顶点？",options:["A　5 个","B　6 个","C　8 个","D　9 个"],answer:1,visual:"tri"},
+ {type:"single",title:"Q4　正六边形有多少条对称轴？",options:["A　3 条","B　4 条","C　6 条","D　8 条"],answer:2,visual:"hex"},
+ {type:"single",title:"Q5　一个棱柱体的底面是长方形。这个底面不是正方形。它有多少条对称轴？",options:["A　1 条","B　2 条","C　3 条","D　4 条"],answer:1,visual:"rect2d"}
+];
+let exitIndex=0,exitAnswers=[null,null,null,null,null],exitComplete=false,showKey=false;
+function exitVisual(kind){if(kind==="tri")return prismSvg(prismDefs.tri,{w:700,h:280,scale:80,rx:prismDefs.tri.rx,ry:prismDefs.tri.ry});if(kind==="hex")return `<svg viewBox="0 0 700 280"><polygon class="hex-shape" points="350,35 495,105 495,205 350,275 205,205 205,105"/></svg>`;if(kind==="rect2d")return `<svg viewBox="0 0 700 280"><rect class="rect-shape" x="150" y="70" width="400" height="150"/><text x="350" y="255" text-anchor="middle" class="svg-label">长方形（不是正方形）</text></svg>`;return ""}
+function renderExitDots(){$("exitDots").innerHTML=exitQuestions.map((q,i)=>`<span class="exit-dot ${i<exitIndex||exitComplete?"done":""} ${i===exitIndex&&!exitComplete?"active":""}"></span>`).join("")}
+function renderExit(){renderExitDots();if(exitComplete){$("exitHost").innerHTML=`<div class="card completion"><h2>已完成 5 题</h2><p>正在把 5 题作答记录到 Google Sheets…</p><div class="center-actions"><button class="btn primary" id="reviewExit">显示答案</button><button class="btn ghost" id="redoExit">重新作答</button></div><div class="answer-key ${showKey?"show":""}" id="answerKey"><table><tr><th>题目</th><th>答案</th><th>诊断</th></tr><tr><td>Q1</td><td>A</td><td>辨认三角棱柱体</td></tr><tr><td>Q2</td><td>I、II、III</td><td>棱柱体底面特征</td></tr><tr><td>Q3</td><td>B（6 个）</td><td>顶点数量</td></tr><tr><td>Q4</td><td>C（6 条）</td><td>正六边形对称轴</td></tr><tr><td>Q5</td><td>B（2 条）</td><td>二维底面对称轴迁移</td></tr></table></div></div>`;$("reviewExit").onclick=()=>{showKey=!showKey;$("answerKey").classList.toggle("show",showKey);$("reviewExit").textContent=showKey?"隐藏答案":"显示答案";clickSound()};$("redoExit").onclick=()=>{exitIndex=0;exitAnswers=[null,null,null,null,null];exitComplete=false;showKey=false;renderExit();clickSound()};return}
+const q=exitQuestions[exitIndex];let body="";if(q.type==="visual"){const models=[["A","tri"],["B","rect"],["C","cylinder"],["D","pyramid"]];body=`<div class="classify-grid" style="grid-template-columns:repeat(4,1fr)">${models.map(([L,k])=>`<button class="solid-choice ${exitAnswers[exitIndex]===L?"selected":""}" data-exit-value="${L}"><div class="solid-visual">${staticSolidSvg(k)}</div><div class="solid-label">${L}</div></button>`).join("")}</div>`}else if(q.type==="multi"){const selected=exitAnswers[exitIndex]||[];body=`<div class="multi-list">${q.items.map((t,i)=>`<label class="multi-item"><input type="checkbox" data-exit-check="${i}" ${selected.includes(i)?"checked":""}><span>${t}</span></label>`).join("")}</div>`}else{body=(q.visual?`<div class="question-visual">${exitVisual(q.visual)}</div>`:"")+`<div class="exit-options-grid">${q.options.map((t,i)=>`<button class="exit-option ${exitAnswers[exitIndex]===i?"selected":""}" data-exit-single="${i}">${t}</button>`).join("")}</div>`}
+$("exitHost").innerHTML=`<div class="card question-card"><h2>${q.title}</h2>${body}<div class="feedback note" id="exitFeedback" style="margin-top:14px">独立作答。课堂模式只记录，不立即显示正确答案。</div><div class="exit-footer"><button class="btn ghost" id="exitPrev" ${exitIndex===0?"disabled":""}>◀ 上一题</button><strong>Q${exitIndex+1} / 5</strong><button class="btn primary" id="exitNext">${exitIndex===4?"提交 5 题":"记录并下一题 ▶"}</button></div></div>`;
+document.querySelectorAll("[data-exit-value]").forEach(b=>b.onclick=()=>{exitAnswers[exitIndex]=b.dataset.exitValue;renderExit();clickSound()});document.querySelectorAll("[data-exit-single]").forEach(b=>b.onclick=()=>{exitAnswers[exitIndex]=Number(b.dataset.exitSingle);renderExit();clickSound()});document.querySelectorAll("[data-exit-check]").forEach(ch=>ch.onchange=()=>{let arr=[...document.querySelectorAll("[data-exit-check]:checked")].map(x=>Number(x.dataset.exitCheck));exitAnswers[exitIndex]=arr});$("exitPrev").onclick=()=>{if(exitIndex>0){exitIndex--;renderExit();clickSound()}};$("exitNext").onclick=()=>{let ans=exitAnswers[exitIndex];const empty=ans===null||(Array.isArray(ans)&&ans.length===0);if(empty){$("exitFeedback").className="feedback note";$("exitFeedback").textContent="请先记录这一题的选择。";return}if(exitIndex<4){exitIndex++;renderExit();clickSound()}else{exitComplete=true;renderExit();good()}}}
+renderExit();
+
+/* resets */
+function resetCurrent(){if(current==="recall"){renderRecall();$("recallQuestion").textContent="先不要说名字：它们有什么共同的地方？";$("recallEvidence").classList.add("hidden");$("recallFeedback").className="feedback note";$("recallFeedback").textContent="先听同学的想法，再检查。"}
+else if(current==="lab"){labPrism="tri";resetLabCounts();renderLab()}
+else if(current==="classify"){classifySelected.clear();renderClassify();$("classifyEvidence").classList.remove("show");$("classifyFeedback").className="feedback";$("classifyFeedback").textContent="你可以先根据同学的口头答案点选，不立即揭晓。"}
+else if(current==="symmetry"){symIndex=0;symSelected=null;symChecked=false;renderSym()}
+else if(current==="mission"){missionStage=1;missionChoice=null;axisCount=0;diagPrediction=null;renderMission()}
+else if(current==="exit"){exitIndex=0;exitAnswers=[null,null,null,null,null];exitComplete=false;showKey=false;renderExit()}clickSound()}
+$("resetPage").addEventListener("click",resetCurrent);
+})();
+</script>
+<script src="./week4-l2-exit.js"></script>
+</body>
+</html>
