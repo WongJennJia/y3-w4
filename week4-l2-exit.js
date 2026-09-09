@@ -12,7 +12,16 @@
   ];
   var OPTION_LABELS = ["A", "B", "C", "D"];
   var MULTI_LABELS = ["I", "II", "III", "IV"];
+  var ANSWER_KEYS = ["A", "I,II,III", "B", "C", "B"];
+  var FEEDBACK_MESSAGES = [
+    "<strong>Q1 反馈：</strong>三角棱柱体有两个形状、大小相同且互相平行的三角形底面。正确答案是 <strong>A</strong>。",
+    "<strong>Q2 反馈：</strong>棱柱体有两个互相平行、形状和大小相同的底面；底面不一定是正方形。正确答案是 <strong>I、II、III</strong>。",
+    "<strong>Q3 反馈：</strong>三角棱柱体的两个三角形底面各有 3 个顶点，所以一共有 <strong>6 个顶点（B）</strong>。",
+    "<strong>Q4 反馈：</strong>正六边形有 3 条经过相对顶点的对称轴，也有 3 条经过相对边中点的对称轴，共 <strong>6 条（C）</strong>。",
+    "<strong>Q5 反馈：</strong>非正方形的长方形只有横向和竖向两条中线是对称轴，因此有 <strong>2 条（B）</strong>。"
+  ];
   var answers = [null, null, null, null, null];
+  var feedbackShown = [false, false, false, false, false];
   var submitting = false;
 
   function byId(id) {
@@ -116,6 +125,80 @@
     if (completion) completion.textContent = message;
   }
 
+  function answerIsCorrect(index) {
+    return !!answers[index] && answers[index].selectedOption === ANSWER_KEYS[index];
+  }
+
+  function showQuestionFeedback(index) {
+    var feedback = byId("exitFeedback");
+    var nextButton = byId("exitNext");
+    if (!feedback || !answers[index]) return;
+    var correct = answerIsCorrect(index);
+    feedback.className = "feedback " + (correct ? "good" : "note");
+    feedback.innerHTML = (correct ? "✓ 回答正确。" : "再检查一次。") + " " + FEEDBACK_MESSAGES[index];
+
+    if (index === 0) {
+      document.querySelectorAll("[data-exit-value]").forEach(function (button) {
+        var value = button.getAttribute("data-exit-value");
+        button.disabled = true;
+        if (value === ANSWER_KEYS[index]) button.classList.add("answer-correct-review");
+        else if (value === answers[index].selectedOption) button.classList.add("answer-wrong-review");
+      });
+    } else if (index === 1) {
+      var chosen = answers[index].selectedOption.split(",");
+      document.querySelectorAll("[data-exit-check]").forEach(function (input) {
+        var label = MULTI_LABELS[Number(input.getAttribute("data-exit-check"))];
+        input.disabled = true;
+        if (ANSWER_KEYS[index].split(",").indexOf(label) !== -1) input.closest(".multi-item").classList.add("answer-correct-review");
+        else if (chosen.indexOf(label) !== -1) input.closest(".multi-item").classList.add("answer-wrong-review");
+      });
+    } else {
+      document.querySelectorAll("[data-exit-single]").forEach(function (button) {
+        var label = OPTION_LABELS[Number(button.getAttribute("data-exit-single"))];
+        button.disabled = true;
+        if (label === ANSWER_KEYS[index]) button.classList.add("answer-correct-review");
+        else if (label === answers[index].selectedOption) button.classList.add("answer-wrong-review");
+      });
+    }
+    if (nextButton) nextButton.textContent = index === 4 ? "查看结果并提交 ▶" : "下一题 ▶";
+  }
+
+  function pieCard(title, correct, total, subtitle, cardId) {
+    var rate = total ? Math.round(correct / total * 100) : 0;
+    var degrees = total ? Math.round(correct / total * 360) : 0;
+    return '<div class="pie-summary-card"' + (cardId ? ' id="' + cardId + '"' : '') + '>' +
+      '<div class="result-donut" style="--pie-deg:' + degrees + 'deg" role="img" aria-label="' + title + '正确率 ' + rate + '%"><strong>' + correct + ' / ' + total + '</strong></div>' +
+      '<div class="pie-copy"><h3>' + title + '</h3><p>' + subtitle + ' · 正确率 ' + rate + '%</p></div></div>';
+  }
+
+  function renderPersonalPie() {
+    var completionText = document.querySelector("#exitHost .completion p");
+    if (!completionText) return;
+    var old = byId("exitResultPies");
+    if (old) old.remove();
+    var score = answers.reduce(function (sum, answer, index) {
+      return sum + (answer && answer.selectedOption === ANSWER_KEYS[index] ? 1 : 0);
+    }, 0);
+    completionText.insertAdjacentHTML("afterend", '<div class="result-pies" id="exitResultPies">' + pieCard("本次个人结果", score, 5, "绿色为答对，红色为需要复习", "personalPie") + '</div>');
+  }
+
+  function loadClassPie(url) {
+    window.setTimeout(function () {
+      fetch(url + (url.indexOf("?") === -1 ? "?" : "&") + "action=getStats&t=" + Date.now(), { method: "GET" })
+        .then(function (response) { return response.json(); })
+        .then(function (stats) {
+          var host = byId("exitResultPies");
+          if (!host || !stats || !Array.isArray(stats.questionStats)) return;
+          var total = stats.questionStats.reduce(function (sum, item) { return sum + Number(item.total || 0); }, 0);
+          var correct = stats.questionStats.reduce(function (sum, item) { return sum + Number(item.correct || 0); }, 0);
+          var oldClassPie = byId("classPie");
+          if (oldClassPie) oldClassPie.remove();
+          if (total) host.insertAdjacentHTML("beforeend", pieCard("全班累计结果", correct, total, "只显示汇总，不显示同学姓名", "classPie"));
+        })
+        .catch(function () {});
+    }, 1200);
+  }
+
   function submitAnswers() {
     if (submitting) return;
     var nameInput = byId("exitStudentName");
@@ -143,6 +226,7 @@
     localStorage.setItem("week4_l2_pending_exit", JSON.stringify(payload));
     submitting = true;
     setSync("正在提交 5 题…", "saving");
+    renderPersonalPie();
 
     fetch(url, {
       method: "POST",
@@ -153,6 +237,7 @@
       localStorage.removeItem("week4_l2_pending_exit");
       submitting = false;
       updateCompletion("5 题已提交到 Google Sheets。", "saved");
+      loadClassPie(url);
     }).catch(function () {
       submitting = false;
       updateCompletion("网络暂不可用，5 题已保存在本机；恢复网络后可重新提交。", "error");
@@ -201,19 +286,41 @@
   }
 
   document.addEventListener("click", function (event) {
-    var target = event.target.closest("[data-exit-value],[data-exit-single],#exitNext,#redoExit,#resetPage");
+    var target = event.target.closest("[data-exit-value],[data-exit-single],[data-exit-check],#exitNext,#exitPrev,#redoExit,#resetPage");
     if (!target) return;
+    var index = activeQuestionIndex();
+    if (target.matches("[data-exit-value],[data-exit-single],[data-exit-check]") && feedbackShown[index]) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
     if (target.matches("[data-exit-value],[data-exit-single]")) {
       rememberChoice(target);
       return;
     }
     if (target.id === "redoExit" || (target.id === "resetPage" && document.querySelector('[data-go="exit"]').classList.contains("active"))) {
       answers = [null, null, null, null, null];
+      feedbackShown = [false, false, false, false, false];
       submitting = false;
       setSync("准备记录 5 题", "");
       return;
     }
-    if (target.id === "exitNext" && activeQuestionIndex() === 4) {
+    if (target.id === "exitPrev") {
+      window.setTimeout(function () {
+        var previousIndex = activeQuestionIndex();
+        if (feedbackShown[previousIndex]) showQuestionFeedback(previousIndex);
+      }, 0);
+      return;
+    }
+    if (target.id === "exitNext" && !feedbackShown[index]) {
+      if (!answers[index]) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      feedbackShown[index] = true;
+      showQuestionFeedback(index);
+      return;
+    }
+    if (target.id === "exitNext" && index === 4) {
       var name = nameInput ? nameInput.value.trim() : "";
       if (!name) {
         event.preventDefault();

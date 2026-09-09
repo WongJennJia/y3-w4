@@ -3,13 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>三年级数学｜空间｜解决问题｜Week 4-L2</title>
-  <meta http-equiv="refresh" content="0; url=./Week4-L2-Year3-Space_Problem_Solving_SmartBoard_Chinese_V2_Prototype_r2.html">
-  <script>
-    window.location.replace("./Week4-L2-Year3-Space_Problem_Solving_SmartBoard_Chinese_V2_Prototype_r2.html");
-  </script>
+  <title>三年级数学｜Week 4 互动课件</title>
+  <style>
+    :root{--ink:#17345b;--blue:#2364aa;--purple:#6d43bd;--line:#d7e2ef;--paper:#fffdfa}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;color:var(--ink);background:linear-gradient(135deg,#eef6ff,#fbf9ff 50%,#fff8ed);font-family:"Microsoft YaHei","Noto Sans SC","PingFang SC",Arial,sans-serif}
+    main{width:min(980px,100%)}
+    .eyebrow{margin:0 0 8px;color:var(--purple);font-weight:900;letter-spacing:.08em}
+    h1{margin:0 0 12px;color:var(--blue);font-size:clamp(40px,7vw,72px);line-height:1.08}
+    .lead{margin:0 0 28px;font-size:clamp(20px,2.5vw,28px);font-weight:700;color:#496884}
+    .lesson-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .lesson-card{display:flex;flex-direction:column;min-height:300px;padding:28px;border:2px solid var(--line);border-radius:26px;background:rgba(255,255,255,.94);box-shadow:0 14px 34px rgba(33,67,111,.12);text-decoration:none;color:inherit;transition:transform .18s ease,box-shadow .18s ease}
+    .lesson-card:hover,.lesson-card:focus-visible{transform:translateY(-5px);box-shadow:0 20px 42px rgba(33,67,111,.18);outline:5px solid #ffd166;outline-offset:3px}
+    .lesson-card.primary{border-color:#9bbce0;background:linear-gradient(145deg,#fff,#edf6ff)}
+    .badge{align-self:flex-start;padding:6px 12px;border-radius:999px;background:#eee7ff;color:#5c35a6;font-weight:900}
+    .primary .badge{background:#dceeff;color:#184f80}
+    h2{margin:22px 0 10px;font-size:clamp(28px,4vw,42px);color:var(--blue)}
+    .lesson-card p{margin:0;font-size:21px;font-weight:700;color:#55708b}
+    .open{margin-top:auto;padding-top:24px;font-size:22px;font-weight:950;color:var(--purple)}
+    @media(max-width:700px){.lesson-grid{grid-template-columns:1fr}.lesson-card{min-height:240px}}
+  </style>
 </head>
 <body>
-  <p><a href="./Week4-L2-Year3-Space_Problem_Solving_SmartBoard_Chinese_V2_Prototype_r2.html">打开 Week 4-L2 互动课件</a></p>
+  <main>
+    <p class="eyebrow">YEAR 3 · WEEK 4</p>
+    <h1>选择互动课件</h1>
+    <p class="lead">两个页面可以随时互相切换；L2 保留五题 Google Sheets Exit Ticket。</p>
+    <div class="lesson-grid">
+      <a class="lesson-card primary" href="./week4-L2.html">
+        <span class="badge">主要课程</span>
+        <h2>Week 4-L2</h2>
+        <p>空间 · 棱柱体 · 对称轴 · 解决问题</p>
+        <span class="open">打开 L2 →</span>
+      </a>
+      <a class="lesson-card" href="./week4-l1.html">
+        <span class="badge">复习课程</span>
+        <h2>Week 4-L1</h2>
+        <p>对称轴 · 观察 · 绘制 · 对折检查</p>
+        <span class="open">打开 L1 →</span>
+      </a>
+    </div>
+  </main>
 </body>
 </html>
