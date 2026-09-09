@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>三年级数学｜对称轴｜Week 4-L1</title>
   <style>
     :root{
@@ -749,7 +752,7 @@
   <header class="topbar">
     <div class="brand"><span class="brand-mark">✦</span><span>三年级数学 · 对称轴</span></div>
     <div class="top-actions">
-      <a class="top-btn lesson-switch-link" href="./week4-L2.html">切换到 L2 空间课</a>
+      <a class="top-btn lesson-switch-link" href="./week4-L2.html?v=2">切换到 L2 空间课</a>
       <button class="top-btn nav-toggle-btn" id="navToggleBtn" type="button" aria-controls="lessonNav" aria-expanded="false">☰ 显示导航</button>
       <button class="top-btn" id="restartBtn" type="button">↺ 本页重来</button>
       <button class="top-btn primary" id="soundBtn" type="button">🔊 声音：开</button>
@@ -2600,3 +2603,55 @@
           question: "长方形沿着对角线对折，会完全重合吗？",
           selectedOption: answer,
           optionText: optionLabels[answer] || answer,
+          isCorrect: correct,
+          userAgent: navigator.userAgent
+        });
+
+        // 2. 立即拉取并展示全班饼分图
+        fetchStatsData(function(stats){
+          renderStudentPieChart(stats);
+        });
+      });
+
+      function playButterfly(direction){
+        animationSerial++;
+        var card = byId("butterflyCard");
+        var leftHalf = byId("butterflyHalf");
+        var rightHalf = byId("butterflyCheckHalf");
+        direction = direction || "left";
+        leftHalf.setAttribute("transform","");
+        rightHalf.setAttribute("transform","");
+        card.classList.add("playing");
+        if(direction==="right"){
+          byId("butterflyMessage").innerHTML = '<strong class="keyword blue">检查</strong>：右边红色的一半和<strong class="keyword">身体右半边</strong>正在绕红色<strong class="keyword blue">对称轴</strong>往左边黄色的一半折过去……';
+          foldSound();
+          animateMatrixElement(rightHalf,[1,0,0,1,0,0],[-1,0,0,1,900,0],1250,function(){
+            goodSound();
+            byId("butterflyMessage").innerHTML = '<strong class="keyword">检查完成</strong>！右边折过去也能<strong class="keyword">完全重合</strong>，所以红线就是蝴蝶的<strong class="keyword blue">对称轴</strong>。';
+            setTimeout(function(){card.classList.remove("playing");},900);
+          });
+          return;
+        }
+        byId("butterflyMessage").innerHTML = '黄色左半边和<strong class="keyword">身体左半边</strong>正在绕红色<strong class="keyword blue">对称轴</strong>折过去……';
+        foldSound();
+        animateMatrixElement(leftHalf,[1,0,0,1,0,0],[-1,0,0,1,900,0],1250,function(){
+          goodSound();
+          byId("butterflyMessage").innerHTML = '<strong class="keyword">完全重合</strong>！红线就是蝴蝶的<strong class="keyword blue">对称轴</strong>。';
+          setTimeout(function(){card.classList.remove("playing");},900);
+        });
+      }
+
+      injectActivityHeaders();
+      injectPageNavigation();
+      bindGlossary();
+      setCountdownMinutes(5);
+      paintStopwatch();
+      renderDrawScene();
+      renderSummary();
+      renderMirror();
+      renderDetective();
+      setActiveNav("start");
+    })();
+  </script>
+</body>
+</html>
